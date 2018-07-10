@@ -1,7 +1,5 @@
 package cn.see.fragment.release.ui;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 import butterknife.BindView;
