@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/See.iml" filepath="$PROJECT_DIR$/See.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/See.iml" filepath="$PROJECT_DIR$/See.iml" />
+=======
+>>>>>>> fc04a5a3266fee6ba168b34a8c278d3c57e87f88
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
     </modules>

@@ -5,7 +5,11 @@ android {
     buildToolsVersion "27.0.2"
 
     defaultConfig {
+<<<<<<< HEAD
         minSdkVersion 19
+=======
+        minSdkVersion 21
+>>>>>>> fc04a5a3266fee6ba168b34a8c278d3c57e87f88
         targetSdkVersion 27
         versionCode 1
         versionName "1.1"
@@ -17,8 +21,11 @@ android {
         }
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fc04a5a3266fee6ba168b34a8c278d3c57e87f88
     resourcePrefix "mis_"
 }
 
