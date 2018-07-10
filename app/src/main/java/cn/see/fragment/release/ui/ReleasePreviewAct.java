@@ -25,9 +25,6 @@ public class ReleasePreviewAct extends BaseActivity {
     @Override
     public void initAfter() {
 
-
-
-
     }
 
     @Override
