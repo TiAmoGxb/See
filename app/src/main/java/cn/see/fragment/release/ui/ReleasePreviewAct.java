@@ -36,6 +36,6 @@ public class ReleasePreviewAct extends BaseActivity {
 
     @Override
     public void setListener() {
-
+        //真的好了吗
     }
 }
