@@ -265,6 +265,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             to.putSerializable(IntentConstant.RELEASE_PATHS,pathList)
                     .launch();
         }
-
+    //hah1
     }
 }
