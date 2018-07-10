@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.TopicApplyAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <cn.see.util.widet.putorefresh.PullToRefreshGridView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/verygridview"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/basetitle"
+        ptr:ptrAnimationStyle="flip"
+        android:gravity="center_horizontal"
+        android:numColumns="4"
+        ptr:ptrMode="both" />
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

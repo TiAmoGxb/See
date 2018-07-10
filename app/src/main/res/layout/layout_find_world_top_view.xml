@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/back_f"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="15px"
+        android:background="@drawable/shap_but_seach_yes_bg"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:text="搜索"
+            android:layout_marginLeft="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="15px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="40px"
+            android:src="@mipmap/seach_img"
+            android:layout_height="40px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="7px"
+        android:id="@+id/find_world_recy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_marginTop="15px"
+        android:background="@color/view_f4"
+        android:layout_width="match_parent"
+        android:layout_height="15px"></View>
+    <View
+        android:layout_marginTop="15px"
+        android:background="@color/back_f"
+        android:layout_width="match_parent"
+        android:layout_height="10px"></View>
+</com.zhy.autolayout.AutoLinearLayout>

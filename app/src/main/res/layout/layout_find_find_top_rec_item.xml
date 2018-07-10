@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="150px"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        app:layout_auto_baseheight="width"
+        android:layout_marginLeft="20px"
+        android:id="@+id/icon"
+        android:scaleType="fitXY"
+        android:layout_width="240px"
+        android:src="@drawable/jingxuan"
+        android:layout_height="160px" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:textSize="@dimen/sp_28"
+        android:textColor="@color/back_f"
+        android:text="精选"
+        android:layout_marginLeft="40px"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ischange"
+        android:visibility="gone"
+        android:layout_marginBottom="10px"
+        android:layout_alignBottom="@+id/icon"
+        android:layout_marginRight="10px"
+        android:layout_alignRight="@+id/icon"
+        android:src="@drawable/tab_yes"
+        android:layout_width="40px"
+        android:layout_height="40px" />
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/b_view"
+        android:layout_below="@+id/icon"
+        android:background="@color/back_f"
+        android:layout_width="match_parent"
+        android:layout_height="25px"></View>
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.see">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".app.App"
+        android:allowBackup="true"
+        android:icon="@drawable/log1o"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/log1o"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="design_width"
+            android:value="768" />
+        <meta-data
+            android:name="design_height"
+            android:value="1280" />
+
+        <activity android:name=".main.WelcomeAct">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".main.MainParentAct" />
+        <activity android:name=".fragment.fragmentview.mineview.SetUserDataAct" />
+        <activity android:name=".fragment.fragmentview.mineview.ArticleDetailsAct" />
+        <activity android:name=".fragment.fragmentview.mineview.AttentionAct" />
+        <activity android:name=".fragment.fragmentview.mineview.FansAct" />
+        <activity android:name=".fragment.fragmentview.mineview.LikeAct" />
+        <activity android:name=".fragment.fragmentview.homeview.FriendsRecoAct" />
+        <activity android:name=".fragment.fragmentview.homeview.FrindeUpdateAct" />
+        <activity android:name=".fragment.fragmentview.homeview.SelectMyTableAct" />
+        <activity android:name=".fragment.fragmentview.mineview.LoginAct" />
+        <activity android:name=".main.WebAct" />
+        <activity android:name=".fragment.fragmentview.findview.PhotoViewActivity" />
+        <activity android:name=".fragment.fragmentview.mineview.ReviewAct" />
+        <activity android:name=".fragment.fragmentview.mineview.OtherMainAct" />
+        <activity android:name=".fragment.fragmentview.mineview.QrCodeAct" />
+        <activity android:name=".fragment.fragmentview.mineview.TopicAct" />
+        <activity android:name=".fragment.fragmentview.homeview.NearByUserAct" />
+        <activity android:name=".fragment.fragmentview.newsview.NewsLikeAct" />
+        <activity android:name=".fragment.fragmentview.newsview.NewsReviewAct" />
+        <activity android:name=".fragment.fragmentview.findview.AllTopicAct" />
+        <activity android:name=".fragment.fragmentview.mineview.TopicApplyAct" />
+        <activity android:name=".fragment.fragmentview.mineview.UserTopicAct" />
+        <activity android:name=".fragment.release.ui.BeautifulPictureAct" />
+        <activity android:name=".fragment.release.ui.BeautifulDetilsAct" />
+        <activity android:name=".fragment.release.ui.ReleasePreviewAct"></activity>
+    </application>
+
+</manifest>

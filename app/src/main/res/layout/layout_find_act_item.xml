@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="match_parent">
+    <com.zhy.autolayout.AutoRelativeLayout
+
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/img_thub"
+            android:layout_marginTop="20px"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:src="@drawable/bac_icon"/>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rela_"
+            android:layout_below="@+id/img_thub"
+            android:layout_width="match_parent"
+            android:layout_height="60px">
+
+
+            <TextView
+                android:id="@+id/act"
+                android:layout_centerVertical="true"
+                android:padding="5px"
+                android:textColor="@color/back_f"
+                android:gravity="center"
+                android:textSize="@dimen/sp_22"
+                android:text="活动"
+                android:background="@drawable/shap_but_act_yes_bg"
+                android:layout_width="70px"
+                android:layout_height="35px" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_marginLeft="10px"
+                android:layout_toRightOf="@+id/act"
+                android:layout_centerVertical="true"
+                android:textColor="@color/text_101010"
+                android:gravity="center"
+                android:textSize="@dimen/sp_24"
+                android:text="时间"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <TextView
+            android:layout_marginTop="10px"
+            android:layout_below="@+id/rela_"
+            android:id="@+id/cont"
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:gravity="center"
+            android:textSize="@dimen/sp_24"
+            android:text="参与人0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginTop="20px"
+            android:layout_below="@+id/cont"
+            android:background="@color/view_f1"
+            android:layout_width="match_parent"
+            android:layout_height="2px"></View>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

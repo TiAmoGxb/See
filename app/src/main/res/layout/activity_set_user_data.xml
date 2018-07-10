@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.SetUserDataAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <View
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="90px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="修改头像"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <cn.see.util.widet.CircleImageView
+                    android:layout_width="70px"
+                    app:border_width="4px"
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/thumb_image"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/text_c9"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="70px" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/thumb_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="昵        称"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/name_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="红星闪闪"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/name_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="用  户  名"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="65px"
+                    android:layout_alignParentRight="true"
+                    android:layout_toLeftOf="@+id/name_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="13691158710"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="二  维  码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <View
+                android:background="@color/view_f4"
+                android:layout_width="match_parent"
+                android:layout_height="15px"></View>
+
+
+            <View
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="性        别"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/sex_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="男"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/sex_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="常住地址"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/add_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="北京"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/add_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="我的大学"
+                    android:layout_marginLeft="7px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/school_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="黑龙江东方学院"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/school_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="签        名"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/sin_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="太阳尚远 但必有太阳"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/sin_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <View
+                android:background="@color/view_f4"
+                android:layout_width="match_parent"
+                android:layout_height="15px"></View>
+
+
+            <View
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="生        日"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/bioth_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="2018-06-06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/bioth_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="星        座"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/constellation_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="处女座"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/constellation_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_height="80px">
+
+                <TextView
+                    android:layout_marginLeft="7px"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28"
+                    android:text="个性标签"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/table_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_7d"
+                    android:textSize="@dimen/sp_28"
+                    android:text="已选标签3个"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/table_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <View
+                android:background="@color/view_f4"
+                android:layout_width="match_parent"
+                android:layout_height="20px"></View>
+
+
+            <View
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+
+            <TextView
+                android:id="@+id/exit_login"
+                android:textColor="@color/text_3d"
+                android:textSize="@dimen/sp_30"
+                android:gravity="center"
+                android:text="退出登录"
+                android:layout_width="match_parent"
+                android:layout_height="90px" />
+
+            <View
+                android:background="@color/text_c9"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></View>
+
+            <View
+                android:background="@color/view_f4"
+                android:layout_width="match_parent"
+                android:layout_height="40px"></View>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </ScrollView>
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

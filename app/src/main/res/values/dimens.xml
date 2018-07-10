@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- common -->
+    <dimen name="sp_28">28px</dimen>
+    <dimen name="sp_30">30px</dimen>
+    <dimen name="sp_32">32px</dimen>
+    <dimen name="sp_34">34px</dimen>
+    <dimen name="sp_24">24px</dimen>
+    <dimen name="sp_26">26px</dimen>
+    <dimen name="sp_22">22px</dimen>
+
+
+
+    <!--listview-->
+    <dimen name="indicator_right_padding">20px</dimen>
+    <dimen name="indicator_corner_radius">25px</dimen>
+    <dimen name="indicator_internal_padding">8px</dimen>
+    <dimen name="header_footer_left_right_padding">50px</dimen>
+    <dimen name="header_footer_top_bottom_padding">20px</dimen>
+    <dimen name="header_footer_internal_padding">40px</dimen>
+
+
+    <!--AlterView-->
+    <!--标题文字大小-->
+    <dimen name="textSize_alert_title">32px</dimen>
+    <dimen name="textSize_actionsheet_title">28px</dimen>
+    <!--标题文字高度-->
+    <dimen name="height_alert_title">100px</dimen>
+    <dimen name="height_actionsheet_title">80px</dimen>
+    <!--消息文字大小-->
+    <dimen name="textSize_alert_msg">30px</dimen>
+    <dimen name="textSize_actionsheet_msg">25px</dimen>
+    <!--消息距离底部间距-->
+    <dimen name="marginBottom_alert_msg">50px</dimen>
+    <dimen name="marginBottom_actionsheet_msg">28px</dimen>
+    <!--窗口模式左右两边到屏幕的间距-->
+    <dimen name="margin_alert_left_right">120px</dimen>
+    <dimen name="margin_actionsheet_left_right">20px</dimen>
+    <!--线条粗细-->
+    <dimen name="size_divier">1px</dimen>
+    <!--按钮的高度-->
+    <dimen name="height_alert_button">96px</dimen>
+    <!--按钮文字大小-->
+    <dimen name="textSize_alert_button">30px</dimen>
+    <!--圆角-->
+    <dimen name="radius_alertview">30px</dimen>
+
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <integer name="default_blur_radius">15</integer>
+    <integer name="default_downsample_factor">8</integer>
+    <color name="default_overlay_color">#AAFFFFFF</color>
+
+</resources>

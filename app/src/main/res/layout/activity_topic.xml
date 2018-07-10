@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.ArticleDetailsAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <cn.see.util.widet.putorefresh.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_topic_list"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        ptr:ptrAnimationStyle="flip"
+        android:gravity="center_horizontal"
+        ptr:ptrMode="both" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

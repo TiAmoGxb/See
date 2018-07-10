@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.fragmentview.mineview.UserTopicAct">
+
+    <include layout="@layout/layout_base_title"></include>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/s_rela"
+        android:layout_below="@+id/basetitle"
+        android:layout_marginTop="25px"
+        android:background="@drawable/shap_but_seach_yes_bg"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:text="搜索"
+            android:layout_marginLeft="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="15px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="40px"
+            android:src="@mipmap/seach_img"
+            android:layout_height="40px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="20px"
+        android:layout_marginRight="100px"
+        android:id="@+id/rela"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/s_rela"
+        android:layout_centerHorizontal="true"
+        android:layout_height="100px">
+
+        <TextView
+            android:layout_marginTop="22px"
+            android:id="@+id/hot_tv"
+            android:textSize="@dimen/sp_32"
+            android:gravity="center|bottom"
+            android:textColor="@color/text_3d"
+            android:text="我发起的话题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:id="@+id/hot_v"
+            android:layout_marginTop="10px"
+            android:layout_below="@+id/hot_tv"
+            android:layout_alignRight="@+id/hot_tv"
+            android:layout_alignLeft="@+id/hot_tv"
+            android:background="@color/text_3d"
+            android:layout_width="wrap_content"
+            android:layout_height="5px"></View>
+        <TextView
+            android:layout_marginTop="22px"
+            android:id="@+id/news_tv"
+            android:textSize="@dimen/sp_32"
+            android:gravity="center|bottom"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/text_101010"
+            android:text="我参与的话题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:visibility="gone"
+            android:id="@+id/news_v"
+            android:layout_marginTop="10px"
+            android:layout_below="@+id/news_tv"
+            android:layout_alignRight="@+id/news_tv"
+            android:layout_alignLeft="@+id/news_tv"
+            android:background="@color/text_3d"
+            android:layout_width="wrap_content"
+            android:layout_height="5px"></View>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_above="@+id/rel_tv"
+        android:layout_below="@+id/v"
+        android:id="@+id/all_topic_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+</com.zhy.autolayout.AutoLinearLayout>

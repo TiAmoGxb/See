@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="120px"
+        android:layout_marginRight="120px"
+        android:background="@drawable/dialog_bg"
+        android:orientation="vertical"
+       >
+
+        <!-- Title -->
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="90px">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="发现新版本"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="35px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <!-- split -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:background="#d8d8d8" />
+        <!-- Content -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20px"
+            >
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_update_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最新版本：智慧海事v2.2.1"
+                    android:textColor="@color/black"
+                    android:textSize="30px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_update_msg_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新版本大小：19.07M"
+                    android:textSize="30px"
+                    android:layout_marginTop="20px"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/tv_update_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="120px"
+                    android:textSize="25px"
+                    android:layout_marginTop="20px"
+                    android:text="更新内容：\n1、处理了海图上长按定点查询附近通航要素和船舶的bug\n2、新增点击消息列表查看消息类容\n3、调整经纬度变化距离获取消息通知，以及优化消息列表的显示样式\n4、海图切换窗口里面新增 显示当前屏幕范围内的AIS数据\n"
+                    android:lineSpacingExtra="6px"
+                    android:textColor="@color/black"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+        </ScrollView>
+
+        <View
+            android:background="#d7d7db"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content" >
+
+
+            <TextView
+                android:id="@+id/btn_update_id_cancel"
+                android:background="@drawable/set_bac"
+                android:layout_width="0px"
+                android:layout_height="100px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30px"
+                android:textColor="@color/text_6"
+                android:text="下次再说"/>
+
+            <View
+                android:layout_width="1px"
+                android:background="#d7d7db"
+                android:layout_height="match_parent"></View>
+
+            <TextView
+                android:background="@drawable/set_bac"
+                android:id="@+id/btn_update_id_ok"
+                android:layout_width="0px"
+                android:layout_height="100px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30px"
+                android:textColor="@color/text_3"
+                android:text="立即更新"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

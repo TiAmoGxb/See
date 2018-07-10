@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/back_f"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/topic_img"
+        android:layout_marginTop="15px"
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:layout_marginBottom="15px"
+        android:scaleType="fitXY"
+        android:src="@drawable/bac_image"
+        android:layout_width="match_parent"
+        android:layout_height="360px" />
+
+    <TextView
+        android:id="@+id/topic_name"
+        android:textSize="28px"
+        android:textColor="@color/text_7d"
+        android:layout_marginTop="18px"
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/topic_cont"
+        android:textSize="28px"
+        android:textColor="@color/text_7d"
+        android:layout_marginTop="18px"
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:text=""
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+
+            android:layout_marginRight="25px"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="15px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/time"
+                android:layout_width="25px"
+                android:layout_height="25px" />
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15px"
+                android:id="@+id/topic_time"
+                android:textSize="26px"
+                android:textColor="@color/text_7d"
+                android:layout_below="@+id/topic_img"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:layout_marginTop="30px"
+        android:background="@color/text_c9"
+        android:layout_width="match_parent"
+        android:layout_height="1px"></View>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:layout_width="match_parent"
+        android:layout_height="90px">
+
+        <TextView
+            android:id="@+id/apply_num"
+            android:text=""
+            android:textColor="@color/text_7d"
+            android:textSize="30px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/go_apply"
+            android:layout_alignBottom="@+id/go_apply"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/go_apply"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="立即参与"
+            android:textSize="@dimen/sp_26"
+            android:paddingTop="8px"
+            android:paddingBottom="8px"
+            android:paddingRight="20px"
+            android:paddingLeft="20px"
+            android:textColor="@color/back_f"
+            android:background="@drawable/shap_but_act_yes_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/view_f4"></View>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/faqiren"
+                android:layout_width="40px"
+                android:layout_height="40px" />
+
+            <TextView
+                android:layout_marginLeft="18px"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="发起人"
+                android:textColor="@color/text_101010"
+                android:textSize="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+      <com.zhy.autolayout.AutoRelativeLayout
+          android:layout_marginLeft="25px"
+          android:layout_marginRight="25px"
+          android:layout_width="match_parent"
+          android:layout_height="120px">
+
+          <ImageView
+              android:id="@+id/user_img"
+              android:layout_centerVertical="true"
+              android:src="@drawable/bac_image"
+              android:layout_width="80px"
+              android:layout_height="80px" />
+
+          <com.zhy.autolayout.AutoLinearLayout
+              android:layout_marginLeft="30px"
+              android:layout_centerVertical="true"
+              android:orientation="vertical"
+              android:layout_toRightOf="@+id/user_img"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+              <TextView
+                  android:id="@+id/user_name"
+                  android:textSize="@dimen/sp_24"
+                  android:textColor="@color/text_101010"
+                  android:text=""
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" />
+              <TextView
+                  android:layout_marginTop="3px"
+                  android:id="@+id/user_sin"
+                  android:textSize="@dimen/sp_24"
+                  android:textColor="@color/text_c9"
+                  android:text=""
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" />
+              <TextView
+                  android:layout_marginTop="3px"
+                  android:id="@+id/user_fans"
+                  android:textSize="@dimen/sp_24"
+                  android:textColor="@color/text_c9"
+                  android:text=""
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" />
+          </com.zhy.autolayout.AutoLinearLayout>
+
+
+          <TextView
+              android:id="@+id/att_tv"
+              android:layout_centerVertical="true"
+              android:layout_alignParentRight="true"
+              android:textColor="@color/text_101010"
+              android:text="关注"
+              android:paddingLeft="25px"
+              android:paddingRight="25px"
+              android:background="@drawable/mis_shap_but_att_bg"
+              android:textSize="@dimen/sp_28"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+      </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <View
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
+        android:layout_marginTop="10px"
+        android:background="@color/text_c9"
+        android:layout_width="match_parent"
+        android:layout_height="1px"></View>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="100px">
+
+        <TextView
+            android:id="@+id/apply_tv"
+            android:layout_marginLeft="25px"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_c9"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoFrameLayout
+            android:id="@+id/apply_fram"
+            android:layout_marginRight="50px"
+            android:layout_toLeftOf="@+id/r_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/one_img"
+                    android:layout_width="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="40px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:layout_width="80px"
+                    android:id="@+id/two_img"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="80px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/three_img"
+                    android:layout_width="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="120px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:layout_width="80px"
+                    android:id="@+id/four_img"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/recommend_rela"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="160px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/five_img"
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/bac_image"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoFrameLayout>
+
+
+        <ImageView
+            android:id="@+id/r_img"
+            android:layout_marginRight="20px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/right_img"
+            android:layout_width="25px"
+            android:layout_height="25px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/view_f4"></View>
+</com.zhy.autolayout.AutoLinearLayout>

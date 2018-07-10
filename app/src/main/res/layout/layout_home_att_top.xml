@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/view_f4"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="100px">
+
+        <ImageView
+            android:id="@+id/tj_img"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/tj_friends"
+            android:layout_width="40px"
+            android:layout_height="40px" />
+
+        <TextView
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/tj_img"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_101010"
+            android:text="好友推荐"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <com.zhy.autolayout.AutoFrameLayout
+            android:layout_marginRight="20px"
+            android:layout_toLeftOf="@+id/r_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/one_img"
+                    android:layout_width="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="40px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:layout_width="80px"
+                    android:id="@+id/two_img"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="80px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/three_img"
+                    android:layout_width="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="120px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:layout_width="80px"
+                    android:id="@+id/four_img"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px"
+                    android:src="@drawable/bac_image"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/recommend_rela"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="160px">
+
+                <cn.see.util.widet.CircleImageView
+                    android:id="@+id/five_img"
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/bac_image"
+                    app:border_color="@color/back_f"
+                    app:border_width="6px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoFrameLayout>
+
+
+        <ImageView
+            android:id="@+id/r_img"
+            android:layout_marginRight="20px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/right_img"
+            android:layout_width="25px"
+            android:layout_height="25px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/update_rela"
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:layout_marginTop="20px"
+        android:background="@color/back_f">
+
+        <ImageView
+            android:id="@+id/dt_img"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:src="@mipmap/haoyoudongtai" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/dt_img"
+            android:text="好友动态"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28" />
+
+        <ImageView
+            android:layout_width="25px"
+            android:layout_height="25px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20px"
+            android:src="@mipmap/right_img" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <cn.see.util.widet.OnMeListView
+        android:id="@+id/dt_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></cn.see.util.widet.OnMeListView>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/ht_rela"
+        android:background="@color/back_f"
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vp_view"
+>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rela"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:background="@color/back_f">
+
+            <ImageView
+                android:id="@+id/ht_img"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:src="@mipmap/att_ht" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:layout_toRightOf="@+id/ht_img"
+                android:text="我关注的话题"
+                android:textColor="@color/text_101010"
+                android:textSize="@dimen/sp_28" />
+
+            <ImageView
+                android:layout_width="25px"
+                android:layout_height="25px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20px"
+                android:src="@mipmap/right_img" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/top_ht_recy"
+            android:layout_marginBottom="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rela"
+            android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

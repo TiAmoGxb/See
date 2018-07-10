@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.release.ui.BeautifulPictureAct">
+
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="30px"
+        android:id="@+id/img_recy"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="130px"
+        android:id="@+id/tab_recy"
+        android:layout_below="@+id/img_recy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="120px"
+        android:layout_marginRight="120px"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60px">
+
+        <TextView
+            android:gravity="center"
+            android:text="滤镜"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/edit_tv"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>
