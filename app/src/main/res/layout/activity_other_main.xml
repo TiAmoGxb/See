@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/view_f4"
+    android:layout_height="match_parent"
+    tools:context="cn.see.fragment.fragmentview.mineview.OtherMainAct">
+    <cn.see.util.widet.putorefresh.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_other_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/basetitle"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        ptr:ptrAnimationStyle="flip"
+        android:gravity="center_horizontal"
+        ptr:ptrMode="both" />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela_title"
+        android:layout_width="match_parent"
+        android:layout_height="129px">
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_marginTop="49px"
+            android:layout_below="@+id/view_t"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/back_rela"
+                android:layout_centerVertical="true"
+                android:layout_width="80px"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    app:layout_auto_basewidth="height"
+                    android:layout_marginLeft="30px"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/set_back_bac"
+                    android:layout_width="35px"
+                    android:layout_height="35px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <TextView
+                android:id="@+id/title_tv_base"
+                android:layout_centerInParent="true"
+                android:textColor="@color/text_101010"
+                android:textSize="33px"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:layout_height="wrap_content" />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/image_rela"
+                android:layout_centerVertical="true"
+                android:layout_width="90px"
+                android:layout_alignParentRight="true"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    app:layout_auto_basewidth="height"
+                    android:id="@+id/right_img_top"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/mine_cha"
+                    android:layout_width="40px"
+                    android:layout_height="40px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/title_tv_op"
+                android:textColor="@color/text_03"
+                android:textSize="33px"
+                android:layout_marginRight="25px"
+                android:layout_width="wrap_content"
+                android:text="操作"
+                android:layout_height="wrap_content" />
+
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

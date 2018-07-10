@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="1000px">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rereal"
+        android:layout_width="match_parent"
+        android:layout_height="200px">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/top_find_recy"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:id="@+id/cen_view"
+        android:layout_below="@+id/rereal"
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/view_f4"></View>
+    
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/vp_rela"
+        android:background="@drawable/dialog_bg"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_below="@+id/cen_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.v4.view.ViewPager
+            android:background="@drawable/dialog_bg"
+            android:id="@+id/viewpager_ad"
+            android:layout_width="match_parent"
+            android:layout_height="320px">
+        </android.support.v4.view.ViewPager>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25px"
+            android:layout_alignBottom="@+id/viewpager_ad"
+            android:layout_marginBottom="25px"
+            android:orientation="horizontal" >
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:id="@+id/vp_view"
+        android:layout_below="@+id/vp_rela"
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/view_f4"></View>
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_below="@+id/vp_view"
+        android:id="@+id/ht_rela"
+        android:layout_marginBottom="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/update_rela"
+            android:layout_width="match_parent"
+            android:background="@color/back_f"
+            android:layout_height="80px">
+
+            <ImageView
+                android:id="@+id/dt_img"
+                android:layout_marginLeft="20px"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/att_ht"
+                android:layout_width="40px"
+                android:layout_height="40px" />
+
+            <TextView
+                android:layout_marginLeft="20px"
+                android:layout_toRightOf="@+id/dt_img"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:textColor="@color/text_101010"
+                android:text="发现话题"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginRight="20px"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/right_img"
+                android:layout_width="25px"
+                android:layout_height="25px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/update_rela"
+            android:id="@+id/top_ht_recy"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

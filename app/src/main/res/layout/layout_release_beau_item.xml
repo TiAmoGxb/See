@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="20px"
+    android:background="@color/back_f"
+    android:layout_height="260px">
+
+    <TextView
+        android:text="夏日"
+        android:id="@+id/tab_name"
+        android:background="@drawable/shap_but_tab_yes_bg"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/text_7d"
+        android:textSize="@dimen/sp_26"
+        android:gravity="center"
+        android:paddingLeft="25px"
+        android:paddingRight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+    
+    <ImageView
+        app:layout_auto_baseheight="width"
+        android:layout_marginTop="18px"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tab_img"
+        android:background="@drawable/bac_icon"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/tab_name"
+        android:layout_width="180px"
+        android:layout_height="180px" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

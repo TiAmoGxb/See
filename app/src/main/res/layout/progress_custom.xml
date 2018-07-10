@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/progress_custom_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="30px"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:paddingTop="30px" >
+
+    <ImageView
+        android:src="@drawable/spinner_0"
+        android:layout_centerInParent="true"
+        android:id="@+id/spinnerImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleInverse"        android:progressDrawable="@drawable/pg"
+        android:layout_width="80px"
+        android:indeterminate = "false"
+        android:layout_height="80px" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/message"
+        android:textSize="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:text="Message"
+        android:textColor="#FFFFFF" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="300px"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="220px"
+        app:layout_auto_baseheight="width"
+        android:layout_marginLeft="20px"
+        android:background="@drawable/shap_but_topic_bg"
+        android:layout_height="300px">
+
+        <ImageView
+            android:id="@+id/topic_img"
+            android:layout_margin="15px"
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bac_icon"/>
+        <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:id="@+id/tname"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/topic_img"
+            android:text="话题"
+            android:layout_marginTop="3px"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginBottom="15px"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/hot_num"
+            android:layout_width="20px"
+            android:src="@drawable/hot_num"
+            android:layout_height="20px" />
+
+        <TextView
+            android:id="@+id/hot_num"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="0"
+
+            android:layout_marginLeft="10px"
+            android:layout_marginBottom="10px"
+            android:layout_marginRight="15px"
+            android:textColor="@color/text_c9"
+            android:textSize="@dimen/sp_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

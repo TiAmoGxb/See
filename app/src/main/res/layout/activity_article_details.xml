@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.ArticleDetailsAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <cn.see.util.widet.putorefresh.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_art_list"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        ptr:ptrAnimationStyle="flip"
+        android:gravity="center_horizontal"
+        ptr:ptrMode="pullFromStart" />
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela_comm"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="@color/view_f6"
+        android:layout_height="90px">
+        <EditText
+            android:id="@+id/et_comm"
+            android:layout_toLeftOf="@+id/send_tv"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shap_but_review_yes_bg_comm"
+            android:textSize="@dimen/sp_28"
+            android:hint="请输入评论内容"
+            android:textColor="@color/text_101010"
+            android:textColorHint="@color/text_7d"
+            android:paddingLeft="20px"
+            android:paddingTop="5px"
+            android:paddingBottom="5px"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="25px"
+            android:layout_width="match_parent"
+            android:layout_height="65px" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/send_tv"
+            android:text="发送"
+            android:textSize="30px"
+            android:textColor="@color/text_101010"
+            android:gravity="center"
+            android:layout_width="100px"
+            android:layout_height="match_parent" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

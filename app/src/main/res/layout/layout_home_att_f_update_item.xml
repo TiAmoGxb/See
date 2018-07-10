@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/back_f"
+    android:layout_height="120px">
+
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/ones_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <ImageView
+            app:layout_auto_baseheight="width"
+            android:layout_marginLeft="20px"
+            android:id="@+id/dt_img"
+            android:layout_centerVertical="true"
+            android:src="@drawable/log1o"
+            android:scaleType="fitXY"
+            android:layout_width="90px"
+            android:layout_height="90px" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/dt_img"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dt_name"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_26"
+                    android:text="Barua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/dt_time"
+                    android:layout_marginLeft="15px"
+                    android:textColor="@color/text_c9"
+                    android:textSize="@dimen/sp_22"
+                    android:text="今天14:36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="5px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dt_type"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_26"
+                    android:text="成为"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/dt_to_name"
+                    android:textColor="@color/text_3d"
+                    android:textSize="@dimen/sp_26"
+                    android:text="红星闪闪"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/dt_type_txt"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_26"
+                    android:text="的粉丝"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+        <View
+            android:layout_marginLeft="20px"
+            android:id="@+id/botom_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/twos_view"
+            android:layout_alignParentBottom="true"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

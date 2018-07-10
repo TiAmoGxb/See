@@ -1,0 +1,16 @@
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/tab_rela"
+    android:layout_marginRight="20px"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tab_tv"
+        android:layout_height="wrap_content"
+        android:text="标签"
+        android:textColor="@color/back_f"
+        android:textSize="@dimen/sp_26"
+        android:background="@drawable/shap_but_tab_yes_bg"
+        android:gravity="center"/>
+</com.zhy.autolayout.AutoRelativeLayout>

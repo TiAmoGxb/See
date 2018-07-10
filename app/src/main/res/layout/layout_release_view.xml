@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <cn.see.util.widet.BlurringView
+        android:id="@+id/blurring_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:blurRadius="11"
+        app:downsampleFactor="20"
+        app:overlayColor="#50FFFFFF"/>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="60px"
+        android:layout_marginRight="60px"
+        android:layout_marginBottom="200px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/photo_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/recomm_photo"
+                android:layout_width="110px"
+                android:layout_height="110px" />
+
+            <TextView
+                android:textSize="28px"
+                android:layout_marginTop="18px"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_101010"
+                android:text="照片"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/topic_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/recomm_huati"
+                android:layout_width="110px"
+                android:layout_height="110px" />
+
+            <TextView
+                android:layout_marginTop="18px"
+                android:textSize="28px"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_101010"
+                android:text="话题"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/video_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/recomm_shipin"
+                android:layout_width="110px"
+                android:layout_height="110px" />
+
+            <TextView
+                android:layout_marginTop="18px"
+
+                android:textSize="28px"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_101010"
+                android:text="视频"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/zb_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/recomm_zhibo"
+                android:layout_width="110px"
+                android:layout_height="110px" />
+
+            <TextView
+                android:layout_marginTop="18px"
+
+                android:textSize="28px"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_101010"
+                android:text="直播"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <ImageView
+        android:id="@+id/colose_img"
+        android:layout_marginBottom="80px"
+        android:src="@drawable/close"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="40px"
+        android:layout_height="40px" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/act_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="50px"
+            android:text=""
+            android:textColor="@color/text_101010"
+            android:textSize="28px" />
+
+
+        <ImageView
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:id="@+id/act_img"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:layout_marginTop="25px"
+            android:scaleType="fitXY"
+             />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoFrameLayout>

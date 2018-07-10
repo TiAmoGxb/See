@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/view_f4"
+    android:focusable="false"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="80px">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/img"
+            android:layout_width="30px"
+            android:src="@mipmap/text_img"
+            android:layout_height="30px" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img"
+            android:layout_marginLeft="15px"
+            android:textSize="@dimen/sp_26"
+            android:textColor="@color/text_101010"
+            android:text="同文章类型"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/txt_recy"
+        android:layout_below="@+id/rela"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+</com.zhy.autolayout.AutoRelativeLayout>

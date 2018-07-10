@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_margin="50px"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:src="@drawable/bac_image"
+        android:scaleType="centerCrop"
+        android:id="@+id/image_item"
+        android:layout_width="match_parent"
+        android:layout_height="550px" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

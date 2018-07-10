@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.release.ui.BeautifulPictureAct">
+
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"
+        android:layout_below="@+id/basetitle"
+        android:id="@+id/image_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/change_img"
+        android:layout_marginLeft="30px"
+        android:layout_marginBottom="30px"
+        android:layout_alignBottom="@+id/image_item"
+        android:src="@drawable/change_img"
+        android:layout_width="60px"
+        android:layout_height="60px" />
+    
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="80px"
+        android:id="@+id/tab_recy"
+        android:layout_above="@+id/lin"
+        android:layout_marginBottom="70px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/edit_rela"
+        android:visibility="gone"
+        android:layout_marginRight="40px"
+        android:layout_marginLeft="40px"
+        android:layout_above="@+id/lin"
+        android:layout_marginBottom="90px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="50px"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/edit_lin"
+            android:layout_below="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="调整"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/tiaozheng"
+                    android:layout_width="80px"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="60px"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ld_tv"
+                    android:text="亮度"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/liangdu"
+                    android:layout_width="80px"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="60px"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/dbd_tv"
+                    android:text="对比度"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/duibidu"
+                    android:layout_width="80px"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="60px"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/sd_tv"
+                    android:text="色调"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/sediao"
+                    android:layout_width="80px"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="60px"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bhd_tv"
+                    android:text="饱和度"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_101010"
+                    android:textSize="@dimen/sp_28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/baohedu"
+                    android:layout_width="80px"
+                    android:layout_height="80px" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/lin"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="120px"
+        android:layout_marginRight="120px"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60px">
+
+        <TextView
+            android:id="@+id/gpu_tv"
+            android:gravity="center"
+            android:text="滤镜"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:gravity="center"
+            android:text="标签"
+            android:id="@+id/tab_tv"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:id="@+id/edit_tv"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/back_f"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="260px"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+            
+        <ImageView
+            android:src="@drawable/bac_icon"
+            android:scaleType="centerCrop"
+            android:id="@+id/mine_bac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_marginTop="40px"
+            android:layout_marginRight="40px"
+            android:layout_alignParentRight="true"
+            android:layout_width="40px"
+            android:src="@drawable/mine_cha"
+            android:layout_height="40px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/user_data"
+        android:layout_marginTop="200px"
+        android:layout_width="match_parent"
+        android:layout_height="140px">
+
+        <cn.see.util.widet.CircleImageView
+            android:id="@+id/user_img"
+            android:layout_width="140px"
+            app:border_width="10px"
+            app:border_color="@color/back_f"
+            android:src="@drawable/bac_image"
+            android:layout_marginLeft="50px"
+            android:layout_height="140px" />
+
+
+        <TextView
+            android:id="@+id/user_name"
+            android:text="红星闪闪"
+            android:layout_marginTop="6px"
+            android:layout_marginLeft="34px"
+            android:layout_toRightOf="@+id/user_img"
+            android:textColor="@color/back_f"
+            android:textSize="@dimen/sp_34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/set_user_data"
+            android:layout_marginTop="10px"
+            android:layout_width="35px"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/user_name"
+            android:layout_height="25px"
+            android:src="@mipmap/release_txt"/>
+
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/user_signature"
+            android:text=""
+            android:layout_marginBottom="25px"
+            android:layout_marginTop="6px"
+            android:layout_marginLeft="34px"
+            android:layout_toRightOf="@+id/user_img"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/num_rela"
+        android:layout_marginLeft="34px"
+        android:layout_marginTop="50px"
+        android:layout_below="@+id/user_data"
+        android:layout_width="450px"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:gravity="center"
+            android:id="@+id/collection_lin"
+            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/att_cont"
+                android:textSize="@dimen/sp_28"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_101010"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:textSize="@dimen/sp_22"
+                android:layout_width="wrap_content"
+                android:text="关注"
+                android:textColor="@color/text_c9"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:gravity="center"
+            android:id="@+id/flows_lin"
+            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/fans_cont"
+                android:textSize="@dimen/sp_28"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_101010"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:textSize="@dimen/sp_22"
+                android:layout_width="wrap_content"
+                android:text="粉丝"
+                android:textColor="@color/text_c9"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:gravity="center"
+            android:id="@+id/like_lin"
+            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/like_cont"
+                android:textSize="@dimen/sp_28"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_101010"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10px"
+                android:textSize="@dimen/sp_22"
+                android:layout_width="wrap_content"
+                android:text="喜欢"
+                android:textColor="@color/text_c9"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/signin_img"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:layout_alignTop="@id/num_rela"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:src="@drawable/qiandao"/>
+
+        <TextView
+            android:textSize="@dimen/sp_22"
+            android:layout_width="wrap_content"
+            android:text="签到"
+            android:layout_marginTop="10px"
+            android:textColor="@color/text_c9"
+            android:layout_height="wrap_content" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/num_rela"
+        android:layout_centerHorizontal="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/view_f1"></View>
+        <TextView
+            android:id="@+id/tv_text_num"
+            android:textSize="@dimen/sp_26"
+            android:layout_width="wrap_content"
+            android:text="0篇文章"
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/view_f1"></View>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    android:id="@+id/main_rela"
+    tools:context="cn.see.main.MainParentAct">
+
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="100px"
+        android:layout_height="match_parent">
+
+    </com.zhy.autolayout.AutoFrameLayout>
+
+
+
+        <cn.see.util.widet.XRadioGroup
+            android:layout_alignParentBottom="true"
+            android:id="@+id/radioGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:orientation="horizontal">
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/home_rela"
+                android:gravity="center_horizontal">
+
+                <RadioButton
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/rb_home"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bt_home_select"
+                    android:button="@null"
+                    android:textSize="25px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/find_rela"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+
+                <RadioButton
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/rb_find"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bt_find_select"
+                    android:button="@null"
+                    android:checked="true"
+                    android:textSize="25px" />
+
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/rb_release"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    app:layout_auto_baseheight="width"
+                    android:layout_width="75px"
+                    android:layout_height="75px"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="@mipmap/release_yes"
+                    android:button="@null"
+                    android:checked="false"
+                    android:textSize="12dp" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/news_rela"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <RadioButton
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/rb_news"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bt_news_select"
+                    android:button="@null"
+                    android:textSize="12dp" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/mine_rela"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <RadioButton
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/rb_mine"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bt_mine_select"
+                    android:button="@null"
+                    android:textSize="12dp" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </cn.see.util.widet.XRadioGroup>
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

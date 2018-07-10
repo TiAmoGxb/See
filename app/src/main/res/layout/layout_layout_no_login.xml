@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/no_login_rela"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <cn.see.util.widet.CircleImageView
+            android:id="@+id/user_img"
+            android:layout_width="140px"
+            app:border_width="8px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200px"
+            app:border_color="@color/back_f"
+            android:src="@drawable/log1o"
+            android:layout_marginLeft="50px"
+            android:layout_height="140px" />
+
+        <Button
+            android:id="@+id/login_but"
+            android:layout_marginTop="50px"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/user_img"
+            android:textColor="@color/back_f"
+            android:textSize="@dimen/sp_28"
+            android:text="登 录"
+            android:background="@drawable/shap_but_red_bg"
+            android:layout_width="200px"
+            android:layout_height="60px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

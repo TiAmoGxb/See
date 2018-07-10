@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/top_rela"
+        android:layout_width="match_parent"
+        android:layout_height="80px">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="380px"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="22px"
+                android:id="@+id/find_tv"
+                android:gravity="center|bottom"
+                android:textSize="@dimen/sp_32"
+                android:textColor="@color/text_101010"
+                android:text="发现"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/find_v"
+                android:layout_marginTop="5px"
+                android:layout_below="@+id/find_tv"
+                android:layout_alignRight="@+id/find_tv"
+                android:layout_alignLeft="@+id/find_tv"
+                android:background="@color/text_3d"
+                android:layout_width="wrap_content"
+                android:layout_height="5px"></View>
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22px"
+                android:id="@+id/world_tv"
+                android:gravity="center|bottom"
+                android:textSize="@dimen/sp_32"
+                android:textColor="@color/text_3d"
+                android:text="世界"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/world_v"
+                android:layout_marginTop="5px"
+                android:layout_below="@+id/world_tv"
+                android:layout_alignRight="@+id/world_tv"
+                android:layout_alignLeft="@+id/world_tv"
+                android:background="@color/text_3d"
+                android:layout_width="wrap_content"
+                android:layout_height="5px"></View>
+
+
+            <TextView
+                android:layout_marginTop="22px"
+                android:layout_alignParentRight="true"
+                android:gravity="center|bottom"
+                android:id="@+id/act_tv"
+                android:textSize="@dimen/sp_32"
+                android:textColor="@color/text_101010"
+                android:text="活动"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:visibility="gone"
+                android:id="@+id/act_v"
+                android:layout_marginTop="5px"
+                android:layout_below="@+id/act_tv"
+                android:layout_alignRight="@+id/act_tv"
+                android:layout_alignLeft="@+id/act_tv"
+                android:background="@color/text_3d"
+                android:layout_width="wrap_content"
+                android:layout_height="5px"></View>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/add_rela"
+            android:layout_width="90px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:src="@drawable/add_icon"
+                android:layout_width="40px"
+                android:layout_height="40px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/find_vp"
+        android:layout_below="@+id/top_rela"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</com.zhy.autolayout.AutoRelativeLayout>
