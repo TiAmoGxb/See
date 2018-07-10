@@ -266,4 +266,5 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
                     .launch();
         }
     }
+    //github做修改
 }
