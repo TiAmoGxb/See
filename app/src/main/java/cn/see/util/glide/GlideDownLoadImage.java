@@ -531,7 +531,6 @@ public class GlideDownLoadImage {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormatData = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat dateFormatFile = new SimpleDateFormat("HHmmssSSSS");
-
         return "IMG_"+dateFormatData.format(date)+"_"+dateFormatFile.format(date)+".jpg";
     }
 

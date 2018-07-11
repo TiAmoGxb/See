@@ -28,21 +28,21 @@ public class BeautifulDetilsPresenter extends XPresent<BeautifulDetilsAct> {
     List<BeauBean> beauBeen;
     public void addBeauData(){
         beauBeen = new ArrayList<>();
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"高雅"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"美白"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"清新"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"雾化"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"伦敦"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"淡雅"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"青春"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"加深轮廓"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"盛夏"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"玛罗"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"清凉"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"朴素"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"萌新"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"清凉"));
-        beauBeen.add(new BeauBean(R.drawable.bac_image,"晨光"));
+        beauBeen.add(new BeauBean(R.drawable.yuantu,"原图"));
+        beauBeen.add(new BeauBean(R.drawable.omrs,"美白"));
+        beauBeen.add(new BeauBean(R.drawable.abao,"清新"));
+        beauBeen.add(new BeauBean(R.drawable.amaro,"雾化"));
+        beauBeen.add(new BeauBean(R.drawable.charm,"伦敦"));
+        beauBeen.add(new BeauBean(R.drawable.earlybirdv,"淡雅"));
+        beauBeen.add(new BeauBean(R.drawable.elegant,"青春"));
+        beauBeen.add(new BeauBean(R.drawable.fandel,"加深轮廓"));
+        beauBeen.add(new BeauBean(R.drawable.floral,"盛夏"));
+        beauBeen.add(new BeauBean(R.drawable.hefe,"玛罗"));
+        beauBeen.add(new BeauBean(R.drawable.hudson,"清凉"));
+        beauBeen.add(new BeauBean(R.drawable.inkwell,"朴素"));
+        beauBeen.add(new BeauBean(R.drawable.iris,"萌新"));
+        beauBeen.add(new BeauBean(R.drawable.juicy,"清凉"));
+        beauBeen.add(new BeauBean(R.drawable.lomo,"晨光"));
     }
 
 

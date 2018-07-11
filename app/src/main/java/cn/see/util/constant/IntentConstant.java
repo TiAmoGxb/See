@@ -63,5 +63,14 @@ public class IntentConstant {
      * 选中的滤镜
      */
     public static String  IMAGE_BEAU_GPU = "IMAGE_BEAU_GPU";
+    /**
+     * 选中图片位置
+     */
+    public static String IMAGE_SEL_POSITION = "IMAGE_SEL_POSITION";
+
+    /**
+     * 添加文字
+     */
+    public static String TEXT_ADD = "TEXT_ADD";
 
 }

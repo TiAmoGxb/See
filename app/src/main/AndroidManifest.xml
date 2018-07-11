@@ -53,7 +53,8 @@
         <activity android:name=".fragment.fragmentview.mineview.UserTopicAct" />
         <activity android:name=".fragment.release.ui.BeautifulPictureAct" />
         <activity android:name=".fragment.release.ui.BeautifulDetilsAct" />
-        <activity android:name=".fragment.release.ui.ReleasePreviewAct"></activity>
+        <activity android:name=".fragment.release.ui.ReleasePreviewAct" />
+        <activity android:name=".fragment.release.ui.AddTextAct"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.release.ui.AddTextAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"
+        ></include>
+
+    <View
+        android:id="@+id/v"
+        android:layout_below="@+id/basetitle"
+        android:background="@color/view_f1"
+        android:layout_width="match_parent"
+        android:layout_height="2px"></View>
+
+    <EditText
+        android:layout_below="@+id/v"
+        android:id="@+id/et_add_cont"
+        android:background="@null"
+        android:paddingTop="10px"
+        android:layout_marginTop="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginLeft="20px"
+        android:textSize="25px"
+        android:minLines="1"
+        android:maxLines="6"
+        android:maxLength="300"
+        android:gravity="top"
+        android:textColorHint="@color/text_c9"
+        android:textColor="@color/text_101010"
+        android:hint="内容"
+        android:layout_width="match_parent"
+        android:layout_height="400px" />
+
+    <TextView
+        android:layout_marginTop="10px"
+        android:layout_below="@+id/et_add_cont"
+        android:layout_alignParentRight="true"
+        android:id="@+id/text_num"
+        android:text="0/300"
+        android:textSize="26px"
+        android:layout_marginRight="25px"
+        android:layout_gravity="right"
+        android:textColor="@color/text_101010"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</com.zhy.autolayout.AutoRelativeLayout>
