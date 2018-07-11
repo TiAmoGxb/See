@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -51,8 +52,13 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     private CustomProgress progress;
     private LinearLayoutManager manager;
     private LinearLayoutManager layoutManager;
+    //本地图片路径
     private ArrayList<String> paths;
+    //设置数据的集合
     private ArrayList<Bitmap> bitmapList ;
+    //临时存放压缩过的图片集合
+    private ArrayList<Bitmap> OriginalList;
+    //适配器
     private RecryCommonAdapter<Bitmap> adapter;
     //全局 GPUImage 防止多次刷新滤镜 重复创建对象
     private GPUImage gpuImage;
@@ -60,8 +66,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     private int gpuPosition = -1;
     //区分是话题还是图片
     private String type;
-
-
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -81,7 +85,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
 
     @OnClick(R.id.title_tv_op_bg)
     void goRelese(){
-        openActivity(ReleasePreviewAct.class);
+        complete();
     }
     /**
      * 编辑
@@ -94,6 +98,8 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
                     .to(BeautifulDetilsAct.class)
                     .putString(IntentConstant.IMAGE_BEAU_PATH,paths.get(firstPosition))
                     .putInt(IntentConstant.IMAGE_BEAU_GPU,gpuPosition)
+                    .putInt(IntentConstant.IMAGE_SEL_POSITION,firstPosition)
+                    .requestCode(2)
                     .launch();
         }
 
@@ -118,39 +124,33 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     public void initAfter() {
         getP().addBeauData();
         bitmapList = new ArrayList<>();
+        OriginalList = new ArrayList<>();
         tabRecy.setAdapter(getP().initBeauAdapter());
         paths = (ArrayList<String>) getIntent().getSerializableExtra(IntentConstant.RELEASE_PATHS);
         type = getIntent().getStringExtra(IntentConstant.RELEASE_TYPE);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (String s: paths) {
+                    OriginalList.add( BitmapUtils.compressBitmap(s,1024));
+                    Log.i("BitmapUtils","----------------------------------");
+                }
 
- /*       Bitmap bit = BitmapUtils.getSDCardImg(paths.get(0));
-
-        Log.i(TAG, "压缩前图片的大小" + (bit.getByteCount() / 1024 / 1024)
-                + "M宽度为" + bit.getWidth() + "高度为" + bit.getHeight());
-
-        Bitmap bm = BitmapUtils.compressSampling(paths.get(0));
-
-        Log.i(TAG, "压缩后图片的大小" + (bm.getByteCount() / 1024 / 1024)
-                + "M宽度为" + bm.getWidth() + "高度为" + bm.getHeight());
-
-        for (int x = 0;x<paths.size();x++){
-            Bitmap sdCardImg = BitmapUtils.getSDCardImg(paths.get(x));
-            int size = sdCardImg.getByteCount() / 1024 / 1024;
-            if(size>1){
-                bitmap = sdCardImg;
-            }else{
-                bitmap =  BitmapUtils.compressSampling(paths.get(x));
+                for (Bitmap b:OriginalList){
+                    bitmapList.add(b);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        addInsertImg();
+                        adapter = getP().initAdapter(bitmapList);
+                        mRecyclerView.setAdapter(adapter);
+                    }
+                });
             }
-            bitmapList.add( bitmap);
-        }*/
+        }).start();
 
-        for (String s: paths) {
-            bitmapList.add( BitmapUtils.compressSampling(s));
-        }
-        addInsertImg();
-        Log.i(TAG,"bitmapList:"+bitmapList.size());
-        adapter = getP().initAdapter(bitmapList);
-        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -178,6 +178,8 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
                     .to(BeautifulDetilsAct.class)
                     .putString(IntentConstant.IMAGE_BEAU_PATH,paths.get(position))
                     .putInt(IntentConstant.IMAGE_BEAU_GPU,gpuPosition)
+                    .putInt(IntentConstant.IMAGE_SEL_POSITION,position)
+                    .requestCode(2)
                     .launch();
         }else{
             if(bitmapList.size()<=9){
@@ -209,10 +211,16 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
         int right = tabRecy.getChildAt(lastPosition - position).getLeft();
         tabRecy.scrollBy((left - right)/2,0);
         progress = CustomProgress.show(this);
-        new DownTask().execute(GPUImageUtil.getFilter(position));
-
+        //点击原图
+        if(position==0){
+            bitmap = OriginalList.get(firstPosition);
+            bitmapList.set(firstPosition,bitmap);
+            adapter.notifyDataSetChanged();
+            progress.dismiss();
+        }else{
+            new DownTask().execute(GPUImageUtil.getFilter(position));
+        }
     }
-
 
     /**
      * 添加加号图片
@@ -227,7 +235,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             bitmapList.add(bitmap);
             is.close();
         } catch (IOException e) {
-            Log.e("GPUImage", e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -238,8 +246,8 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             bitmapList.clear();
             GPUImageFilter filter = (GPUImageFilter) gpuImageFilters[0];
             gpuImage = new GPUImage(BeautifulPictureAct.this);
-            for (int i = 0; i < paths.size(); i++) {
-                bitmap =BitmapUtils.getSDCardImg(paths.get(i));
+            for (int i = 0; i < OriginalList.size(); i++) {
+                bitmap =OriginalList.get(i);
                 gpuImage.setImage(bitmap);
                 gpuImage.setFilter(filter);
                 bitmap = gpuImage.getBitmapWithFilterApplied();
@@ -268,14 +276,69 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //再次添加图片回传
         if(requestCode == 1){
-            ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-            bitmapList.remove(bitmapList.size()-1);
-            for (String s:pathList){
-                bitmapList.add(BitmapUtils.getSDCardImg(s));
+            if(data!=null){
+                final ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                bitmapList.remove(bitmapList.size()-1);
+                for (String s:pathList){
+                    paths.add(s);
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (String s: pathList) {
+                            bitmap = BitmapUtils.compressBitmap(s, 1024);
+                            OriginalList.add( bitmap);
+                            bitmapList.add( bitmap);
+                            Log.i("BitmapUtils","----------------------------------");
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                addInsertImg();
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }).start();
             }
-            addInsertImg();
-            adapter.notifyDataSetChanged();
+            //编辑图片之后回传
+        }else if(requestCode == 2){
+            if(data!=null){
+                String sdPath = data.getStringExtra(IntentConstant.IMAGE_BEAU_PATH);
+                int position = data.getIntExtra(IntentConstant.IMAGE_SEL_POSITION, -1);
+                bitmap = BitmapUtils.getSDCardImg(sdPath);
+                bitmapList.set(position,bitmap);
+                adapter.notifyDataSetChanged();
+            }
         }
+    }
+
+    private void complete(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                paths.clear();
+                for (Bitmap b:bitmapList){
+                    try {
+                        File file = BitmapUtils.saveFile(b, "see");
+                        paths.add(file.getAbsolutePath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Router.newIntent(BeautifulPictureAct.this)
+                                .to(ReleasePreviewAct.class)
+                                .putStringArrayList(IntentConstant.RELEASE_PATHS,paths)
+                                .launch();
+                        onBack();
+                    }
+                });
+            }
+        }).start();
     }
 }
