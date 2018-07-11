@@ -79,6 +79,10 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
         onBack();
     }
 
+    @OnClick(R.id.title_tv_op_bg)
+    void goRelese(){
+        openActivity(ReleasePreviewAct.class);
+    }
     /**
      * 编辑
      */

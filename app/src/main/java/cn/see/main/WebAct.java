@@ -123,6 +123,7 @@ public class WebAct extends BaseActivity {
         // 缩放按钮
         webSettings.setDisplayZoomControls(false);
 
+//        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 //        webView.addJavascriptInterface(new JsInterface(), ConstantsUtils.JS_TYPE_FLAG);
     }

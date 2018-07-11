@@ -52,7 +52,8 @@
         <activity android:name=".fragment.fragmentview.mineview.TopicApplyAct" />
         <activity android:name=".fragment.fragmentview.mineview.UserTopicAct" />
         <activity android:name=".fragment.release.ui.BeautifulPictureAct" />
-        <activity android:name=".fragment.release.ui.BeautifulDetilsAct"></activity>
+        <activity android:name=".fragment.release.ui.BeautifulDetilsAct" />
+        <activity android:name=".fragment.release.ui.ReleasePreviewAct"></activity>
     </application>
 
 </manifest>
