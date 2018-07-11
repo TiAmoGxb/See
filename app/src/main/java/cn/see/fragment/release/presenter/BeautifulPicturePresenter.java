@@ -31,11 +31,16 @@ public class BeautifulPicturePresenter extends XPresent<BeautifulPictureAct> {
 
     List<BeauBean> beauBeen;
 
-    public RecryCommonAdapter<Bitmap> initAdapter(List<Bitmap> urls){
+    public RecryCommonAdapter<Bitmap> initAdapter(final List<Bitmap> urls){
         RecryCommonAdapter<Bitmap> adapter = new RecryCommonAdapter<Bitmap>(getV(), R.layout.layout_release_beauti_recy_item,urls) {
             @Override
             protected void convert(ViewHolder holder, Bitmap s, int position) {
                 ImageView imageView = holder.getView(R.id.image_item);
+                if(position==urls.size()-1){
+                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                }else{
+                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                }
                 imageView.setImageBitmap(s);
             }
 
@@ -60,21 +65,21 @@ public class BeautifulPicturePresenter extends XPresent<BeautifulPictureAct> {
 
    public void addBeauData(){
        beauBeen = new ArrayList<>();
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"高雅"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"美白"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"清新"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"雾化"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"伦敦"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"淡雅"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"青春"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"加深轮廓"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"盛夏"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"玛罗"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"清凉"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"朴素"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"萌新"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"清凉"));
-       beauBeen.add(new BeauBean(R.drawable.bac_image,"晨光"));
+       beauBeen.add(new BeauBean(R.drawable.yuantu,"原图"));
+       beauBeen.add(new BeauBean(R.drawable.omrs,"美白"));
+       beauBeen.add(new BeauBean(R.drawable.abao,"清新"));
+       beauBeen.add(new BeauBean(R.drawable.amaro,"雾化"));
+       beauBeen.add(new BeauBean(R.drawable.charm,"伦敦"));
+       beauBeen.add(new BeauBean(R.drawable.earlybirdv,"淡雅"));
+       beauBeen.add(new BeauBean(R.drawable.elegant,"青春"));
+       beauBeen.add(new BeauBean(R.drawable.fandel,"加深轮廓"));
+       beauBeen.add(new BeauBean(R.drawable.floral,"盛夏"));
+       beauBeen.add(new BeauBean(R.drawable.hefe,"玛罗"));
+       beauBeen.add(new BeauBean(R.drawable.hudson,"清凉"));
+       beauBeen.add(new BeauBean(R.drawable.inkwell,"朴素"));
+       beauBeen.add(new BeauBean(R.drawable.iris,"萌新"));
+       beauBeen.add(new BeauBean(R.drawable.juicy,"清凉"));
+       beauBeen.add(new BeauBean(R.drawable.lomo,"晨光"));
    }
 
 

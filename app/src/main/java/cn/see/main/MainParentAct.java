@@ -252,6 +252,9 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.i(TAG,"requestCode:"+requestCode);
+        if(data!=null){
+
+
         ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
         Router to = Router.newIntent(this)
                 .to(BeautifulPictureAct.class);
@@ -265,6 +268,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             to.putSerializable(IntentConstant.RELEASE_PATHS,pathList)
                     .launch();
         }
+        }
     }
-    //github做修改
 }

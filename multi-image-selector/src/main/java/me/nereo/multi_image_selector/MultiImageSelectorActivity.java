@@ -55,20 +55,16 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         type = getIntent().getParcelableExtra("type") ;
-
-       // Log.e("MultiImageSelector",type.toString()+"") ;
-
         setTheme(R.style.MIS_NO_ACTIONBAR);
         setContentView(R.layout.mis_activity_default);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.BLACK);
         }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("选择照片");
+        toolbar.setTitleTextColor(0x101010);
         toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
         if(toolbar != null){
             setSupportActionBar(toolbar);

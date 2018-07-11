@@ -20,7 +20,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="130px"
+        android:layout_marginTop="30px"
         android:id="@+id/tab_recy"
         android:layout_below="@+id/img_recy"
         android:layout_width="match_parent"

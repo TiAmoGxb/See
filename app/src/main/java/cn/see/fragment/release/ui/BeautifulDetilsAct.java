@@ -1,7 +1,9 @@
 package cn.see.fragment.release.ui;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.see.R;
@@ -22,8 +28,6 @@ import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.widet.putorefresh.ScreenUtils;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
-import jp.co.cyberagent.android.gpuimage.GPUImageBrightnessFilter;
-import jp.co.cyberagent.android.gpuimage.GPUImageSaturationFilter;
 
 /**
  * @日期：2018/7/4
@@ -35,13 +39,19 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
 
     private static final String TAG = "BeautifulDetilsAct" ;
     private LinearLayoutManager layoutManager;
+    //未经过滤镜的图片
     private Bitmap bitmapPath;
+    //经过滤镜的图片
     private Bitmap bitmap;
     private GPUImage gpuImage;
+    //是否开启预览
     private boolean isChange = true;
+    //记录宽高 用来预览判断
     private int width;
     private int height;
     private ViewGroup.LayoutParams layoutParams;
+    //记录滤镜位置
+    private int gpuP;
 
 
     @BindView(R.id.title_tv_base)
@@ -90,7 +100,16 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
 
     @OnClick(R.id.title_tv_op_bg)
     void goBack(){
-
+        try {
+            File file = BitmapUtils.saveFile(bitmap, "see");
+            Intent intent = new Intent();
+            intent.putExtra(IntentConstant.IMAGE_BEAU_PATH,file.getAbsolutePath());
+            intent.putExtra(IntentConstant.IMAGE_SEL_POSITION,getIntent().getIntExtra(IntentConstant.IMAGE_SEL_POSITION,-1));
+            setResult(2,intent);
+            onBack();
+        } catch (IOException e) {
+           Log.i("BitmapUtils","e:"+e.toString());
+        }
     }
 
 
@@ -115,10 +134,8 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
             }
             imageView.setLayoutParams(layoutParams);
             isChange = true;
-
         }
     }
-
 
 
     @Override
@@ -137,16 +154,18 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
 
     @Override
     public void initAfter() {
+
         layoutParams = imageView.getLayoutParams();
         String path = getIntent().getStringExtra(IntentConstant.IMAGE_BEAU_PATH);
-        int gpuP = getIntent().getIntExtra(IntentConstant.IMAGE_BEAU_GPU, -1);
-        bitmapPath = BitmapUtils.getSDCardImg(path);
+        gpuP = getIntent().getIntExtra(IntentConstant.IMAGE_BEAU_GPU, -1);
+        bitmapPath = BitmapUtils.compressBitmap(path, 1024);
         //gpuP>0代表该图片已被滤镜修改过
         if(gpuP>0){
             bitmap = GPUImageUtil.getGPUImageFromAssets(this,gpuImage,bitmapPath, gpuP);
         }else{
             bitmap = bitmapPath;
         }
+
         width = bitmap.getWidth();
         height = bitmap.getHeight();
         if(width>height){
@@ -156,7 +175,6 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
             imageView.setLayoutParams(layoutParams);
         }
         imageView.setImageBitmap(bitmap);
-
     }
 
     @Override
@@ -175,17 +193,15 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 GPUImageUtil.changeSaturation(progress);
-                imageView.setImageBitmap(GPUImageUtil.getGPUImageFromAssets(getApplicationContext(),gpuImage,bitmap,17));
+                bitmap = GPUImageUtil.getGPUImageFromAssets(getApplicationContext(), gpuImage, bitmap, 17);
+                imageView.setImageBitmap(bitmap);
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -198,10 +214,13 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
         int left = tabRecy.getChildAt(position - firstPosition).getLeft();
         int right = tabRecy.getChildAt(lastPosition - position).getLeft();
         tabRecy.scrollBy((left - right) / 2, 0);
-        bitmap = GPUImageUtil.getGPUImageFromAssets(this,gpuImage,bitmapPath, position);
+        if(position == 0){
+            bitmap = bitmapPath;
+        }else{
+            bitmap = GPUImageUtil.getGPUImageFromAssets(this,gpuImage,bitmapPath, position);
+        }
         imageView.setImageBitmap(bitmap);
     }
-
 
     /**
      * 进度值转换
