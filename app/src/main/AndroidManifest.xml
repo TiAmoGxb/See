@@ -54,7 +54,10 @@
         <activity android:name=".fragment.release.ui.BeautifulPictureAct" />
         <activity android:name=".fragment.release.ui.BeautifulDetilsAct" />
         <activity android:name=".fragment.release.ui.ReleasePreviewAct" />
-        <activity android:name=".fragment.release.ui.AddTextAct"></activity>
+        <activity android:name=".fragment.release.ui.AddTextAct" />
+        <activity android:name=".fragment.release.ui.ReleaseSetAct" />
+        <activity android:name=".fragment.release.ui.SelectTopicAct" />
+        <activity android:name=".fragment.release.ui.SelectTabAct"></activity>
     </application>
 
 </manifest>

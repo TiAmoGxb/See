@@ -213,8 +213,9 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
         progress = CustomProgress.show(this);
         //点击原图
         if(position==0){
-            bitmap = OriginalList.get(firstPosition);
-            bitmapList.set(firstPosition,bitmap);
+            for (int x = 0;x<OriginalList.size();x++){
+                bitmapList.set(x,OriginalList.get(x));
+            }
             adapter.notifyDataSetChanged();
             progress.dismiss();
         }else{
@@ -257,7 +258,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             return bitmapList;
         }
 
-        //主要是更新UI
         @Override
         protected void onPostExecute(ArrayList<Bitmap> result) {
             super.onPostExecute(result);
@@ -320,6 +320,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             @Override
             public void run() {
                 paths.clear();
+                bitmapList.remove(bitmapList.size()-1);
                 for (Bitmap b:bitmapList){
                     try {
                         File file = BitmapUtils.saveFile(b, "see");
@@ -334,6 +335,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
                         Router.newIntent(BeautifulPictureAct.this)
                                 .to(ReleasePreviewAct.class)
                                 .putStringArrayList(IntentConstant.RELEASE_PATHS,paths)
+                                .putString(IntentConstant.RELEASE_TYPE,type)
                                 .launch();
                         onBack();
                     }

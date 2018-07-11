@@ -157,7 +157,6 @@ public class MinePresenter extends XPresent<MineFragment>{
                         likeImg.setImageResource(R.mipmap.zan_no);
                     }
                 }
-
                 //标签
                 if(s.getTab_lists().size()>0){
                     Log.i("getTab_lists","执行："+s.getTab_lists().size());

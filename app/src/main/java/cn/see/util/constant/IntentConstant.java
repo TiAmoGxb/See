@@ -73,4 +73,14 @@ public class IntentConstant {
      */
     public static String TEXT_ADD = "TEXT_ADD";
 
+    /**
+     * 添加标题
+     */
+    public static String TEXT_ADD_TITLE = "TEXT_ADD_TITLE";
+
+    /**
+     * 选择的话题名称
+     */
+    public static String SEL_TOPIC_NAME = "SEL_TOPIC_NAME";
+
 }
