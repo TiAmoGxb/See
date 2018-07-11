@@ -27,8 +27,33 @@
             android:layout_height="2px"></View>
 
         <TextView
+            android:visibility="gone"
+            android:text="标题"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_101010"
+            android:gravity="center_vertical"
+            android:id="@+id/topic_title"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="60px" />
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/topic_title_v"
+            android:layout_marginBottom="10px"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:background="@color/view_f1"
+            android:layout_width="match_parent"
+            android:layout_height="2px"></View>
+
+
+        <TextView
             android:id="@+id/msg_tv"
             android:textSize="@dimen/sp_28"
+            android:maxLines="6"
+            android:ellipsize="end"
             android:textColor="@color/text_7d"
             android:layout_marginLeft="25px"
             android:layout_marginRight="25px"
@@ -47,6 +72,7 @@
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_marginTop="7px"
+            android:id="@+id/add_topic_rela"
             android:layout_width="match_parent"
             android:layout_marginLeft="25px"
             android:layout_marginRight="25px"
@@ -67,7 +93,7 @@
                 android:layout_toRightOf="@+id/tv_one"
                 android:layout_centerVertical="true"
                 android:id="@+id/tv_topic"
-                android:text="添加标签"
+                android:text="选择话题或活动"
                 android:textSize="@dimen/sp_28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -100,7 +126,7 @@
                 android:layout_toRightOf="@+id/tab_img"
                 android:layout_centerVertical="true"
                 android:id="@+id/tv_tab"
-                android:text="选择话题或活动"
+                android:text="添加标签"
                 android:textSize="@dimen/sp_28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

@@ -12,4 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="200px" />
 
+    <TextView
+        android:layout_marginLeft="15px"
+        android:layout_marginBottom="10px"
+        android:layout_alignBottom="@+id/item_img"
+        android:layout_marginRight="10px"
+        android:id="@+id/position_tv"
+        android:textColor="@color/back_f"
+        android:text="编辑"
+        android:textSize="@dimen/sp_26"
+        android:gravity="center"
+        android:paddingLeft="15px"
+        android:paddingRight="15px"
+        android:paddingTop="2px"
+        android:paddingBottom="2px"
+        android:background="@drawable/shap_but_alpa_yes_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/view_f4"
+    android:layout_height="match_parent"
+    tools:context="cn.see.fragment.release.ui.SelectTabAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/top_recy"
+        android:background="@color/back_f"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/basetitle"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+</com.zhy.autolayout.AutoRelativeLayout>
