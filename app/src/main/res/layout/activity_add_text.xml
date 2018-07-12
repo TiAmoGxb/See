@@ -37,7 +37,8 @@
             android:textSize="@dimen/sp_28"
             android:textColor="@color/text_101010"
             android:id="@+id/topic_title"
-            android:layout_width="wrap_content"
+            android:layout_marginRight="70px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView

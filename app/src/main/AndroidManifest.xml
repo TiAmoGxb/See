@@ -58,6 +58,7 @@
         <activity android:name=".fragment.release.ui.ReleaseSetAct" />
         <activity android:name=".fragment.release.ui.SelectTopicAct" />
         <activity android:name=".fragment.release.ui.SelectTabAct"></activity>
+        <activity android:name=".fragment.release.ui.MultiImageSelectorActivity"></activity>
     </application>
 
 </manifest>

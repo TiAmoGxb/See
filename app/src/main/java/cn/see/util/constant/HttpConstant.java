@@ -44,4 +44,13 @@ public class HttpConstant {
      */
     public static String ACT_WEB_URL=  "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
 
+    /**
+     * 发布话题
+     */
+    public static String RELEASE_TOPIC = "http://www.xintusee.com/IOS/Topic/Add";
+
+    /**
+     * 发布文章
+     */
+    public static String RELEASE_TEXT = "http://www.xintusee.com/IOS/Text/add.html";
 }

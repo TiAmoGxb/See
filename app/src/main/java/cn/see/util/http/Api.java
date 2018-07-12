@@ -4,6 +4,7 @@ import cn.see.service.FindService;
 import cn.see.service.HomeService;
 import cn.see.service.MineService;
 import cn.see.service.NewsService;
+import cn.see.service.ReleaseService;
 
 
 public class Api {
@@ -13,6 +14,7 @@ public class Api {
     private static MineService mineService;
     private static FindService findService;
     private static NewsService newsService;
+    private static ReleaseService releaseService;
     /**
      * 首页模块
      * @return
@@ -71,5 +73,18 @@ public class Api {
         }
         return newsService;
     }
-
+    /**
+     * 发布模块
+     * @return
+     */
+    public static ReleaseService releaseService(){
+        if(newsService == null){
+            synchronized (Api.class){
+                if(releaseService == null){
+                    releaseService = XApi.getInstance().getRetrofit(BASE_PATH,true).create(ReleaseService.class);
+                }
+            }
+        }
+        return releaseService;
+    }
 }

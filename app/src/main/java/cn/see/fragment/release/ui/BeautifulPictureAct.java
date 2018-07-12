@@ -35,10 +35,11 @@ import cn.see.util.BitmapUtils;
 import cn.see.util.GPUImageUtil;
 import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
+import cn.see.util.constant.PreferenceConstant;
+import cn.see.util.version.PreferenceUtils;
 import cn.see.util.widet.CustomProgress;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
-import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 /**
  * @日期：2018/7/4
@@ -66,6 +67,10 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     private int gpuPosition = -1;
     //区分是话题还是图片
     private String type;
+    private Intent intent;
+    private Bitmap bitmap;
+    private String reviewType;
+
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -75,8 +80,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
     RecyclerView mRecyclerView;
     @BindView(R.id.tab_recy)
     RecyclerView tabRecy;
-    private Intent intent;
-    private Bitmap bitmap;
+
 
     @OnClick(R.id.back_rela)
     void baseView(){
@@ -128,6 +132,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
         tabRecy.setAdapter(getP().initBeauAdapter());
         paths = (ArrayList<String>) getIntent().getSerializableExtra(IntentConstant.RELEASE_PATHS);
         type = getIntent().getStringExtra(IntentConstant.RELEASE_TYPE);
+        reviewType = getIntent().getStringExtra("type");
 
         new Thread(new Runnable() {
             @Override
@@ -136,7 +141,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
                     OriginalList.add( BitmapUtils.compressBitmap(s,1024));
                     Log.i("BitmapUtils","----------------------------------");
                 }
-
                 for (Bitmap b:OriginalList){
                     bitmapList.add(b);
                 }
@@ -332,11 +336,19 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Router.newIntent(BeautifulPictureAct.this)
-                                .to(ReleasePreviewAct.class)
-                                .putStringArrayList(IntentConstant.RELEASE_PATHS,paths)
-                                .putString(IntentConstant.RELEASE_TYPE,type)
-                                .launch();
+                        if(reviewType!=null&&reviewType.equals("review")){
+                            StringBuffer path = new StringBuffer();
+                            for (String p:paths){
+                                path.append(p+",");
+                            }
+                            PreferenceUtils.setString(BeautifulPictureAct.this, PreferenceConstant.IMGS_PATHS,path.toString());
+                        }else{
+                            Router.newIntent(BeautifulPictureAct.this)
+                                    .to(ReleasePreviewAct.class)
+                                    .putStringArrayList(IntentConstant.RELEASE_PATHS,paths)
+                                    .putString(IntentConstant.RELEASE_TYPE,type)
+                                    .launch();
+                        }
                         onBack();
                     }
                 });

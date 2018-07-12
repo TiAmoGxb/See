@@ -13,6 +13,9 @@ import cn.see.base.BaseActivity;
 import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
 
+/**
+ * 添加文字
+ */
 public class AddTextAct extends BaseActivity {
     private String type;
 

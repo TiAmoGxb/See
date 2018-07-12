@@ -140,10 +140,13 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Router.newIntent(TopicAct.this)
-                        .to(ArticleDetailsAct.class)
-                        .putString(IntentConstant.ARTIC_TEXT_ID,results.get(position-2).getText_id())
-                        .launch();
+                if(results.size()>0){
+                    Router.newIntent(TopicAct.this)
+                            .to(ArticleDetailsAct.class)
+                            .putString(IntentConstant.ARTIC_TEXT_ID,results.get(position-2).getText_id())
+                            .launch();
+                }
+
             }
         });
     }
@@ -165,6 +168,9 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
         TopiDesitalModel.TopicDeresult.TopicUser user = topicDeresult.getUser();
         user_id = user.getId();
         attFlag = user.getAttention_status();
+        if(user_id.equals(UserUtils.getUserID(this))){
+            attTv.setVisibility(View.GONE);
+        }
         if(attFlag.equals("1")){
             attTv.setText("已关注");
         }else{
