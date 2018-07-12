@@ -125,7 +125,7 @@ public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
     }
 
     public void release(Map<String,String> map,List<String> list,String url) {
-        progress = CustomProgress.show(getV());
+//        progress = CustomProgress.show(getV());
         OkHttpClient client = new OkHttpClient();
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
 
@@ -152,7 +152,9 @@ public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
             @Override
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
                 Log.i(TAG,"成功："+response.body().string());
-                getV().releaseResponse("发布成功");
+                getV().releaseResponse();
+//                ToastUtil.showToast("发布成功");
+//                progress.dismiss();
             }
         });
     }

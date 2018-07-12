@@ -37,6 +37,7 @@ import cn.see.util.constant.IntentConstant;
 import cn.see.util.constant.PreferenceConstant;
 import cn.see.util.version.PreferenceUtils;
 import cn.see.util.widet.CustomGridViewLayoutManager;
+import cn.see.util.widet.CustomProgress;
 import retrofit2.http.PATCH;
 
 import static cn.see.R.mipmap.setting;
@@ -70,6 +71,7 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     private String type;
     //选择的标签ID
     private String tabID ;
+    private CustomProgress progress;
 
     @BindView(R.id.title_tv_base)
     TextView title;
@@ -145,6 +147,11 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
 
     @OnClick(R.id.rel_tv)
     void release(){
+        if(paths.size()==1&&paths.get(paths.size()-1).equals("")){
+            ToastUtil.showToast("至少添加一张图片");
+            return;
+        }
+        progress = CustomProgress.show(this);
         if(type.equals("topic")){
             releaseUpTopic();
         }else{
@@ -329,7 +336,6 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                     break;
 
             }
-
         }
 
     }
@@ -382,7 +388,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             return;
         }
         if(!topic.equals("选择话题或活动")){
-            map.put("type",topicID);
+            map.put("type","topic");
+            map.put("type_id",topicID);
         }
         if(!tab.equals("添加标签")){
             map.put("tab",tabID);
@@ -402,16 +409,21 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
 
     /**
      * 发布成功
-     * @param msg
      */
-    public void releaseResponse(final String msg){
+    public void releaseResponse(){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 deleteFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/see"));
-                getP().progress.dismiss();
-                ToastUtil.showToast(msg);
-                onBack();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showToast("发布成功");
+                        progress.dismiss();
+                        onBack();
+                    }
+                });
+
             }
         }).start();
     }

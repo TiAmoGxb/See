@@ -72,8 +72,9 @@ public class BitmapUtils {
      */
     public static Bitmap compressBitmap(String srcPath, int ImageSize) {
         int subtract;
-        Log.i(TAG, "图片处理开始..");
+
         Bitmap bitmap = compressByResolution(srcPath, 1024, 720); //分辨率压缩
+        Log.i(TAG, "图片处理开始.."+ bitmap.getByteCount() / 1024 + "KB");
         if (bitmap == null) {
             Log.i(TAG, "bitmap 为空");
         }
@@ -89,8 +90,8 @@ public class BitmapUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
             Log.i(TAG, "图片压缩后：" + baos.toByteArray().length / 1024 + "KB");
         }
-//        Log.i(TAG, "图片处理完成!" + baos.toByteArray().length / 1024 + "KB");
         byte[] bytes = baos.toByteArray();
+        Log.i(TAG, "字节数组大小!" + bytes.length / 1024 + "KB");
         bitmap =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         Log.i(TAG, "图片处理完成!" + bitmap.getByteCount() / 1024 + "KB");
         return bitmap;
