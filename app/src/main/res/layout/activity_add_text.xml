@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back_f"
+    android:orientation="vertical"
     tools:context="cn.see.fragment.release.ui.AddTextAct">
+
 
     <include layout="@layout/layout_base_title"
         android:id="@+id/basetitle"
@@ -18,24 +20,68 @@
         android:layout_width="match_parent"
         android:layout_height="2px"></View>
 
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/topic_rela"
+        android:visibility="gone"
+        android:layout_marginTop="15px"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_height="70px">
+
+        <EditText
+            android:hint="标题"
+            android:background="@null"
+            android:textColorHint="@color/text_7d"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_101010"
+            android:id="@+id/topic_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:text="0/15"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_7d"
+            android:id="@+id/topic_title_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/basetitle"
+            android:background="@color/view_f1"
+            android:layout_width="match_parent"
+            android:layout_height="2px"></View>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+    
+
+
+
+
+
     <EditText
         android:layout_below="@+id/v"
         android:id="@+id/et_add_cont"
         android:background="@null"
         android:paddingTop="10px"
         android:layout_marginTop="20px"
-        android:layout_marginRight="20px"
-        android:layout_marginLeft="20px"
+        android:layout_marginRight="25px"
+        android:layout_marginLeft="25px"
         android:textSize="25px"
         android:minLines="1"
-        android:maxLines="6"
+        android:maxLines="8"
         android:maxLength="300"
         android:gravity="top"
         android:textColorHint="@color/text_c9"
         android:textColor="@color/text_101010"
         android:hint="内容"
         android:layout_width="match_parent"
-        android:layout_height="400px" />
+        android:layout_height="300px" />
 
     <TextView
         android:layout_marginTop="10px"
@@ -49,4 +95,4 @@
         android:textColor="@color/text_101010"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

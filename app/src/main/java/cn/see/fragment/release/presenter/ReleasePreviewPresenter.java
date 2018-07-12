@@ -24,6 +24,19 @@ import cn.see.util.glide.GlideDownLoadImage;
 public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
 
 
+    /**
+     * 根据类型判断UI
+     * @param type
+     */
+    public void isTypeUi(String type){
+        if(type.equals("topic")){
+            getV().isTopicSetUi();
+        }else{
+            getV().isTextSetUi();
+        }
+    }
+
+
     public RecryCommonAdapter<String> initAdapter(final List<String> urls){
         RecryCommonAdapter<String> adapter = new RecryCommonAdapter<String>(getV(), R.layout.layout_release_review_item,urls) {
             @Override
@@ -37,6 +50,7 @@ public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
                 GlideDownLoadImage.getInstance().loadImage(s,imageView);
             }
 
+
             @Override
             public void onBindViewHolder(ViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
@@ -45,7 +59,7 @@ public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-//                getV().imgageItem(position);
+                getV().imgeItem(position);
             }
 
             @Override
