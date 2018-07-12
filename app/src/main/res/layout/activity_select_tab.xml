@@ -10,10 +10,77 @@
     <include layout="@layout/layout_base_title"
         android:id="@+id/basetitle"></include>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/top_recy"
-        android:background="@color/back_f"
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/back_f"
         android:layout_below="@+id/basetitle"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/top_recy"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:background="@color/back_f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:id="@+id/v"
+            android:layout_marginTop="20px"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_below="@+id/top_recy"
+            android:background="@color/view_f1"
+            android:layout_width="match_parent"
+            android:layout_height="2px"></View>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rela"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_below="@+id/v"
+            android:layout_width="match_parent"
+            android:layout_height="70px">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="45px"
+                android:layout_centerVertical="true"
+                android:src="@drawable/release_tab"
+                android:layout_height="45px"
+                />
+            <TextView
+                android:layout_marginLeft="25px"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/img"
+                android:textSize="@dimen/sp_28"
+                android:textColor="@color/text_7d"
+                android:text="推荐标签"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tab_recy"
+            android:layout_marginTop="30px"
+            android:layout_below="@+id/rela"
+            android:layout_marginLeft="25px"
+            android:layout_marginRight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:layout_below="@+id/tab_recy"
+            android:background="@color/back_f"
+            android:layout_width="match_parent"
+            android:layout_height="30px"></View>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
 </com.zhy.autolayout.AutoRelativeLayout>

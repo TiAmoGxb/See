@@ -1,0 +1,5 @@
+<root>
+    <item name='cn.droidlover.xdroidmvp.net.ApiSubscriber'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>

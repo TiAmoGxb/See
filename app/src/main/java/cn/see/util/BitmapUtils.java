@@ -89,8 +89,10 @@ public class BitmapUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
             Log.i(TAG, "图片压缩后：" + baos.toByteArray().length / 1024 + "KB");
         }
-        Log.i(TAG, "图片处理完成!" + baos.toByteArray().length / 1024 + "KB");
-
+//        Log.i(TAG, "图片处理完成!" + baos.toByteArray().length / 1024 + "KB");
+        byte[] bytes = baos.toByteArray();
+        bitmap =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        Log.i(TAG, "图片处理完成!" + bitmap.getByteCount() / 1024 + "KB");
         return bitmap;
     }
     /**

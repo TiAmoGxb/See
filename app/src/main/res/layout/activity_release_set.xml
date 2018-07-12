@@ -23,7 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="30px"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/release_one"
+                android:layout_height="30px" />
+
             <TextView
+                android:layout_marginLeft="30px"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_101010"
                 android:textSize="@dimen/sp_28"
@@ -33,18 +40,21 @@
 
 
             <RadioGroup
+                android:id="@+id/ra_group"
                 android:layout_marginLeft="30px"
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/ra_my"
                     android:layout_width="wrap_content"
                     android:text="仅自己可见"
                     android:textColor="@color/text_7d"
                     android:layout_height="wrap_content" />
 
                 <RadioButton
+                    android:id="@+id/ra_all"
                     android:layout_marginLeft="30px"
                     android:checked="true"
                     android:layout_width="wrap_content"
@@ -60,7 +70,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="30px"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/release_two"
+                android:layout_height="30px" />
             <TextView
+                android:layout_marginLeft="30px"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_101010"
                 android:textSize="@dimen/sp_28"
@@ -82,6 +98,7 @@
                     android:layout_height="wrap_content" />
 
                 <RadioButton
+                    android:id="@+id/nor_load"
                     android:layout_marginLeft="40px"
                     android:checked="true"
                     android:layout_width="wrap_content"
