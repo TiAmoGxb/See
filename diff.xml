@@ -1,7 +1,7 @@
 <application>
   <component name="DiffSettings">
     <option name="PLACES_MAP">
-      <entry key="CommitDialog">
+      <entry key="ChangesView">
         <PlaceSettings />
       </entry>
     </option>
@@ -22,23 +22,6 @@
         <PlaceSettings />
       </entry>
       <entry key="Merge">
-        <PlaceSettings />
-      </entry>
-    </option>
-  </component>
-  <component name="TextDiffSettings">
-    <option name="PLACES_MAP">
-      <entry key="ChangesView">
-        <PlaceSettings>
-          <option name="EXPAND_BY_DEFAULT" value="false" />
-        </PlaceSettings>
-      </entry>
-      <entry key="CommitDialog">
-        <PlaceSettings>
-          <option name="EXPAND_BY_DEFAULT" value="false" />
-        </PlaceSettings>
-      </entry>
-      <entry key="Default">
         <PlaceSettings />
       </entry>
     </option>
