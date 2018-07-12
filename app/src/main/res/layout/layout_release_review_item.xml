@@ -29,5 +29,20 @@
         android:background="@drawable/shap_but_alpa_yes_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/close_rela"
+        android:layout_alignParentRight="true"
+        android:layout_width="70px"
+        android:layout_height="70px">
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:src="@mipmap/close"
+            android:layout_width="40px"
+            android:layout_height="40px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
 
 </com.zhy.autolayout.AutoRelativeLayout>

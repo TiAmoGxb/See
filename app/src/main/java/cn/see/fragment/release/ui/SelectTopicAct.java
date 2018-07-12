@@ -24,6 +24,7 @@ import cn.see.adapter.ViewHolder;
 import cn.see.base.BaseActivity;
 import cn.see.model.AllTopicModel;
 import cn.see.model.MineTextModel;
+import cn.see.model.ReleaseTopicModel;
 import cn.see.util.ToastUtil;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
@@ -72,10 +73,10 @@ public class SelectTopicAct extends BaseActivity {
 
 
     private void getTopDataHot(int page){
-        Api.findService().getTopicHot("20",page)
-                .compose(XApi.<AllTopicModel>getApiTransformer())
-                .compose(XApi.<AllTopicModel>getScheduler())
-                .subscribe(new ApiSubscriber<AllTopicModel>() {
+        Api.releaseService().getTopicHot()
+                .compose(XApi.<ReleaseTopicModel>getApiTransformer())
+                .compose(XApi.<ReleaseTopicModel>getScheduler())
+                .subscribe(new ApiSubscriber<ReleaseTopicModel>() {
                     @Override
                     protected void onFail(NetError error) {
                         ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
@@ -83,13 +84,13 @@ public class SelectTopicAct extends BaseActivity {
                     }
 
                     @Override
-                    public void onNext(final AllTopicModel txtResult) {
-                        final List<MineTextModel.MineTextResult.ResultList> resultLists = txtResult.getResult().getList();
-                        RecryCommonAdapter<MineTextModel.MineTextResult.ResultList> adapter = new RecryCommonAdapter<MineTextModel.MineTextResult.ResultList>(SelectTopicAct.this, R.layout.layout_release_sel_top_item,resultLists ) {
+                    public void onNext(final ReleaseTopicModel txtResult) {
+                        final List<ReleaseTopicModel.TopicResult.TopicList> resultLists = txtResult.getResult().getTopic();
+                        RecryCommonAdapter<ReleaseTopicModel.TopicResult.TopicList> adapter = new RecryCommonAdapter<ReleaseTopicModel.TopicResult.TopicList>(SelectTopicAct.this, R.layout.layout_release_sel_top_item,resultLists ) {
                             @Override
-                            protected void convert(ViewHolder holder, MineTextModel.MineTextResult.ResultList o, int position) {
+                            protected void convert(ViewHolder holder, ReleaseTopicModel.TopicResult.TopicList o, int position) {
                                 holder.setText(R.id.name, o.getTname());
-                                holder.setText(R.id.cont, "话题·"+o.getApply()+"参与");
+                                holder.setText(R.id.cont, "话题·"+o.getApply_count()+"参与");
                             }
 
                         };
@@ -98,6 +99,7 @@ public class SelectTopicAct extends BaseActivity {
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 Intent intent  = new Intent();
                                 intent.putExtra(IntentConstant.SEL_TOPIC_NAME,resultLists.get(position).getTname());
+                                intent.putExtra(IntentConstant.SEL_TOPIC_ID,resultLists.get(position).getTopic_id());
                                 setResult(ReleasePreviewAct.ADD_TOPIC_CODE,intent);
                                 onBack();
                             }

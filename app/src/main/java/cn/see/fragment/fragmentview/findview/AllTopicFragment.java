@@ -29,7 +29,7 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @日期：2018/7/3
  * @作者： GuoXinBo
  * @邮箱： guoxinbo@banling.com
- * @说明：
+ * @说明： 所有话题 fragment
  */
 
 public class AllTopicFragment extends BaseFragement<AllTopicPresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>{

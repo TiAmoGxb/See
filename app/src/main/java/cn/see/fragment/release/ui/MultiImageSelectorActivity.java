@@ -1,4 +1,4 @@
-package me.nereo.multi_image_selector;
+package cn.see.fragment.release.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,13 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import cn.see.util.constant.IntentConstant;
+import me.nereo.multi_image_selector.MultiImageSelectorFragment;
+import me.nereo.multi_image_selector.Number;
 
 
 /**
@@ -55,13 +58,13 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         type = getIntent().getStringExtra("type") ;
-        setTheme(R.style.MIS_NO_ACTIONBAR);
-        setContentView(R.layout.mis_activity_default);
+        setTheme(me.nereo.multi_image_selector.R.style.MIS_NO_ACTIONBAR);
+        setContentView(me.nereo.multi_image_selector.R.layout.mis_activity_default);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.BLACK);
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(me.nereo.multi_image_selector.R.id.toolbar);
         toolbar.setTitle("选择照片");
         toolbar.setTitleTextColor(0x101010);
 //        toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -84,7 +87,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         if(mode == MODE_SINGLE && intent.hasExtra(EXTRA_DEFAULT_SELECTED_LIST)) {
             resultList = intent.getStringArrayListExtra(EXTRA_DEFAULT_SELECTED_LIST);
         }
-        mSubmitButton = (Button) findViewById(R.id.commit);
+        mSubmitButton = (Button) findViewById(me.nereo.multi_image_selector.R.id.commit);
         if(mode == MODE_MULTI){
             updateDoneText(resultList);
             mSubmitButton.setVisibility(View.VISIBLE);
@@ -93,9 +96,18 @@ public class MultiImageSelectorActivity extends AppCompatActivity
                 public void onClick(View view) {
                     if(resultList != null && resultList.size() >0){
                         // Notify success
+                        if(type!=null&&type.equals("review")){
+                            Intent intent = new Intent(MultiImageSelectorActivity.this,BeautifulPictureAct.class);
+                            intent.putStringArrayListExtra(IntentConstant.RELEASE_PATHS, resultList);
+                            intent.putExtra(IntentConstant.RELEASE_TYPE,getIntent().getStringExtra(IntentConstant.RELEASE_TYPE));
+                            intent.putExtra("type",type);
+                            startActivity(intent);
+                        }else{
                             Intent data = new Intent();
                             data.putStringArrayListExtra(EXTRA_RESULT, resultList);
                             setResult(RESULT_OK, data);
+                        }
+
                     }else{
                         setResult(RESULT_CANCELED);
                     }
@@ -114,7 +126,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
             bundle.putStringArrayList(MultiImageSelectorFragment.EXTRA_DEFAULT_SELECTED_LIST, resultList);
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.image_grid, Fragment.instantiate(this, MultiImageSelectorFragment.class.getName(), bundle))
+                    .add(me.nereo.multi_image_selector.R.id.image_grid, Fragment.instantiate(this, MultiImageSelectorFragment.class.getName(), bundle))
                     .commit();
         }
 
@@ -138,7 +150,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     private void updateDoneText(ArrayList<String> resultList){
         int size = 0;
         if(resultList == null || resultList.size()<=0){
-            mSubmitButton.setText(R.string.mis_action_done);
+            mSubmitButton.setText(me.nereo.multi_image_selector.R.string.mis_action_done);
             mSubmitButton.setEnabled(false);
         }else{
             size = resultList.size();

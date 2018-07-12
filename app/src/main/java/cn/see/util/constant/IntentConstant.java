@@ -83,4 +83,19 @@ public class IntentConstant {
      */
     public static String SEL_TOPIC_NAME = "SEL_TOPIC_NAME";
 
+    /**
+     *  选择的话题ID
+     */
+    public static String SEL_TOPIC_ID = "SEL_TOPIC_ID";
+
+    /**
+     * 选择的隐私设置
+     */
+    public static String RELEASE_SET_TEXT = "RELEASE_SET_TEXT";
+
+    /**
+     * 选择的标签
+     */
+    public static String SEL_TAB_TEXT = "SEL_TAB_TEXT";
+
 }

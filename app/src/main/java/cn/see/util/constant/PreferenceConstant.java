@@ -19,4 +19,9 @@ public class PreferenceConstant {
      */
     public static String USER_IS_LOGIN = "user_is_login";
 
+    /**
+     * 临时存储的图片路径
+     */
+    public static String IMGS_PATHS = "IMGS_PATHS";
+
 }

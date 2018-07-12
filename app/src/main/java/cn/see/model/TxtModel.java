@@ -1,6 +1,7 @@
 package cn.see.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.see.base.BaseModel;
@@ -15,7 +16,7 @@ import cn.see.util.TextUtils;
  *        用于首页关注顶部 好友推荐取一个头像
  */
 
-public class TxtModel extends BaseModel {
+public class TxtModel extends BaseModel implements Serializable {
 
     private TxtResult result;
 
@@ -27,7 +28,7 @@ public class TxtModel extends BaseModel {
         this.result = result;
     }
 
-    public static class TxtResult{
+    public static class TxtResult implements Serializable{
 
         private int page;
         private int totalPage;
@@ -66,7 +67,7 @@ public class TxtModel extends BaseModel {
             this.result = result;
         }
 
-        public static class Result {
+        public static class Result implements Serializable {
 
             private String attention_status;//是否关注
             private String commment_count; //评论数量
@@ -101,6 +102,24 @@ public class TxtModel extends BaseModel {
             private String to_id;
             private String to_nickname;
             private String from_id;
+            private String text;
+            private boolean isCheck;
+
+            public boolean isCheck() {
+                return isCheck;
+            }
+
+            public void setCheck(boolean check) {
+                isCheck = check;
+            }
+
+            public String getText() {
+                return text;
+            }
+
+            public void setText(String text) {
+                this.text = text;
+            }
 
             public String getFrom_id() {
                 return from_id;
