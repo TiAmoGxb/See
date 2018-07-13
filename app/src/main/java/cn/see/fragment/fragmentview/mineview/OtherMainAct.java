@@ -7,12 +7,19 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import java.io.Serializable;
@@ -25,6 +32,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
+import cn.see.app.App;
 import cn.see.base.BaseActivity;
 import cn.see.fragment.fragmentview.findview.PhotoViewActivity;
 import cn.see.model.MineTextModel;
@@ -36,6 +44,7 @@ import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
+import cn.see.util.glide.GlideRoundTransform;
 import cn.see.util.widet.CircleImageView;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
@@ -76,6 +85,8 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
     TextView title;
     @BindView(R.id.pull_other_list)
     PullToRefreshListView listView;
+    @BindView(R.id.title_img)
+    ImageView titleImg;
 
     @OnClick(R.id.back_rela)
     void bacView(){
@@ -135,6 +146,23 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
                  //openActivity(ArticleDetailsAct.class);
             }
         });
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                    if(firstVisibleItem>0){
+                        titleImg.setVisibility(View.VISIBLE);
+                        title.setVisibility(View.VISIBLE);
+                    }else{
+                        titleImg.setVisibility(View.GONE);
+                        title.setVisibility(View.GONE);
+                    }
+            }
+        });
     }
 
     @Override
@@ -185,24 +213,9 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
 
 
     public void userInfoResPonse(final UserInfoModel.UserInfoResult result){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final Bitmap newBitmap = FastBlurUtil.GetUrlBitmap(result.getBackground_url(), 0);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Drawable drawable = new BitmapDrawable(newBitmap);
-                        layout.setBackground(drawable);
-                        layout.getBackground().mutate().setAlpha(0);
-                        listView.setOnScrollListener(new ListViewScroAplaUtil(headerHeight,layout,title));
-                    }
-                });
-            }
-        }).start();
         urls.clear();
         urls.add(result.getHead_url());
+        GlideDownLoadImage.getInstance().loadImage(this,result.getBackground_url(),titleImg);
         attention_status = result.getAttention_status();
         if(attention_status.equals("1")||attention_status.equals("2")){
             tvAttTv.setText("已关注");

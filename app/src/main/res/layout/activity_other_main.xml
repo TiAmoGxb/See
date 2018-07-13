@@ -20,6 +20,12 @@
         android:id="@+id/rela_title"
         android:layout_width="match_parent"
         android:layout_height="129px">
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/title_img"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_marginTop="49px"
             android:layout_below="@+id/view_t"
@@ -36,7 +42,7 @@
                     app:layout_auto_basewidth="height"
                     android:layout_marginLeft="30px"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/set_back_bac"
+                    android:background="@drawable/set_back_bac_write"
                     android:layout_width="35px"
                     android:layout_height="35px" />
 
