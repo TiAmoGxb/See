@@ -240,7 +240,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
         }
     }
 
-
+    //开启任务更新滤镜
     public class DownTask extends AsyncTask<GPUImageFilter, Void, ArrayList<Bitmap>> {
         @Override
         protected ArrayList<Bitmap> doInBackground(GPUImageFilter... gpuImageFilters) {
@@ -265,7 +265,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             progress.dismiss();
         }
     }
-
 
     /**
      * 再次添加图片回传
