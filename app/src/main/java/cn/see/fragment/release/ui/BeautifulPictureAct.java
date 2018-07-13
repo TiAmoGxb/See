@@ -239,7 +239,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             Log.e(TAG, e.toString());
         }
     }
-
     //开启任务更新滤镜
     public class DownTask extends AsyncTask<GPUImageFilter, Void, ArrayList<Bitmap>> {
         @Override
