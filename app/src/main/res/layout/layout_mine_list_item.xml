@@ -82,6 +82,7 @@
             app:layout_auto_baseheight="width"
             android:id="@+id/img_thumb"
             android:src="@drawable/bac_icon"
+            android:scaleType="centerCrop"
             android:layout_below="@+id/user_top_rela"
             android:layout_width="match_parent"
             android:layout_height="400px" />

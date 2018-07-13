@@ -7,12 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.util.AttributeSet;
 import android.view.View;
+import android.support.v8.renderscript.*;
+
 
 import cn.see.R;
 
@@ -35,9 +33,7 @@ public class BlurringView extends View {
         final int defaultBlurRadius = res.getInteger(R.integer.default_blur_radius);
         final int defaultDownsampleFactor = res.getInteger(R.integer.default_downsample_factor);
         final int defaultOverlayColor = res.getColor(R.color.default_overlay_color);
-
         initializeRenderScript(context);
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PxBlurringView);
         setBlurRadius(a.getInt(R.styleable.PxBlurringView_blurRadius, defaultBlurRadius));
         setDownsampleFactor(a.getInt(R.styleable.PxBlurringView_downsampleFactor,
