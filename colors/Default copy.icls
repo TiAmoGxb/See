@@ -1,13 +1,6 @@
 <scheme name="Default copy" version="142" parent_scheme="Default">
-  <metaInfo>
-    <property name="created">2018-07-12T10:43:36</property>
-    <property name="ide">AndroidStudio</property>
-    <property name="ideVersion">2.3.1.0</property>
-    <property name="modified">2018-07-12T11:14:07</property>
-    <property name="originalScheme">Default</property>
-  </metaInfo>
   <option name="LINE_SPACING" value="1.2" />
-  <option name="EDITOR_FONT_SIZE" value="15" />
+  <option name="EDITOR_FONT_SIZE" value="17" />
   <option name="CONSOLE_FONT_NAME" value="Monospaced" />
   <option name="CONSOLE_FONT_SIZE" value="12" />
   <option name="CONSOLE_LINE_SPACING" value="1.0" />
