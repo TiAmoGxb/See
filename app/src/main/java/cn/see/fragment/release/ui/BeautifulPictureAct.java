@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,9 +26,7 @@ import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.base.BaseActivity;
-import cn.see.fragment.fragmentview.homeview.SelectMyTableAct;
 import cn.see.fragment.release.presenter.BeautifulPicturePresenter;
-import cn.see.main.MainParentAct;
 import cn.see.util.BitmapUtils;
 import cn.see.util.GPUImageUtil;
 import cn.see.util.ToastUtil;
@@ -243,8 +239,7 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             Log.e(TAG, e.toString());
         }
     }
-
-
+    //开启任务更新滤镜
     public class DownTask extends AsyncTask<GPUImageFilter, Void, ArrayList<Bitmap>> {
         @Override
         protected ArrayList<Bitmap> doInBackground(GPUImageFilter... gpuImageFilters) {
@@ -269,7 +264,6 @@ public class BeautifulPictureAct extends BaseActivity<BeautifulPicturePresenter>
             progress.dismiss();
         }
     }
-
 
     /**
      * 再次添加图片回传

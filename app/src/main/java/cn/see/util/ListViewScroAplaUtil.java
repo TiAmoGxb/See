@@ -39,7 +39,7 @@ public class ListViewScroAplaUtil implements AbsListView.OnScrollListener {
                 if (top <= headerHeight && top >= 0) {
                     title.setVisibility(View.GONE);
                     float f = (float) top / (float) headerHeight;
-                    layout.getBackground().mutate().setAlpha((int) (f * 255));
+                    layout.setAlpha((int) (f * 255));
                     // 通知标题栏刷新显示
                     layout.invalidate();
                 }else{

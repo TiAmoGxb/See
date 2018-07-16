@@ -22,7 +22,8 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity android:name=".main.WelcomeAct">
+        <activity android:name=".main.WelcomeAct"
+            android:theme="@style/NoTitleTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

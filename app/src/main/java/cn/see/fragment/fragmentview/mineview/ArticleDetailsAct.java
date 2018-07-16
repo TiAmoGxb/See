@@ -81,6 +81,7 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
     private int screenHeight;
     private String from_id;
     private String isAtt;
+    private boolean isInputShow = false;
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -313,6 +314,10 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
                 InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 to_id = "0";
+                yesCommRela.setVisibility(View.VISIBLE);
+                etCom.requestFocus();
+                etCom.clearComposingText();
+                etCom.setText("");
                 etCom.setHint("请输入评论内容");
                 break;
 
@@ -340,12 +345,13 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
      */
     public void setReviewResponse(String msg){
         ToastUtil.showToast(msg);
+        yesCommRela.setVisibility(View.GONE);
         etCom.setHint("");
+
         InputMethodManager im = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.hideSoftInputFromWindow(etCom.getWindowToken(), 0);
         getP().getTextReview(text_id, UserUtils.getUserID(this),false);
     }
-
 
     /**
      * 回复评论
@@ -354,8 +360,11 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
     public void reviewItem(int position){
         InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        yesCommRela.setVisibility(View.VISIBLE);
+        etCom.requestFocus();
         TextReviewModel.ReviewResult.ReviewList review = reviewLists.get(position);
         to_id = review.getUser_id();
+        etCom.setText("");
         etCom.setHint("回复:"+review.getNickname());
     }
 
@@ -382,20 +391,30 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i(TAG,"执行onResume");
         screenHeight = getWindow().getDecorView().getHeight();
-        getWindow().getDecorView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                Rect rect = new Rect();
-                getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-                if(bottom!=0 && oldBottom!=0 && bottom - rect.bottom <= 0){
-                    yesCommRela.setVisibility(View.GONE);
-                }else {
-                    yesCommRela.setVisibility(View.VISIBLE);
-                    etCom.requestFocus();
+        if(!isInputShow){
+            yesCommRela.setVisibility(View.GONE);
+            isInputShow = true;
+        }else{
+            getWindow().getDecorView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    Rect rect = new Rect();
+                    Log.i(TAG,"执行onLayoutChange");
+                    getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+                    if(bottom!=0 && oldBottom!=0 && bottom - rect.bottom <= 0){
+                        Log.i(TAG,"隐藏");
+                        yesCommRela.setVisibility(View.GONE);
+                    }else {
+                        Log.i(TAG,"显示");
+                        yesCommRela.setVisibility(View.VISIBLE);
+                        etCom.requestFocus();
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
 
