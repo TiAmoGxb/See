@@ -43,6 +43,28 @@ public class UserUtils {
     }
 
     /**
+     * 存入用户名（手机号）
+     */
+    public static void setUserPhone(Context context,String userPhone){
+        PreferenceUtils.setString(context, PreferenceConstant.USER_PHONE,userPhone);
+    }
+
+    /**
+     * 删除用户手机号
+     */
+    public static void removeUserPhone(Context context){
+        PreferenceUtils.remove(context,PreferenceConstant.USER_PHONE);
+    }
+
+    /**
+     * 取出用户名
+     */
+    public static String getUserPhone(Context context){
+        return PreferenceUtils.getString(context,PreferenceConstant.USER_PHONE,"");
+    }
+
+
+    /**
      * 存入用户已登录
      */
     public static void setLoginFlag(Context context){

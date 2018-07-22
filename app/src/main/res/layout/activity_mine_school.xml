@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.MineSchoolAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ed_rela"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="120px">
+
+        <EditText
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:id="@+id/et_school"
+            android:layout_marginLeft="30px"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0px"
+            android:hint="搜索学校"
+            android:paddingLeft="20px"
+            android:textColor="@color/text_101010"
+            android:textColorHint="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:layout_weight="9"
+            android:layout_marginRight="20px"
+            android:background="@drawable/shap_but_seach_yes_bg"
+            android:layout_height="70px" />
+
+        <TextView
+            android:id="@+id/canal"
+            android:text="取消"
+            android:layout_marginRight="20px"
+            android:textSize="@dimen/sp_30"
+            android:gravity="center_vertical"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:textColor="@color/text_7d"
+            android:layout_height="match_parent" />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/school_recy"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/ed_rela"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

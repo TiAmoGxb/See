@@ -164,7 +164,7 @@ public class AttentionPresenter extends XPresent<AttentionFragment>{
     public CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList> initAdapterTopUpdate(final List<FriendsNewsModel.NewsResult.NewsList> stringList){
       CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList> adapter = new CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList>(getV().getActivity(),stringList,R.layout.layout_home_att_f_update_item) {
           @Override
-          protected void convertView(View item, FriendsNewsModel.NewsResult.NewsList s, int position) {
+          protected void convertView(View item, final FriendsNewsModel.NewsResult.NewsList s, int position) {
               ImageView  imageView= CommonViewHolder.get(item, R.id.dt_img);
               TextView dtName = CommonViewHolder.get(item, R.id.dt_name);
               TextView dtTime = CommonViewHolder.get(item, R.id.dt_time);
@@ -200,6 +200,15 @@ public class AttentionPresenter extends XPresent<AttentionFragment>{
               }
               dtTime.setText(s.getCreate_time_info());
               GlideDownLoadImage.getInstance().loadImage(getV(),s.getHead_img_url(),imageView);
+              imageView.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      Router.newIntent(getV().getActivity())
+                              .to(OtherMainAct.class)
+                              .putString(IntentConstant.OTHER_USER_ID,s.getFrom_id())
+                              .launch();
+                  }
+              });
           }
       };
       return adapter;

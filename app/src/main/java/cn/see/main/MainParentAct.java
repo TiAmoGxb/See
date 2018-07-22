@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.http.Api;
+import cn.see.util.permosson.CamerUtils;
 import cn.see.util.widet.BlurringView;
 import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.XRadioGroup;
@@ -63,7 +65,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     private TextView actName;
     private ImageView actImg;
     private String actId;
-    private Intent intent;
+    private long exitTime = 0;
 
 
     @BindView(R.id.main_rela)
@@ -81,6 +83,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
 
     @Override
     public void initView() {
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         popView = LayoutInflater.from(this).inflate(R.layout.layout_release_view, null);
@@ -100,10 +103,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
 
     @Override
     public void initAfter() {
-        intent = new Intent(MainParentAct.this, MultiImageSelectorActivity.class);
-        intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
-        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 9);
-        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
         helper = new PopupWindowHelper(popView);
         fragmentTransaction.add(R.id.content_main, homeFragment);
         fragmentTransaction.add(R.id.content_main, findFragment);
@@ -135,7 +134,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         actImg.setOnClickListener(this);
         xRadioGroup.setOnCheckedChangeListener(this);
     }
-
 
     @Override
     public void onCheckedChanged(XRadioGroup group, int checkedId) {
@@ -178,7 +176,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         fragmentTransaction.commit();
     }
 
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -191,11 +188,11 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
                 break;
             case R.id.photo_rela:
                 helper.dismiss();
-                startActivityForResult(intent, RELAEASE_IMAGE);
+                CamerUtils.doOpenCamera(this,RELAEASE_IMAGE,"",IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.topic_rela:
                 helper.dismiss();
-                startActivityForResult(intent, RELAEASE_TOPIC);
+                CamerUtils.doOpenCamera(this,RELAEASE_TOPIC,"",IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.video_rela:
                 ToastUtil.showToast("程序员还在搬砖 敬请期待");
@@ -267,7 +264,33 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         if(pathList!=null){
             to.putSerializable(IntentConstant.RELEASE_PATHS,pathList)
                     .launch();
+         }
         }
+    }
+
+    /**
+     * 监听返回键 2秒之内连续点击两次 退出程序
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            ToastUtil.showToast( "再按一次退出程序");
+            exitTime = System.currentTimeMillis();
+        } else {
+            clearAct();
+            onBack();
         }
     }
 }

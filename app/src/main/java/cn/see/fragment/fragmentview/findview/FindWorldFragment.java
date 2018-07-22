@@ -104,7 +104,6 @@ public class FindWorldFragment extends BaseFragement<WorldPresenter> implements 
             adapter = new FindWorldDataAdapter(getActivity(),results);
             listView.setAdapter(adapter);
         }
-        getP().progress.dismiss();
         listView.onRefreshComplete();
     }
 

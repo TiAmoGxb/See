@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.SettIngAct">
+
+    <include layout="@layout/layout_base_title"></include>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/set_pwd_rela"
+        android:background="@drawable/set_bac"
+        android:layout_width="match_parent"
+        android:layout_height="80px">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/text_c9"></View>
+
+        <TextView
+            android:layout_marginLeft="30px"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_28"
+            android:text="修改密码"
+            android:textColor="@color/text_101010"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/text_c9"></View>
+
+        <ImageView
+            android:layout_marginRight="30px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="17px"
+            android:src="@mipmap/wodezhanghao_jiantou"
+            android:layout_height="28px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginTop="20px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_not_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="通知"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_ys_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="隐私"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginTop="20px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_with_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="关于我们"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_pro_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="意见反馈"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <TextView
+        android:layout_marginTop="20px"
+        android:id="@+id/exit_login"
+        android:background="@color/back_f"
+        android:textColor="@color/text_3d"
+        android:textSize="@dimen/sp_30"
+        android:gravity="center"
+        android:text="退出登录"
+        android:layout_width="match_parent"
+        android:layout_height="90px" />
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

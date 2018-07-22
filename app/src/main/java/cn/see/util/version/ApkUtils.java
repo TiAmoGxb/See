@@ -85,7 +85,7 @@ public class ApkUtils {
 	}
 
 
-	private static Uri getFileUri(Context context,File apkFile){
+	public  static Uri getFileUri(Context context,File apkFile){
 		Uri uri;
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果是7.0android系统
 			ContentValues contentValues = new ContentValues(1);

@@ -4,7 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.internal.bind.util.ISO8601Utils;
@@ -18,8 +20,15 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseFragement;
+import cn.see.fragment.fragmentview.homeview.AddFriendsAct;
 import cn.see.fragment.fragmentview.homeview.AttentionFragment;
 import cn.see.fragment.fragmentview.homeview.QualityLifeFragment;
+import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
+import cn.see.util.constant.IntentConstant;
+import cn.see.util.permosson.CamerUtils;
+import cn.see.util.widet.PopupWindowHelper;
+import cn.see.util.zxing.app.CaptureActivity;
 
 /**
  * @日期：2018/6/5
@@ -29,11 +38,12 @@ import cn.see.fragment.fragmentview.homeview.QualityLifeFragment;
  */
 
 public class HomeFragment extends BaseFragement {
-
+    private View popView;
     private List<Fragment> fragmentList;
     private TextView[] titles;
     private View[] views;
     private int lastP = 0;
+    private PopupWindowHelper helper;
 
 
     @BindView(R.id.home_vp)
@@ -46,6 +56,14 @@ public class HomeFragment extends BaseFragement {
     View lifeV;
     @BindView(R.id.att_v)
     View attV;
+    @BindView(R.id.gray_layout)
+    RelativeLayout bacView;
+    @BindView(R.id.add_rela)
+    RelativeLayout add_rela;
+    @OnClick(R.id.add_rela)
+    void addRela(){
+        helper.showAsDropDown(add_rela,0,0);
+    }
 
     @OnClick(R.id.life_tv)
     void lifeTo(){
@@ -63,6 +81,8 @@ public class HomeFragment extends BaseFragement {
 
     @Override
     public void initAfter() {
+        popView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_home_po, null);
+        helper = new PopupWindowHelper(popView);
         fragmentList = new ArrayList<>();
         fragmentList.add(new QualityLifeFragment());
         fragmentList.add(new AttentionFragment());
@@ -84,6 +104,8 @@ public class HomeFragment extends BaseFragement {
     @Override
     public void setListener() {
 
+        popView.findViewById(R.id.add_lin).setOnClickListener(this);
+        popView.findViewById(R.id.sys_lin).setOnClickListener(this);
         homeVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -108,7 +130,18 @@ public class HomeFragment extends BaseFragement {
 
     @Override
     public void widgetClick(View v) {
-
+        switch (v.getId()){
+            case R.id.add_lin:
+                if(UserUtils.getLogin(getActivity()))openActivity(AddFriendsAct.class);
+                helper.dismiss();
+                break;
+            case R.id.sys_lin:
+                if(UserUtils.getLogin(getActivity())) {
+                    CamerUtils.doOpenCamera(getActivity(), 1, "", IntentConstant.QRCODE_PHOTO_TYPE);
+                }
+                helper.dismiss();
+                break;
+        }
     }
 
     @Override

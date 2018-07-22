@@ -1,5 +1,7 @@
 package cn.see.fragment.fragmentview.homeview;
 
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +26,9 @@ import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
+import cn.see.util.permosson.CamerUtils;
 import cn.see.util.widet.CustomProgress;
+import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
@@ -55,6 +59,8 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
     private LinearLayout topLin;
     private CustomProgress progress;
     private Router to;
+    private View popView;
+    private PopupWindowHelper helper;
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -65,6 +71,11 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
 
     @BindView(R.id.pull_qual_list)
     PullToRefreshListView listView;
+
+    @OnClick(R.id.image_rela)
+    void addRela(){
+        helper.showAsDropDown(layout,0,0);
+    }
 
 
     @OnClick(R.id.back_rela)
@@ -94,6 +105,8 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
         listView.setAdapter(adapter);
         to = Router.newIntent(this)
                 .to(OtherMainAct.class);
+        popView = LayoutInflater.from(this).inflate(R.layout.layout_home_po, null);
+        helper = new PopupWindowHelper(popView);
     }
 
     @Override
@@ -121,6 +134,8 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
         imgThree.setOnClickListener(this);
         imgFour.setOnClickListener(this);
         listView.setOnRefreshListener(this);
+        popView.findViewById(R.id.add_lin).setOnClickListener(this);
+        popView.findViewById(R.id.sys_lin).setOnClickListener(this);
     }
 
 
@@ -203,6 +218,16 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
             case R.id.img_four:
                 to.putString(IntentConstant.OTHER_USER_ID,results.get(3).getId())
                         .launch();
+                break;
+            case R.id.add_lin:
+                if(UserUtils.userIsLogin(this))openActivity(AddFriendsAct.class);
+                helper.dismiss();
+                break;
+            case R.id.sys_lin:
+                if(UserUtils.userIsLogin(this)) {
+                    CamerUtils.doOpenCamera(this, 1, "", IntentConstant.QRCODE_PHOTO_TYPE);
+                }
+                helper.dismiss();
                 break;
         }
     }

@@ -11,6 +11,7 @@ import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.NetProvider;
 import cn.droidlover.xdroidmvp.net.RequestHandler;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -115,6 +116,9 @@ public class App extends Application {
     }
 
     private void init() {
+        //初始化极光推送
+        JPushInterface.setDebugMode(true);//设置调试模式，避免出现日志无打印情况
+        JPushInterface.init(this);
 //        UnCeHandler.getInstance().init(this);
 //        AutoLayoutConifg.getInstance().useDeviceSize();
         AutoLayoutConifg.getInstance().init(this);

@@ -125,7 +125,6 @@ public class QulaityLifePresenter extends XPresent<QualityLifeFragment>{
                 userIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         if(UserUtils.getLogin(getV().getActivity())){
                             Router.newIntent(getV().getActivity())
                                     .putString(IntentConstant.OTHER_USER_ID,s.getUser_id())

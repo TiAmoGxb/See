@@ -46,6 +46,13 @@
     </com.zhy.autolayout.AutoRelativeLayout>
 
 
-
+    <ImageView
+        android:layout_marginRight="30px"
+        android:id="@+id/name_image"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="17px"
+        android:src="@mipmap/wodezhanghao_jiantou"
+        android:layout_height="28px" />
 
 </com.zhy.autolayout.AutoRelativeLayout>

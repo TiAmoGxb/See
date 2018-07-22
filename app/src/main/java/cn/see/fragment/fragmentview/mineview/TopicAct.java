@@ -310,7 +310,6 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
         ToastUtil.showToast(msg);
         results.get(position).setAttention_status("0");
         adapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -354,10 +353,10 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
                         .launch();
                 break;
             case R.id.recommend_rela:
-                Router.newIntent(this)
-                        .putString(IntentConstant.ARTIC_TOPIC_ID,topic_id)
-                        .to(TopicApplyAct.class)
-                        .launch();
+//                Router.newIntent(this)
+//                        .putString(IntentConstant.ARTIC_TOPIC_ID,topic_id)
+//                        .to(TopicApplyAct.class)
+//                        .launch();
                 break;
         }
     }

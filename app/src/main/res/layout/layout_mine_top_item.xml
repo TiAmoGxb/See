@@ -19,6 +19,7 @@
             android:layout_height="match_parent" />
 
         <ImageView
+            android:id="@+id/show_dilog"
             android:layout_marginTop="40px"
             android:layout_marginRight="40px"
             android:layout_alignParentRight="true"
@@ -56,14 +57,21 @@
             android:layout_height="wrap_content" />
 
 
-        <ImageView
-            android:id="@+id/set_user_data"
-            android:layout_marginTop="10px"
-            android:layout_width="35px"
-            android:layout_marginLeft="15px"
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="60px"
             android:layout_toRightOf="@+id/user_name"
-            android:layout_height="25px"
-            android:src="@mipmap/release_txt"/>
+            android:layout_height="60px">
+            <ImageView
+                android:id="@+id/set_user_data"
+                android:layout_width="35px"
+                android:layout_marginLeft="15px"
+                android:layout_centerInParent="true"
+                android:layout_height="25px"
+                android:src="@mipmap/release_txt"/>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
 
         <TextView
             android:layout_alignParentBottom="true"

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="wrap_content">
+
+    
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/lin"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+        <View
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_gravity="center_vertical"
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:src="@drawable/tj_friends"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/img"
+            android:id="@+id/text"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:text="你可能认识的人"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/text_101010"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+    
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_below="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="120px">
+
+
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/ones_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:src="@drawable/bac_image"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:layout_width="85px"
+            android:layout_height="85px" />
+
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15px"
+                android:layout_toRightOf="@+id/img_icon"
+                android:id="@+id/nick_name"
+                android:textSize="30px"
+                android:textColor="@color/text_101010"
+                android:text="看见品质生活"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/send_tv"
+            android:layout_marginRight="25px"
+            android:paddingLeft="25px"
+            android:paddingRight="25px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:background="@drawable/mis_shap_but_att_bg"
+            android:layout_width="wrap_content"
+            android:text="关注"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/att_tv"
+            android:paddingTop="3px"
+            android:paddingBottom="3px"
+            android:layout_marginRight="25px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:background="@drawable/mis_shap_but_att_bg"
+            android:layout_width="150px"
+            android:text="相互关注"
+            android:gravity="center"
+            android:layout_height="45px" />
+
+
+
+        <View
+            android:layout_marginLeft="20px"
+            android:id="@+id/botom_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/twos_view"
+            android:layout_alignParentBottom="true"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.SettIngAct">
+
+    <include layout="@layout/layout_base_title"></include>
+
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:paddingLeft="20px"
+        android:gravity="center_vertical"
+        android:text="你将受到这些人的评论推送"/>
+
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/all_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="所有人"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+           <TextView
+               android:id="@+id/all_text"
+               android:visibility="gone"
+               android:layout_marginRight="30px"
+               android:layout_alignParentRight="true"
+               android:text="√"
+               android:textColor="@color/text_3d"
+               android:textSize="40px"
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/hy_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="我的好友"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:id="@+id/hy_text"
+                android:visibility="gone"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:text="√"
+                android:textColor="@color/text_3d"
+                android:textSize="40px"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/no_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="全部拒收"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:id="@+id/no_text"
+                android:visibility="gone"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:text="√"
+                android:textColor="@color/text_3d"
+                android:textSize="40px"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

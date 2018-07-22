@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/view_f4"
+    android:layout_height="match_parent"
+    tools:context="cn.see.fragment.fragmentview.mineview.WithMineAct">
+
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <ImageView
+        android:id="@+id/img"
+        app:layout_auto_baseheight="width"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_marginTop="120px"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/bac_image"/>
+
+    <TextView
+        android:layout_below="@+id/img"
+        android:id="@+id/text"
+        android:layout_marginTop="20px"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text="Android 3.1版"
+        android:layout_height="wrap_content" />
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="80px"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/text_c9"></View>
+
+        <TextView
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:paddingLeft="25px"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:text="去评分"/>
+        <View
+            android:layout_marginLeft="25px"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/text_c9"></View>
+        <TextView
+            android:textColor="@color/text_101010"
+            android:textSize="@dimen/sp_28"
+            android:paddingLeft="25px"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:text="将看见推荐给好友"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/text_c9"></View>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/text_101010"
+        android:textSize="@dimen/sp_28"
+        android:paddingLeft="25px"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="80px"
+        android:text="北京新图视觉传媒技术有限公司"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

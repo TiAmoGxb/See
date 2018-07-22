@@ -15,12 +15,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.see.model.MineSchoolModel;
 import cn.see.util.permosson.XPermissionUtils;
 
 /**

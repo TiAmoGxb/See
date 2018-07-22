@@ -60,7 +60,7 @@ public class WorldPresenter extends XPresent<FindWorldFragment> {
         OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
-
+                progress.dismiss();
                 Log.i("FindWorldFragment","result："+response.toString());
                 try {
                     JSONObject result = new JSONObject(response);
