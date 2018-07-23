@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "cn.see"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 21
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -21,7 +21,6 @@ android {
 
     sourceSets {
         main {
-//            jniLibs.srcDirs = ['libs']
             jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }

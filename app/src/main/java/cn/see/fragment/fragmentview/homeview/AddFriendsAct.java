@@ -56,6 +56,7 @@ public class AddFriendsAct extends BaseActivity<AddFriendsPresenter> implements 
     public void initView() {
         title.setText("添加好友");
         layout.setVisibility(View.VISIBLE);
+        imageView.setImageResource(R.drawable.sys);
         topView = View.inflate(this, R.layout.layout_home_add_r_top_recy, null);
         RefreshShowTime.showTime(listView);
         listView.getRefreshableView().addHeaderView(topView);

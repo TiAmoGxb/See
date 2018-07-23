@@ -1,6 +1,7 @@
 package cn.see.fragment;
 
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,7 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
 
     @OnClick(R.id.login_but)
     void goLogin(){
-        openActivity(LoginAct.class);
+        startActivityForResult(new Intent(getActivity(),LoginAct.class),1);
     }
 
 
@@ -280,7 +281,6 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
         listView.onRefreshComplete();
 
     }
-
     /**
      * 点赞成功回调
      * 更新被点赞的条目
@@ -293,5 +293,17 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
         resultList.setLike_count((i+1)+"");
         resultList.setLike_status("1");
         adapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG,"执行回调："+requestCode);
+        if(requestCode == 1){
+            //登录成功返回
+            isRefresh  = true;
+            topSize = "0";
+            textSize = "0";
+            getP().getUserText(UserUtils.getUserID(getActivity()),topSize,textSize);
+        }
     }
 }

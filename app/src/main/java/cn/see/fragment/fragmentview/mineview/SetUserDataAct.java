@@ -361,7 +361,6 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addFormDataPart("uid",UserUtils.getUserID(this));
         File f = new File(path);
-        Log.i(TAG,"exit:"+file.exists());
         builder.addFormDataPart("Filedata",f.getName(), okhttp3.RequestBody.create(MediaType.parse("image/jpg"), f));
         Request request = new Request.Builder()
                 .url(HttpConstant.UPDATE_IMG).post(builder.build()).build();

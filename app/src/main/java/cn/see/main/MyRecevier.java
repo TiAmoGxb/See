@@ -60,9 +60,7 @@ public class MyRecevier extends BroadcastReceiver {
                 Log.i(TAG, "[MyReceiver] Unhandled intent - " + intent.getAction());
             }
         } catch (Exception e) {
-
         }
-
     }
 
     // 打印所有的 intent extra 数据
