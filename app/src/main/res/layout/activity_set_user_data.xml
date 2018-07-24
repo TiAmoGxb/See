@@ -29,6 +29,7 @@
                 android:layout_height="1px"></View>
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/img_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="90px">
@@ -42,7 +43,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+
                 <cn.see.util.widet.CircleImageView
+                    android:id="@+id/user_img"
                     android:layout_width="70px"
                     app:border_width="4px"
                     android:layout_marginRight="20px"
@@ -73,6 +76,7 @@
 
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/nick_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -87,12 +91,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/nick_name_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/name_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="红星闪闪"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -128,13 +133,14 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/user_phone"
                     android:layout_marginRight="65px"
                     android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/name_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="13691158710"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -148,29 +154,31 @@
 
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/qrcode_rela"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="30px"
-                android:layout_height="80px">
+                android:layout_height="80px"
+                android:layout_marginLeft="30px">
 
                 <TextView
-                    android:layout_marginLeft="7px"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/text_3"
-                    android:textSize="@dimen/sp_28"
-                    android:text="二  维  码"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7px"
+                    android:text="二  维  码"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28" />
 
                 <ImageView
-                    android:layout_marginRight="30px"
+                    android:layout_width="17px"
+                    android:layout_height="28px"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_width="17px"
-                    android:src="@mipmap/wodezhanghao_jiantou"
-                    android:layout_height="28px" />
+                    android:layout_marginRight="30px"
+                    android:src="@mipmap/wodezhanghao_jiantou" />
 
 
             </com.zhy.autolayout.AutoRelativeLayout>
+
             <View
                 android:layout_alignParentBottom="true"
                 android:background="@color/text_c9"
@@ -188,6 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"></View>
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/sex_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -202,12 +211,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/sex_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/sex_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="男"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -228,6 +238,7 @@
 
             </com.zhy.autolayout.AutoRelativeLayout>
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/area_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -242,12 +253,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/area_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/add_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="北京"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -270,6 +282,7 @@
 
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/school_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -284,12 +297,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/school_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/school_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="黑龙江东方学院"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -312,6 +326,7 @@
 
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/sin_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -326,12 +341,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/sin_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/sin_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="太阳尚远 但必有太阳"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -363,6 +379,7 @@
                 android:layout_height="1px"></View>
 
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/bro_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -377,12 +394,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/bro_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/bioth_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="2018-06-06"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -402,47 +420,52 @@
                     android:layout_height="1px"></View>
 
             </com.zhy.autolayout.AutoRelativeLayout>
+
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/xz_rela"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="30px"
-                android:layout_height="80px">
+                android:layout_height="80px"
+                android:layout_marginLeft="30px">
 
                 <TextView
-                    android:layout_marginLeft="7px"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/text_3"
-                    android:textSize="@dimen/sp_28"
-                    android:text="星        座"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7px"
+                    android:text="星        座"
+                    android:textColor="@color/text_3"
+                    android:textSize="@dimen/sp_28" />
 
                 <TextView
+                    android:id="@+id/xz_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/constellation_image"
-                    android:layout_centerVertical="true"
+                    android:text=""
                     android:textColor="@color/text_7d"
-                    android:textSize="@dimen/sp_28"
-                    android:text="处女座"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/sp_28" />
 
                 <ImageView
-                    android:layout_marginRight="30px"
                     android:id="@+id/constellation_image"
+                    android:layout_width="17px"
+                    android:layout_height="28px"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_width="17px"
-                    android:src="@mipmap/wodezhanghao_jiantou"
-                    android:layout_height="28px" />
+                    android:layout_marginRight="30px"
+                    android:src="@mipmap/wodezhanghao_jiantou" />
 
                 <View
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/text_c9"
                     android:layout_width="match_parent"
-                    android:layout_height="1px"></View>
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"></View>
 
             </com.zhy.autolayout.AutoRelativeLayout>
+
             <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/tab_rela"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="30px"
                 android:layout_height="80px">
@@ -457,12 +480,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/tab_tv"
                     android:layout_marginRight="20px"
                     android:layout_toLeftOf="@+id/table_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/text_7d"
                     android:textSize="@dimen/sp_28"
-                    android:text="已选标签3个"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

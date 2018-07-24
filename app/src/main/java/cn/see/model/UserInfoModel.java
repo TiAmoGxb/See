@@ -1,5 +1,7 @@
 package cn.see.model;
 
+import java.io.Serializable;
+
 import cn.see.base.BaseModel;
 
 /**
@@ -10,7 +12,7 @@ import cn.see.base.BaseModel;
  *
  */
 
-public class UserInfoModel extends BaseModel{
+public class UserInfoModel extends BaseModel implements Serializable{
 
     private UserInfoResult result;
 
@@ -22,7 +24,7 @@ public class UserInfoModel extends BaseModel{
         this.result = result;
     }
 
-    public static class UserInfoResult{
+    public static class UserInfoResult implements Serializable{
         private String like_count;//喜欢数量
         private String account;//手机号
         private String area;//所在地址
@@ -35,6 +37,7 @@ public class UserInfoModel extends BaseModel{
         private String constellation;//星座
         private String fans_count;//粉丝
         private String greade;//性别
+        private String sex;
         private String head_img_url;//头像
         private String id;//id
         private String nickname;//昵称
@@ -43,6 +46,22 @@ public class UserInfoModel extends BaseModel{
         private String signature;//签名
         private String tag_count;//?
         private String status;//?
+        private String head_url;
+
+        public void setImgUri(String url){
+            this.head_url = url;
+        }
+        public String getUserUrl(){
+            return head_url;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        public String getSex() {
+            return sex;
+        }
 
         public String getAttention_status() {
             return attention_status;

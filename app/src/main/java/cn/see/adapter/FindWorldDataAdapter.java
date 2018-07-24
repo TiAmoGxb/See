@@ -31,6 +31,8 @@ import cn.see.util.glide.GlideDownLoadImage;
 
 public class FindWorldDataAdapter extends BaseAdapter {
 
+    //小图拼接的后缀
+    private String lafter = "_min";
     private Activity context;
     private List<FindWorldTextModel> result;
     private GlideDownLoadImage instance;
@@ -114,9 +116,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
 
                         }
                     });
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder1.img_one_big,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder1.img_one_small_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder1.img_one_small_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder1.img_one_big,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder1.img_one_small_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder1.img_one_small_2,6);
                     convertView.setTag(holder1);
                     AutoUtils.autoSize(convertView);
                     break;
@@ -156,9 +158,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
 
                         }
                     });
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder2.img_two_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder2.img_two_2,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder2.img_two_3,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder2.img_two_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder2.img_two_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder2.img_two_3,6);
                     convertView.setTag(holder2);
                     AutoUtils.autoSize(convertView);
                     break;
@@ -199,9 +201,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
 
                         }
                     });
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder3.img_three_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder3.img_three_2,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder3.img_three_3,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder3.img_three_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder3.img_three_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder3.img_three_3,6);
                     convertView.setTag(holder3);
                     AutoUtils.autoSize(convertView);
                     break;
@@ -241,9 +243,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
 
                         }
                     });
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder4.img_four_big,6);
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder4.img_four_small_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder4.img_four_small_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder4.img_four_big,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder4.img_four_small_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder4.img_four_small_2,6);
                     convertView.setTag(holder4);
                     AutoUtils.autoSize(convertView);
                     break;
@@ -253,9 +255,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
             switch (type) {
                 case TYPE_1:
                     holder1 = (Holder1) convertView.getTag();
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder1.img_one_big,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder1.img_one_small_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder1.img_one_small_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder1.img_one_big,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder1.img_one_small_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder1.img_one_small_2,6);
                     holder1.img_one_big.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -289,9 +291,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
                     break;
                 case TYPE_2:
                     holder2 = (Holder2) convertView.getTag();
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder2.img_two_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder2.img_two_2,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder2.img_two_3,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder2.img_two_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder2.img_two_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder2.img_two_3,6);
                     holder2.img_two_1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -325,9 +327,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
                     break;
                 case TYPE_3:
                     holder3 = (Holder3) convertView.getTag();
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder3.img_three_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder3.img_three_2,6);
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder3.img_three_3,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder3.img_three_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder3.img_three_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder3.img_three_3,6);
                     holder3.img_three_1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -361,9 +363,9 @@ public class FindWorldDataAdapter extends BaseAdapter {
                     break;
                 case TYPE_4:
                     holder4 = (Holder4) convertView.getTag();
-                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl(),holder4.img_four_big,6);
-                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl(),holder4.img_four_small_1,6);
-                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl(),holder4.img_four_small_2,6);
+                    instance.loadCircleImageRole(result.get(position).getItem3().getUrl()+lafter,holder4.img_four_big,6);
+                    instance.loadCircleImageRole(result.get(position).getItem1().getUrl()+lafter,holder4.img_four_small_1,6);
+                    instance.loadCircleImageRole(result.get(position).getItem2().getUrl()+lafter,holder4.img_four_small_2,6);
                     holder4.img_four_big.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

@@ -2,7 +2,9 @@ package cn.see.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,8 +18,13 @@ import cn.see.base.BaseFragement;
 import cn.see.fragment.fragmentview.findview.FindActFragment;
 import cn.see.fragment.fragmentview.findview.FindChildFragment;
 import cn.see.fragment.fragmentview.findview.FindWorldFragment;
+import cn.see.fragment.fragmentview.homeview.AddFriendsAct;
 import cn.see.fragment.fragmentview.homeview.AttentionFragment;
 import cn.see.fragment.fragmentview.homeview.QualityLifeFragment;
+import cn.see.util.UserUtils;
+import cn.see.util.constant.IntentConstant;
+import cn.see.util.permosson.CamerUtils;
+import cn.see.util.widet.PopupWindowHelper;
 
 /**
  * @日期：2018/6/5
@@ -32,7 +39,8 @@ public class FindFragment extends BaseFragement {
     private View[] views;
     private ArrayList<Fragment> fragmentList;
     private int lastP = 1;
-
+    private View popView;
+    private PopupWindowHelper helper;
 
     @BindView(R.id.find_vp)
     ViewPager findVp;
@@ -48,7 +56,13 @@ public class FindFragment extends BaseFragement {
     View worldV;
     @BindView(R.id.act_v)
     View actV;
+    @BindView(R.id.add_rela)
+    RelativeLayout add_rela;
 
+    @OnClick(R.id.add_rela)
+    void addRela(){
+        helper.showAsDropDown(add_rela,0,0);
+    }
     @OnClick(R.id.find_tv)
     void findTo(){
         findVp.setCurrentItem(0);
@@ -70,6 +84,8 @@ public class FindFragment extends BaseFragement {
 
     @Override
     public void initAfter() {
+        popView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_home_po, null);
+        helper = new PopupWindowHelper(popView);
         fragmentList = new ArrayList<>();
         fragmentList.add(new FindChildFragment());
         fragmentList.add(new FindWorldFragment());
@@ -91,6 +107,8 @@ public class FindFragment extends BaseFragement {
 
     @Override
     public void setListener() {
+        popView.findViewById(R.id.add_lin).setOnClickListener(this);
+        popView.findViewById(R.id.sys_lin).setOnClickListener(this);
         findVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -104,7 +122,6 @@ public class FindFragment extends BaseFragement {
                 views[lastP].setVisibility(View.GONE);
                 lastP  = position;
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -113,6 +130,17 @@ public class FindFragment extends BaseFragement {
 
     @Override
     public void widgetClick(View v) {
-
+        switch (v.getId()){
+            case R.id.add_lin:
+                if(UserUtils.getLogin(getActivity()))openActivity(AddFriendsAct.class);
+                helper.dismiss();
+                break;
+            case R.id.sys_lin:
+                if(UserUtils.getLogin(getActivity())) {
+                    CamerUtils.doOpenCamera(getActivity(), 1, "", IntentConstant.QRCODE_PHOTO_TYPE);
+                }
+                helper.dismiss();
+                break;
+        }
     }
 }

@@ -39,6 +39,7 @@ import cn.see.model.UserInfoModel;
 import cn.see.util.SpannableUtils;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.http.Api;
@@ -308,6 +309,33 @@ public class MinePresenter extends XPresent<MineFragment>{
                             getV().likeResponse(baseModel.getErrorMsg(),positon);
                         }else{
                             ToastUtil.showToast(baseModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 签到
+     */
+    public void setUserSin(){
+        Api.mineService().setUserSin(UserUtils.getUserID(getV().getActivity()))
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .compose(getV().<BaseModel>bindToLifecycle())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                        Log.i("FindChildFragment","error:"+error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BaseModel txtResult) {
+                        if(!txtResult.isError()){
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                            //getV().getSet(txtResult.getResult().get(0).getPbool());
+                        }else{
+                            ToastUtil.showToast(txtResult.getErrorMsg());
                         }
                     }
                 });

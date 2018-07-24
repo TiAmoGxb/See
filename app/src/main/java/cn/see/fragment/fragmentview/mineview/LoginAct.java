@@ -1,5 +1,6 @@
 package cn.see.fragment.fragmentview.mineview;
 
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -75,6 +76,10 @@ public class LoginAct extends BaseActivity<LoginPresenter> {
         //存入已登录标记
         UserUtils.setLoginFlag(this);
         UserUtils.setUserID(this,model.getResult().getUid());
+        //存入用户名
+        UserUtils.setUserPhone(this,getEditText(etPhone));
+        Intent intent = new Intent();
+        setResult(1,intent);
         onBack();
     }
 

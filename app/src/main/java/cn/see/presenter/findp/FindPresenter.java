@@ -257,7 +257,6 @@ public class FindPresenter extends XPresent<FindChildFragment> {
      * @param user_id
      */
     public void getUserTab(String user_id){
-
         Api.findService().getUserTable(user_id)
                 .compose(XApi.<TabModel>getApiTransformer())
                 .compose(XApi.<TabModel>getScheduler())
@@ -340,6 +339,7 @@ public class FindPresenter extends XPresent<FindChildFragment> {
      * @param tab_id
      */
     public void getTabText(String tab_id, final int page,String user_id){
+        Log.i("FindChildFragment", tab_id+"--"+user_id);
         Api.findService().getTabText(tab_id,page,user_id)
                 .compose(XApi.<FindTextcModel>getApiTransformer())
                 .compose(XApi.<FindTextcModel>getScheduler())

@@ -6,11 +6,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import java.io.File;
+
+import cn.droidlover.xdroidmvp.router.Router;
+import cn.see.main.MainParentAct;
+import cn.see.util.constant.IntentConstant;
+import cn.see.util.version.ApkUtils;
+import cn.see.util.zxing.app.CaptureActivity;
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 
 /**
@@ -30,17 +38,27 @@ public class CamerUtils {
                     @Override
                     public void onPermissionGranted() {
                         if (PermissionHelper.isCameraEnable()) {
-                            if(type==PHOTO_MAIN_CAMER){
-                                //context.startActivityForResult(new Intent(context, CaptureActivity.class),4);//扫一扫
-                            }else{
+                            if(type== IntentConstant.QRCODE_PHOTO_TYPE){//二维码
+                                Router.newIntent(context)
+                                        .to(CaptureActivity.class)
+                                        .requestCode(requestCode)
+                                        .launch();
+                               // context.startActivityForResult(new Intent(context, CaptureActivity.class),4);//扫一扫
+                            }else if(type == IntentConstant.CARMER_PHOTO_TYPE){
                                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                                 if (hasSdcard()) {
                                     tempFile = new File( Environment.getExternalStorageDirectory() +
                                             File.separator + Environment.DIRECTORY_DCIM + File.separator, photoName);
                                     Log.i("DemoActivity","tempFile:"+tempFile);
-                                    //intent.putExtra(MediaStore.EXTRA_OUTPUT, CommonlyUtil.getFileUri(context,tempFile.getPath(),tempFile.getName()));
+                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, ApkUtils.getFileUri(context,tempFile));
                                 }
                                 context.startActivityForResult(intent, requestCode);
+                            }else{
+                                Intent intent = new Intent(context, MultiImageSelectorActivity.class);
+                                intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+                                intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 9);
+                                intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
+                                context.startActivityForResult(intent,requestCode);
                             }
                         } else {
                             DialogUtil.showPermissionManagerDialog(context, "相机");
@@ -49,6 +67,7 @@ public class CamerUtils {
 
                     @Override
                     public void onPermissionDenied(final String[] deniedPermissions, boolean alwaysDenied) {
+                        Log.i("CamerUtils","无权限");
                         // 拒绝后不再询问 -> 提示跳转到设置
                         if (alwaysDenied) {
                             DialogUtil.showPermissionManagerDialog(context, "相机");

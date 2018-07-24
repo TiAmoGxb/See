@@ -10,12 +10,15 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.CommonViewHolder;
 import cn.see.fragment.fragmentview.homeview.FrindeUpdateAct;
+import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.model.FriendsNewsModel;
 import cn.see.util.ToastUtil;
+import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.http.Api;
 import cn.see.util.widet.CustomProgress;
@@ -39,7 +42,7 @@ public class FriendsNewsPresenter extends XPresent<FrindeUpdateAct> {
     public CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList> initAdapter(final List<FriendsNewsModel.NewsResult.NewsList> stringList){
         CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList> adapter = new CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList>(getV(),stringList, R.layout.layout_home_att_f_update_item) {
             @Override
-            protected void convertView(View item, FriendsNewsModel.NewsResult.NewsList s, int position) {
+            protected void convertView(View item, final FriendsNewsModel.NewsResult.NewsList s, int position) {
                 ImageView imageView= CommonViewHolder.get(item, R.id.dt_img);
                 TextView dtName = CommonViewHolder.get(item, R.id.dt_name);
                 TextView dtTime = CommonViewHolder.get(item, R.id.dt_time);
@@ -90,7 +93,15 @@ public class FriendsNewsPresenter extends XPresent<FrindeUpdateAct> {
                 }
                 dtTime.setText(s.getCreate_time_info());
                 GlideDownLoadImage.getInstance().loadImage(getV(),s.getHead_img_url(),imageView);
-
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Router.newIntent(getV())
+                                .to(OtherMainAct.class)
+                                .putString(IntentConstant.OTHER_USER_ID,s.getFrom_id())
+                                .launch();
+                    }
+                });
             }
         };
         return adapter;

@@ -44,7 +44,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
     private ImageView actImg;
     private TextView actName;
 
-
     @BindView(R.id.pull_msg_list)
     PullToRefreshListView listView;
 
@@ -90,7 +89,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                     if(UserUtils.userIsLogin(getActivity())){
                         switch (position){
                             case 2:
@@ -107,7 +105,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
             }
         });
     }
-
     @Override
     public void widgetClick(View v) {
         switch (v.getId()){

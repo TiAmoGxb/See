@@ -1,4 +1,5 @@
 package cn.see.service;
+import cn.see.model.AddFriendModel;
 import cn.see.model.FriendsNewsModel;
 import cn.see.model.MineTextModel;
 import cn.see.model.TxtModel;
@@ -73,6 +74,50 @@ public interface HomeService {
     @FormUrlEncoded
     @POST("User/nearbyUsers.html")
     Flowable<TxtModel> getNearbyUser(@Field("user_id") String user_id,@Field("page") int page,@Field("pageSize") String pageSize);
+
+
+    /**
+     * 可能认识的人
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/friendUser.html")
+    Flowable<AddFriendModel> getMayknowUuser(@Field("user_id") String user_id);
+
+
+    /**
+     * 认证的用户
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/legalizeUser.html")
+    Flowable<AddFriendModel> getlegalizeUser(@Field("user_id") String user_id);
+
+
+
+
+    /**
+     * 热门用户
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/hotUser.html")
+    Flowable<AddFriendModel> gethotUser(@Field("user_id") String user_id);
+
+
+    /**
+     * 感兴趣的人
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/tabUser.html")
+    Flowable<AddFriendModel> getInterestedUser(@Field("user_id") String user_id);
+
+
 
 
 }

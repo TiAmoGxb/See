@@ -8,6 +8,7 @@
     <color name="black">#000000</color>
     <color name="text_3">#333333</color>
     <color name="text_6">#666666</color>
+    <color name="text_9">#999999</color>
     <color name="back_f">#FFFFFF</color>
     <color name="text_e9">#E95E58</color>
     <color name="back_f4f">#FF4F4F</color>
@@ -52,4 +53,24 @@
     <color name="bgColor_alert_button_press">#EAEAEA</color>
     <!--actionsheet模式的取消按钮背景颜色-->
     <color name="bgColor_actionsheet_cancel_nor">#ffffff</color>
+
+
+
+    <!--地址三级联动选择-->
+    <color name="color_line_border">#C7C7C7</color>
+    <color name="orBlack_Two">#323232</color>
+    <color name="colorBlack_Three">#333333</color>
+    <color name="colorBlack_Four">#808080</color>
+    <color name="colorOrage_One">#e67819</color>
+    <color name="colorOrage_Two">#E57B1B</color>
+
+    <!-- QR_Code -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#00000000</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="system_bar_color">#fed952</color>
+
 </resources>

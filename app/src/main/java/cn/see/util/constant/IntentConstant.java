@@ -98,4 +98,48 @@ public class IntentConstant {
      */
     public static String SEL_TAB_TEXT = "SEL_TAB_TEXT";
 
+    /**
+     * 当前用户信息
+     */
+    public static String SET_USER_RESULT = "SET_USER_RESULT";
+
+    /**
+     * 用户当前头像
+     */
+    public static String USER_CURRENT_RESULT = "USER_CURRENT_RESULT";
+
+    /**
+     * 通用修改类型
+     */
+    public static String USER_SET_DATA_BASIC_TYPE = "USER_SET_DATA_BASIC_TYPE";
+
+
+    /**
+     * 发布相机权限
+     */
+    public static int RELEASE_PHOTO_TYPE = 0;
+
+    /**
+     * 打开相机
+     */
+    public static int CARMER_PHOTO_TYPE = 1;
+
+    /**
+     * 二维码扫一扫
+     */
+    public static int  QRCODE_PHOTO_TYPE  = 2;
+
+    /**
+     * 通知类型
+     */
+    public static String NOCTION_TYPE = "NOCTION_TYPE";
+
+    /**
+     * 通知值
+     */
+    public static String NOCTION_VALUES = "NOCTION_VALUES";
+
+
+
+
 }

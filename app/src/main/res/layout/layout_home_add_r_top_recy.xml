@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/ser_rela"
+        android:layout_marginTop="15px"
+        android:background="@drawable/shap_but_seach_yes_bg"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:text="搜索好友"
+            android:layout_marginLeft="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="15px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="40px"
+            android:src="@mipmap/seach_img"
+            android:layout_height="40px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_marginTop="15px"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/text_c9"></View>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginBottom="10px"
+        android:layout_width="match_parent"
+        android:layout_height="200px">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/book_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/img"
+                android:src="@drawable/tj_friends"
+                android:layout_width="70px"
+                android:layout_height="70px" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/sp_28"
+                android:text="通讯录"
+                android:layout_marginTop="15px"
+                android:layout_below="@+id/img"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rz_rela"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/img_r"
+                android:src="@drawable/tj_friends"
+                android:layout_width="70px"
+                android:layout_height="70px" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/sp_28"
+                android:text="认证用户"
+                android:layout_marginTop="15px"
+                android:layout_below="@+id/img_r"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="@color/view_f4"></View>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

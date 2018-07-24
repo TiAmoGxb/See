@@ -32,4 +32,9 @@ public interface RequestCode {
      * 多个
      */
     int MORE = 0x10;
+
+    /**
+     * 联系人
+     */
+    int BOOK = 0x03;
 }

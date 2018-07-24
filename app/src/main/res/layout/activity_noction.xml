@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.SettIngAct">
+
+    <include layout="@layout/layout_base_title"></include>
+
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginTop="20px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_pl_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="评论消息"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <ImageView
+                android:id="@+id/pl_img"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+
+            <TextView
+                android:id="@+id/pl_text"
+                android:layout_marginRight="20px"
+                android:layout_toLeftOf="@+id/pl_img"
+                android:layout_centerVertical="true"
+                android:text="所有人"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_dz_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="点赞消息"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:id="@+id/dz_img"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+            <TextView
+                android:id="@+id/dz_text"
+                android:layout_marginRight="20px"
+                android:layout_toLeftOf="@+id/dz_img"
+                android:layout_centerVertical="true"
+                android:text="所有人"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/set_xx_rela"
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text=" @ 消息"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <ImageView
+                android:id="@+id/xx_img"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="17px"
+                android:src="@mipmap/wodezhanghao_jiantou"
+                android:layout_height="28px" />
+            <TextView
+                android:id="@+id/at_text"
+                android:layout_marginRight="20px"
+                android:layout_toLeftOf="@+id/xx_img"
+                android:layout_centerVertical="true"
+                android:text="所有人"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginTop="20px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/back_f"
+        android:layout_height="wrap_content">
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="被关注消息的推送"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <cn.see.util.widet.SwitchView
+                android:id="@+id/toggle_att"
+                android:layout_marginRight="20px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                app:isOpened="false"
+                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
+                app:primaryColor="@color/text_3d"
+                app:primaryColorDark="@color/text_3d"
+                android:layout_height="wrap_content"
+                app:hasShadow="true" />
+
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:background="@drawable/set_bac">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:text="活动消息的推送"
+                android:textColor="@color/text_101010"
+                android:textSize="@dimen/sp_28" />
+
+            <View
+                android:layout_marginLeft="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_c9"></View>
+
+            <cn.see.util.widet.SwitchView
+                android:id="@+id/toggle_act"
+                android:layout_marginRight="20px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                app:isOpened="false"
+                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
+                app:primaryColor="@color/text_3d"
+                app:primaryColorDark="@color/text_3d"
+                android:layout_height="wrap_content"
+                app:hasShadow="true" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:background="@drawable/set_bac"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+
+
+            <TextView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_28"
+                android:text="系统消息的推送"
+                android:textColor="@color/text_101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/text_c9"></View>
+
+            <cn.see.util.widet.SwitchView
+                android:id="@+id/toggle_system"
+                android:layout_marginRight="20px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                app:isOpened="false"
+                android:layout_marginTop="10px"
+                android:layout_marginBottom="10px"
+                app:primaryColor="@color/text_3d"
+                app:primaryColorDark="@color/text_3d"
+                android:layout_height="wrap_content"
+                app:hasShadow="true" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

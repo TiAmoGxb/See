@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_f4"
+    tools:context="cn.see.fragment.fragmentview.mineview.PrivateAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="15px"
+        android:background="@color/back_f"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="80px">
+
+    <TextView
+        android:layout_marginLeft="30px"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp_28"
+        android:textColor="@color/text_101010"
+        android:text="允许通过手机号找到我"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+        <cn.see.util.widet.SwitchView
+            android:id="@+id/toggle_att"
+            android:layout_marginRight="20px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            app:isOpened="false"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
+            app:primaryColor="@color/text_3d"
+            app:primaryColorDark="@color/text_3d"
+            android:layout_height="wrap_content"
+            app:hasShadow="true" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.fragmentview.mineview.FeedbackAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <EditText
+        android:layout_margin="25px"
+        android:id="@+id/et_pro"
+        android:background="@null"
+        android:textSize="28px"
+        android:textColor="@color/text_101010"
+        android:textColorHint="@color/text_7d"
+        android:hint="您好，欢迎对看见提出宝贵意见!"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

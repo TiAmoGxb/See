@@ -46,6 +46,7 @@ public class LoginPresenter extends XPresent<LoginAct> {
                         if(!loginModel.isError()){
                             getV().loginResponse(loginModel);
                          }else{
+                            progress.dismiss();
                             ToastUtil.showToast(loginModel.getErrorMsg());
                         }
                     }

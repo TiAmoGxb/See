@@ -15,6 +15,13 @@ public class PreferenceConstant {
     public static String USER_UID = "user_uid";
 
     /**
+     * 用户手机号
+     */
+    public static String USER_PHONE = "USER_PHONE";
+
+
+
+    /**
      * 用户是否登录
      */
     public static String USER_IS_LOGIN = "user_is_login";

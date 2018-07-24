@@ -4,7 +4,10 @@ import cn.see.base.BaseModel;
 import cn.see.model.AllTopicModel;
 import cn.see.model.LoginModel;
 import cn.see.model.MineAttModel;
+import cn.see.model.MineSchoolModel;
 import cn.see.model.MineTextModel;
+import cn.see.model.NoticeModel;
+import cn.see.model.PrivateModel;
 import cn.see.model.QrModel;
 import cn.see.model.TopiDesitalModel;
 import cn.see.model.UserInfoModel;
@@ -41,6 +44,16 @@ public interface MineService {
     @FormUrlEncoded
     @POST("User/userTextInfo.html")
     Flowable<UserInfoModel> getUserInfo(@Field("user_id") String uid,@Field("from_id") String from_id) ;
+
+    /**
+     * 获取用户信息 编辑用户信息使用
+     * @param uid
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/getInfo.html")
+    Flowable<UserInfoModel> getUserInfoSetDate(@Field("uid") String uid) ;
+
 
     /**
      * 获取我的发布文章列表
@@ -177,4 +190,206 @@ public interface MineService {
     @POST("User/editTopicList.html")
     Flowable<MineTextModel> getUserEditTopic(@Field("user_id") String user_id,@Field("pageSize") String pageSize , @Field("page") int page);
 
+
+    /**
+     * 修改昵称
+     * @param user_id
+     * @param nickname
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/updateNickname.html")
+    Flowable<BaseModel> setUserNickName(@Field("uid") String user_id,@Field("nickname") String nickname );
+
+
+    /**
+     * 修改生日
+     * @param user_id
+     * @param brithdy
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/birthday.html")
+    Flowable<BaseModel> setUserBrithday(@Field("uid") String user_id,@Field("birthday") String brithdy );
+
+
+    /**
+     * 修改性别
+     * @param user_id
+     * @param sex
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/updateSex.html")
+    Flowable<BaseModel> setUserSex(@Field("uid") String user_id,@Field("sex") String sex );
+
+
+    /**
+     * 修改签名
+     * @param user_id
+     * @param signature
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/updateSignature.html")
+    Flowable<BaseModel> setUserSin(@Field("uid") String user_id,@Field("signature") String signature );
+
+
+    /**
+     * 修改常驻地址
+     */
+    @FormUrlEncoded
+    @POST("User/setArea.html")
+    Flowable<BaseModel> setUserArea(@Field("user_id") String user_id,@Field("area") String area );
+
+    /**
+     * 搜索学校
+     * @param page
+     * @param pageSize
+     * @param sname
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/school_lists.html")
+    Flowable<MineSchoolModel> seaSchool(@Field("page") int page, @Field("pageSize") String pageSize , @Field("sname") String sname );
+
+
+    /**
+     * 修改学校
+     * @param user_id
+     * @param school_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/saveUschool.html")
+    Flowable<BaseModel> setSchool(@Field("user_id") String user_id, @Field("school_id") String school_id );
+
+
+    /**
+     * 修改密码
+     * @param uid
+     * @param pd 新密码
+     * @param rpd 重复新密码
+     * @param opd 旧密码
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/updataPD.html")
+    Flowable<BaseModel> setUserPwd(@Field("uid") String uid, @Field("pd") String pd, @Field("rpd") String rpd,@Field("opd") String opd);
+
+
+    /***
+     * 获取通知设置
+     * @param uid
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/notice.html")
+    Flowable<NoticeModel> getUserNotice(@Field("uid") String uid);
+
+
+    /**
+     * 设置活动消息
+     * @param uid
+     * @param activity
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/activity.html")
+    Flowable<BaseModel> setUserNoticeAct(@Field("uid") String uid,@Field("activity") String activity);
+
+
+
+    /**
+     * 设置被关注消息
+     * @param uid
+     * @param subscribe
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/subscribe.html")
+    Flowable<BaseModel> setUserNoticeSubscribe(@Field("uid") String uid,@Field("subscribe") String subscribe);
+
+
+
+    /**
+     * 设置系统消息
+     * @param uid
+     * @param ssystem
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/ssystem.html")
+    Flowable<BaseModel> setUserNoticeSystem(@Field("uid") String uid,@Field("ssystem") String ssystem);
+
+
+    /**
+     * 设置评论消息
+     * @param uid
+     * @param review
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/review.html")
+    Flowable<BaseModel> setUserReview(@Field("uid") String uid,@Field("review") String review);
+
+
+    /**
+     * 设置点赞消息
+     * @param uid
+     * @param like
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/like.html")
+    Flowable<BaseModel> setUserLike(@Field("uid") String uid,@Field("like") String like);
+
+
+    /**
+     * 设置点赞消息
+     * @param uid
+     * @param call
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/call.html")
+    Flowable<BaseModel> setUserCall(@Field("uid") String uid,@Field("call") String call);
+
+
+    /**
+     * 获取允许手机号找到我
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/pboolinfo.html")
+    Flowable<PrivateModel> getUserPhoneSet(@Field("user_id") String user_id);
+
+
+    /**
+     * 设置允许手机号找到我
+     * @param user_id
+     * @param pbool
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/pbool.html")
+    Flowable<BaseModel> setUserPhoneSet(@Field("user_id") String user_id,@Field("pbool") String pbool);
+
+
+    /**
+     * 签到
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/sign.html")
+    Flowable<BaseModel> setUserSin(@Field("user_id") String user_id);
+
+
+
+
 }
+
+
+

@@ -53,4 +53,9 @@ public class HttpConstant {
      * 发布文章
      */
     public static String RELEASE_TEXT = "http://www.xintusee.com/IOS/Text/add.html";
+
+    /**
+     * 修改头像
+     */
+    public static String UPDATE_IMG = "http://www.xintusee.com/IOS/User/uploadHeadImg.html";
 }
