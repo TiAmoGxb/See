@@ -9,6 +9,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import java.io.File;
 
@@ -95,6 +96,16 @@ public class ApkUtils {
 			uri = Uri.fromFile(apkFile);
 		}
 		return uri;
+	}
+
+	/**
+	 * 获取手机IMEI号
+	 * 需要动态权限: android.permission.READ_PHONE_STATE
+	 */
+	public static String getIMEI(Context context) {
+		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+		String imei = telephonyManager.getDeviceId();
+		return imei;
 	}
 	
 

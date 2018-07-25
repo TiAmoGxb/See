@@ -6,6 +6,7 @@ import cn.see.model.LoginModel;
 import cn.see.model.MineAttModel;
 import cn.see.model.MineSchoolModel;
 import cn.see.model.MineTextModel;
+import cn.see.model.MsgContModel;
 import cn.see.model.NoticeModel;
 import cn.see.model.PrivateModel;
 import cn.see.model.QrModel;
@@ -387,6 +388,34 @@ public interface MineService {
     Flowable<BaseModel> setUserSin(@Field("user_id") String user_id);
 
 
+    /**
+     * 绑定设备唯一标示符
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/relation_getui.html")
+    Flowable<BaseModel> setCid(@Field("user_id") String user_id,@Field("cid") String cid);
+
+    /**
+     * 获取未读消息数量
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/notice_list.html")
+    Flowable<MsgContModel> msgCont(@Field("user_id") String user_id);
+
+
+    /**
+     * 根据type清空消息数量
+     * @param user_id
+     * @param type
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/msgListCount.html")
+    Flowable<MsgContModel> delCont(@Field("user_id") String user_id,@Field("type") String type);
 
 
 }

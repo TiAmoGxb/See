@@ -386,4 +386,31 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
         });
     }
 
+    /**
+     * 绑定
+     * @param cid
+     */
+    public void setCid(String cid){
+        Api.mineService().setCid(UserUtils.getUserID(this),cid)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                        Log.i("FindChildFragment","error:"+error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BaseModel txtResult) {
+                        if(!txtResult.isError()){
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }else{
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+
 }

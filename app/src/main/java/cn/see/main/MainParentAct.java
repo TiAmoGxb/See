@@ -29,6 +29,7 @@ import cn.see.fragment.MineFragment;
 import cn.see.fragment.NewsFragment;
 import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.model.FindActModel;
+import cn.see.model.MsgContModel;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
@@ -72,6 +73,8 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     RelativeLayout main_rela;
     @BindView(R.id.radioGroup1)
     XRadioGroup xRadioGroup;
+    @BindView(R.id.text_cont)
+    TextView textCont;
 
     @OnClick(R.id.rb_release)
     void release(){
@@ -250,8 +253,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         super.onActivityResult(requestCode, resultCode, data);
         Log.i(TAG,"requestCode:"+requestCode);
         if(data!=null){
-
-
         ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
         Router to = Router.newIntent(this)
                 .to(BeautifulPictureAct.class);
@@ -267,6 +268,50 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
          }
         }
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(UserUtils.userIsLogin(this)){
+            getMsgCont();
+        }else{
+            textCont.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 获取消息未读数量
+     */
+    public void getMsgCont(){
+        Api.mineService().msgCont(UserUtils.getUserID(this))
+                .compose(XApi.<MsgContModel>getApiTransformer())
+                .compose(XApi.<MsgContModel>getScheduler())
+                .subscribe(new ApiSubscriber<MsgContModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        Log.i(TAG,"onFail:"+error.toString());
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                    }
+                    @Override
+                    public void onNext(MsgContModel tabModel) {
+                        if(!tabModel.isError()){
+                            Log.i(TAG,"Total:"+tabModel.getResult().toString());
+                            if(! tabModel.getResult().getTotal_count().equals("0")){
+                                textCont.setText(tabModel.getResult().getTotal_count());
+                                textCont.setVisibility(View.VISIBLE);
+                            }else{
+                                textCont.setVisibility(View.GONE);
+                            }
+
+                        }else{
+                            ToastUtil.showToast(tabModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+
 
     /**
      * 监听返回键 2秒之内连续点击两次 退出程序

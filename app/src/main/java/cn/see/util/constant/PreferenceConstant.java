@@ -31,4 +31,9 @@ public class PreferenceConstant {
      */
     public static String IMGS_PATHS = "IMGS_PATHS";
 
+
+    /**
+     * 设备唯一ID
+     */
+    public static String REGISTRATION_ID = "REGISTRATION_ID";
 }

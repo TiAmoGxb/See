@@ -1,6 +1,5 @@
 package cn.see.fragment.fragmentview.newsview;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -18,6 +17,7 @@ import cn.see.base.BaseFragement;
 import cn.see.fragment.fragmentview.mineview.AttentionAct;
 import cn.see.main.WebAct;
 import cn.see.model.FindActModel;
+import cn.see.model.MsgContModel;
 import cn.see.presenter.newsp.MsgPresenter;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
@@ -43,6 +43,7 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
     private View botView;
     private ImageView actImg;
     private TextView actName;
+    private MsgContModel.ContResult result;
 
     @BindView(R.id.pull_msg_list)
     PullToRefreshListView listView;
@@ -57,7 +58,7 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
         listView.getRefreshableView().addHeaderView(topView);
         listView.getRefreshableView().addFooterView(botView);
         listView.getRefreshableView().setDividerHeight(0);
-        adapter = getP().initAdapter(beanList);
+        adapter = getP().initAdapter(beanList, result);
         listView.setAdapter(adapter);
         getP().getTextAct(UserUtils.getUserID(getActivity()));
     }
@@ -68,7 +69,7 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
         beanList.add(new MsgPresenter.MsgBean(R.mipmap.pinglun,"评论",""));
         beanList.add(new MsgPresenter.MsgBean(R.mipmap.guanzhu,"关注",""));
         beanList.add(new MsgPresenter.MsgBean(R.mipmap.tongzhi,"通知",""));
-        adapter = getP().initAdapter(beanList);
+        adapter = getP().initAdapter(beanList,result);
         listView.setAdapter(adapter);
     }
 
@@ -118,6 +119,14 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if(UserUtils.userIsLogin(getActivity())){
+            getP().getMsgCont();
+        }
+    }
+
+    @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         listView.onRefreshComplete();
     }
@@ -131,5 +140,15 @@ public class MsgFragment extends BaseFragement<MsgPresenter> implements  PullToR
         actId = actResult.getLists().get(0).getActivity_id();
         actName.setText(actResult.getLists().get(0).getName());
         GlideDownLoadImage.getInstance().loadImage(actResult.getLists().get(0).getUrl(),actImg);
+    }
+
+    /**
+     * 获取消息未读数
+     * @param result
+     */
+    public void getMsg(MsgContModel.ContResult result){
+        beanList.set(0,new MsgPresenter.MsgBean(R.mipmap.zanle,"赞了",result.getLikes_count()));
+        beanList.set(1,new MsgPresenter.MsgBean(R.mipmap.pinglun,"评论",result.getReview_count()));
+        adapter.notifyDataSetChanged();
     }
 }
