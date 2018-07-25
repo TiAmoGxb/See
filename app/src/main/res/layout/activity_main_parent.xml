@@ -20,14 +20,15 @@
 
 
         <cn.see.util.widet.XRadioGroup
-            android:layout_alignParentBottom="true"
             android:id="@+id/radioGroup1"
             android:layout_width="match_parent"
             android:layout_height="100px"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
 
             <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/home_rela"
@@ -47,7 +48,7 @@
 
             <com.zhy.autolayout.AutoRelativeLayout
                 android:id="@+id/find_rela"
-                android:layout_width="wrap_content"
+                android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">
@@ -70,7 +71,7 @@
 
             <com.zhy.autolayout.AutoRelativeLayout
                 android:id="@+id/rb_release"
-                android:layout_width="wrap_content"
+                android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">
@@ -88,11 +89,10 @@
             </com.zhy.autolayout.AutoRelativeLayout>
             <com.zhy.autolayout.AutoRelativeLayout
                 android:id="@+id/news_rela"
-                android:layout_width="wrap_content"
+                android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal">
-
+                >
                 <RadioButton
                     app:layout_auto_baseheight="width"
                     android:id="@+id/rb_news"
@@ -102,12 +102,27 @@
                     android:background="@drawable/bt_news_select"
                     android:button="@null"
                     android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/text_cont"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="10px"
+                    android:paddingLeft="10px"
+                    android:visibility="gone"
+                    android:textSize="@dimen/sp_24"
+                    android:textColor="@color/back_f"
+                    android:background="@drawable/shap_but_act_yes_bg"
+                    android:layout_marginTop="5px"
+                    android:layout_marginRight="5px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
             </com.zhy.autolayout.AutoRelativeLayout>
 
 
             <com.zhy.autolayout.AutoRelativeLayout
                 android:id="@+id/mine_rela"
-                android:layout_width="wrap_content"
+                android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">

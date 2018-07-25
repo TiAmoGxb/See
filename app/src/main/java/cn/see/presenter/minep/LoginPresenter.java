@@ -1,12 +1,17 @@
 package cn.see.presenter.minep;
 
+import android.util.Log;
+
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.see.base.BaseModel;
 import cn.see.fragment.fragmentview.mineview.LoginAct;
 import cn.see.model.LoginModel;
 import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.http.Api;
 import cn.see.util.widet.CustomProgress;
 
@@ -70,4 +75,34 @@ public class LoginPresenter extends XPresent<LoginAct> {
 
         return true;
     }
+
+
+    /**
+     * 绑定
+     * @param cid
+     */
+    public void setCid(String cid){
+        Api.mineService().setCid(UserUtils.getUserID(getV()),cid)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .compose(getV().<BaseModel>bindToLifecycle())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                        Log.i("FindChildFragment","error:"+error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BaseModel txtResult) {
+                        if(!txtResult.isError()){
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }else{
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+
 }

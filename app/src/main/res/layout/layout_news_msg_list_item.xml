@@ -36,6 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+
+
+
+
         <View
             android:id="@+id/b_view"
             android:layout_marginLeft="25px"
@@ -44,7 +48,21 @@
             android:layout_width="match_parent"
             android:layout_height="1px"></View>
     </com.zhy.autolayout.AutoRelativeLayout>
-
+    <TextView
+        android:visibility="gone"
+        android:layout_toLeftOf="@+id/name_image"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp_24"
+        android:paddingLeft="10px"
+        android:paddingRight="10px"
+        android:paddingTop="5px"
+        android:paddingBottom="5px"
+        android:layout_marginRight="20px"
+        android:id="@+id/num"
+        android:background="@drawable/shap_but_act_yes_bg"
+        android:textColor="@color/back_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:layout_marginRight="30px"

@@ -20,21 +20,31 @@
 
         <TextView
             android:id="@+id/two_tv"
-            android:layout_marginRight="120px"
-            android:layout_marginLeft="120px"
             android:layout_below="@+id/one_tv"
             android:textColor="@color/text_7d"
             android:textSize="@dimen/sp_30"
+            android:singleLine="true"
             android:layout_marginTop="25px"
             android:layout_centerHorizontal="true"
-            android:text="开启通知,第一时间收到最新互动消\n息不要错过每一段与你接触的缘分"
+            android:text="开启通知,第一时间收到最新互动消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:singleLine="true"
+            android:layout_alignLeft="@+id/two_tv"
+            android:layout_alignRight="@+id/two_tv"
+            android:id="@+id/tv"
+            android:layout_below="@+id/two_tv"
+            android:textColor="@color/text_7d"
+            android:textSize="@dimen/sp_30"
+            android:layout_centerHorizontal="true"
+            android:text="息不要错过每一段与你接触的缘分"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
         <TextView
             android:layout_marginTop="40px"
-            android:layout_below="@+id/two_tv"
+            android:layout_below="@+id/tv"
             android:id="@+id/start_not"
             android:layout_marginBottom="30px"
             android:layout_centerHorizontal="true"

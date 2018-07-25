@@ -1,6 +1,7 @@
 package cn.see.fragment.fragmentview.mineview;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,6 +14,9 @@ import cn.see.model.LoginModel;
 import cn.see.presenter.minep.LoginPresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.PreferenceConstant;
+import cn.see.util.version.ApkUtils;
+import cn.see.util.version.PreferenceUtils;
 
 /**
  * @日期：2018/6/5
@@ -23,6 +27,7 @@ import cn.see.util.UserUtils;
 public class LoginAct extends BaseActivity<LoginPresenter> {
 
 
+    private static final String TAG = "LoginAct" ;
     @BindView(R.id.title_tv_base)
     TextView titles;
     @BindView(R.id.right_img_top)
@@ -76,7 +81,10 @@ public class LoginAct extends BaseActivity<LoginPresenter> {
         //存入已登录标记
         UserUtils.setLoginFlag(this);
         UserUtils.setUserID(this,model.getResult().getUid());
-        //存入用户名
+        String string = PreferenceUtils.getString(this, PreferenceConstant.REGISTRATION_ID);
+        //绑定设备唯一标识
+        getP().setCid(string);
+        //存入用户名this
         UserUtils.setUserPhone(this,getEditText(etPhone));
         Intent intent = new Intent();
         setResult(1,intent);

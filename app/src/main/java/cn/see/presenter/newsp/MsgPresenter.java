@@ -1,5 +1,6 @@
 package cn.see.presenter.newsp;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +16,10 @@ import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.CommonViewHolder;
 import cn.see.fragment.fragmentview.newsview.MsgFragment;
 import cn.see.model.FindActModel;
+import cn.see.model.MsgContModel;
 import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.http.Api;
 import cn.see.util.widet.CustomProgress;
 
@@ -28,7 +32,7 @@ import cn.see.util.widet.CustomProgress;
 
 public class MsgPresenter extends XPresent<MsgFragment> {
 
-    public CommonListViewAdapter<MsgBean> initAdapter(final List<MsgBean> beanList){
+    public CommonListViewAdapter<MsgBean> initAdapter(final List<MsgBean> beanList, final MsgContModel.ContResult result){
 
         CommonListViewAdapter<MsgBean> adapter = new CommonListViewAdapter<MsgBean>(getV().getActivity(), beanList,R.layout.layout_news_msg_list_item) {
             @Override
@@ -37,6 +41,7 @@ public class MsgPresenter extends XPresent<MsgFragment> {
                 TextView textView = CommonViewHolder.get(item, R.id.tv);
                 View tView = CommonViewHolder.get(item, R.id.t_view);
                 View bView = CommonViewHolder.get(item, R.id.b_view);
+                TextView num = CommonViewHolder.get(item, R.id.num);
                 if(position == beanList.size()-2){
                     bView.setVisibility(View.GONE);
                 }
@@ -44,6 +49,22 @@ public class MsgPresenter extends XPresent<MsgFragment> {
                     tView.setVisibility(View.VISIBLE);
                     bView.setVisibility(View.GONE);
                 }
+
+                if(result!=null){
+                    if(position == 0){
+                        if(!result.getLikes_count().equals("0")){
+                            num.setVisibility(View.VISIBLE);
+                            num.setText(result.getLikes_count());
+                        }
+                    }
+                    if(position == 1){
+                        if(!result.getReview_count().equals("0")){
+                            num.setVisibility(View.VISIBLE);
+                            num.setText(result.getReview_count());
+                        }
+                    }
+                }
+
                 imageView.setImageResource(msgBean.getImg());
                 textView.setText(msgBean.getTv());
             }
@@ -114,5 +135,31 @@ public class MsgPresenter extends XPresent<MsgFragment> {
                     }
                 });
     }
+
+
+    /**
+     * 获取消息未读数量
+     */
+    public void getMsgCont(){
+        Api.mineService().msgCont(UserUtils.getUserID(getV().getActivity()))
+                .compose(XApi.<MsgContModel>getApiTransformer())
+                .compose(XApi.<MsgContModel>getScheduler())
+                .subscribe(new ApiSubscriber<MsgContModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                    }
+                    @Override
+                    public void onNext(MsgContModel tabModel) {
+                        if(!tabModel.isError()){
+                            getV().getMsg(tabModel.getResult());
+                        }else{
+                            ToastUtil.showToast(tabModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+
 
 }

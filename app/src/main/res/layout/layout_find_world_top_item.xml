@@ -42,10 +42,11 @@
         <TextView
             android:id="@+id/user_hot_name"
             android:layout_below="@+id/img_rela"
+            android:gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/sp_26"
             android:textColor="@color/text_c9"
-            android:text="用户照片是DHA即可获得金卡和大家啊好打劫哈就得很健康"
+            android:text="用用健用健康康用健康用健康健康"
             android:maxEms="4"
             android:maxLines="1"
             android:ellipsize="end"
