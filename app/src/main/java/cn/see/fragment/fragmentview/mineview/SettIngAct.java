@@ -2,15 +2,23 @@ package cn.see.fragment.fragmentview.mineview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubscriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.base.BaseModel;
+import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
+import cn.see.util.http.Api;
 import cn.see.util.widet.AlertView.AlertView;
 import cn.see.util.widet.AlertView.OnDismissListener;
 import cn.see.util.widet.AlertView.OnItemClickListener;
@@ -86,14 +94,39 @@ public class SettIngAct extends BaseActivity implements OnItemClickListener, OnD
 
     @Override
     public void onDismiss(Object o) {
-
     }
 
     @Override
     public void onItemClick(Object o, int position) {
+        //解绑用户CID
+        setCid();
         UserUtils.removeUserLogin(this);
         UserUtils.removeUserID(this);
         UserUtils.removeUserPhone(this);
         onBack();
+    }
+    /**
+     * 解绑
+     */
+    public void setCid(){
+        Api.mineService().setCid(UserUtils.getUserID(this),"")
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                        Log.i("FindChildFragment","error:"+error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BaseModel txtResult) {
+                        if(!txtResult.isError()){
+                            //ToastUtil.showToast(txtResult.getErrorMsg());
+                        }else{
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }
+                    }
+                });
     }
 }

@@ -1,16 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/view_f4"
     android:layout_height="match_parent">
 
-    <cn.see.util.widet.putorefresh.PullToRefreshListView
-    xmlns:ptr="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/pull_msg_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    ptr:ptrAnimationStyle="flip"
-    android:gravity="center_horizontal"
-    ptr:ptrMode="pullFromStart" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <include layout="@layout/layout_news_msg_top_view"
+                android:id="@+id/notice_view"></include>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/like_rela"
+                android:layout_below="@+id/t_view"
+                android:background="@drawable/set_bac"
+                android:layout_width="match_parent"
+                android:layout_height="90px">
+                <ImageView
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/img"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@mipmap/zanle"/>
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:layout_toRightOf="@+id/img"
+                    android:textSize="@dimen/sp_28"
+                    android:textColor="@color/text_101010"
+                    android:text="赞了"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:layout_toLeftOf="@+id/name_image"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/sp_24"
+                    android:paddingLeft="12px"
+                    android:paddingRight="12px"
+                    android:paddingTop="5px"
+                    android:paddingBottom="5px"
+                    android:layout_marginRight="20px"
+                    android:id="@+id/num_like"
+                    android:background="@drawable/shap_but_act_yes_bg"
+                    android:textColor="@color/back_f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:id="@+id/name_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+
+                <View
+                    android:layout_marginLeft="25px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/review_rela"
+                android:background="@drawable/set_bac"
+                android:layout_width="match_parent"
+                android:layout_height="90px">
+                <ImageView
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/img_zan"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@mipmap/pinglun"/>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:layout_toRightOf="@+id/img_zan"
+                    android:textSize="@dimen/sp_28"
+                    android:textColor="@color/text_101010"
+                    android:text="评论"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:layout_toLeftOf="@+id/img_review"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/sp_24"
+                    android:paddingLeft="12px"
+                    android:paddingRight="12px"
+                    android:paddingTop="5px"
+                    android:paddingBottom="5px"
+                    android:layout_marginRight="20px"
+                    android:id="@+id/num_review"
+                    android:background="@drawable/shap_but_act_yes_bg"
+                    android:textColor="@color/back_f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/img_review"
+                    android:layout_marginRight="30px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+                <View
+                    android:layout_marginLeft="25px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_c9"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/att_rela"
+                android:background="@drawable/set_bac"
+                android:layout_width="match_parent"
+                android:layout_height="90px">
+                <ImageView
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/img_att"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@mipmap/guanzhu"/>
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:layout_toRightOf="@+id/img_att"
+                    android:textSize="@dimen/sp_28"
+                    android:textColor="@color/text_101010"
+                    android:text="关注"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/notice_rela"
+                android:layout_below="@+id/t_view"
+                android:layout_marginTop="15px"
+                android:background="@drawable/set_bac"
+                android:layout_width="match_parent"
+                android:layout_height="90px">
+                <ImageView
+                    app:layout_auto_baseheight="width"
+                    android:id="@+id/img_natice"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@mipmap/tongzhi"/>
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15px"
+                    android:layout_toRightOf="@+id/img_natice"
+                    android:textSize="@dimen/sp_28"
+                    android:textColor="@color/text_101010"
+                    android:text="通知"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="30px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="17px"
+                    android:src="@mipmap/wodezhanghao_jiantou"
+                    android:layout_height="28px" />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <include layout="@layout/layout_news_msg_b_view"
+                ></include>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </ScrollView>
+
 
 </com.zhy.autolayout.AutoRelativeLayout>

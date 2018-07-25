@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.see.event.MsgEvent;
 
 /**
  * Created by sks on 2018/7/18.
@@ -25,6 +27,9 @@ public class MyRecevier extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             Bundle bundle = intent.getExtras();
+            //发送事件
+            EventBus.getDefault().post(new MsgEvent());
+
             Log.i(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
             if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {

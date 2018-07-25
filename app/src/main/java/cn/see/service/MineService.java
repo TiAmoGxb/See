@@ -406,7 +406,6 @@ public interface MineService {
     @POST("User/notice_list.html")
     Flowable<MsgContModel> msgCont(@Field("user_id") String user_id);
 
-
     /**
      * 根据type清空消息数量
      * @param user_id
@@ -414,8 +413,8 @@ public interface MineService {
      * @return
      */
     @FormUrlEncoded
-    @POST("User/msgListCount.html")
-    Flowable<MsgContModel> delCont(@Field("user_id") String user_id,@Field("type") String type);
+    @POST("User/del_notice.html")
+    Flowable<BaseModel> delCont(@Field("user_id") String user_id,@Field("type") String type);
 
 
 }

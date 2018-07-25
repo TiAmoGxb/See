@@ -35,6 +35,7 @@
             android:textColorHint="@color/text_7d"
             android:layout_centerVertical="true"
             android:textSize="@dimen/sp_28"
+            android:maxLength="15"
             android:textColor="@color/text_101010"
             android:id="@+id/topic_title"
             android:layout_marginRight="70px"
@@ -62,9 +63,6 @@
     
 
 
-
-
-
     <EditText
         android:layout_below="@+id/v"
         android:id="@+id/et_add_cont"
@@ -73,7 +71,7 @@
         android:layout_marginTop="20px"
         android:layout_marginRight="25px"
         android:layout_marginLeft="25px"
-        android:textSize="25px"
+        android:textSize="28px"
         android:minLines="1"
         android:maxLines="8"
         android:maxLength="300"
@@ -85,12 +83,13 @@
         android:layout_height="300px" />
 
     <TextView
+
         android:layout_marginTop="10px"
         android:layout_below="@+id/et_add_cont"
         android:layout_alignParentRight="true"
         android:id="@+id/text_num"
         android:text="0/300"
-        android:textSize="26px"
+        android:textSize="28px"
         android:layout_marginRight="25px"
         android:layout_gravity="right"
         android:textColor="@color/text_101010"

@@ -27,6 +27,7 @@
     </style>
 
     <style name="AnimationFromButtom" >
+        <item name="android:windowNoTitle">true</item>
         <item name="android:windowEnterAnimation">@anim/popup_form_bottom</item>
         <item name="android:windowExitAnimation">@anim/drop_down_to_bottom</item>
     </style>

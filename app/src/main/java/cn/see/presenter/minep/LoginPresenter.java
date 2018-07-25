@@ -96,7 +96,7 @@ public class LoginPresenter extends XPresent<LoginAct> {
                     @Override
                     public void onNext(BaseModel txtResult) {
                         if(!txtResult.isError()){
-                            ToastUtil.showToast(txtResult.getErrorMsg());
+                           // ToastUtil.showToast(txtResult.getErrorMsg());
                         }else{
                             ToastUtil.showToast(txtResult.getErrorMsg());
                         }

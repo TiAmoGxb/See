@@ -1,7 +1,6 @@
 package cn.see.fragment.fragmentview.mineview;
 
 import android.content.Intent;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

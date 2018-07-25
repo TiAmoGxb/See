@@ -14,6 +14,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.CommonViewHolder;
+import cn.see.base.BaseModel;
 import cn.see.fragment.fragmentview.newsview.MsgFragment;
 import cn.see.model.FindActModel;
 import cn.see.model.MsgContModel;
@@ -159,7 +160,26 @@ public class MsgPresenter extends XPresent<MsgFragment> {
                     }
                 });
     }
-
-
+    /**
+     * 清空消息
+     */
+    public void delMsgCont(String type){
+        Api.mineService().delCont(UserUtils.getUserID(getV().getActivity()),type)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                    }
+                    @Override
+                    public void onNext(BaseModel tabModel) {
+                        if(!tabModel.isError()){
+                        }else{
+                            ToastUtil.showToast(tabModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
 
 }

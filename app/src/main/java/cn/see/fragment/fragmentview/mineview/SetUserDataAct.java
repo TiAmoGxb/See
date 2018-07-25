@@ -219,6 +219,8 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
                 file = CamerUtils.doOpenCamera(this, PHOOT_IMG_CARMAR, "temp.jpg", IntentConstant.CARMER_PHOTO_TYPE);
                 Log.i(TAG,"file:"+file);
             }else{
+                //解绑用户cid
+                setCid();
                 UserUtils.removeUserLogin(this);
                 UserUtils.removeUserID(this);
                 UserUtils.removeUserPhone(this);
@@ -387,11 +389,10 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
     }
 
     /**
-     * 绑定
-     * @param cid
+     * 解绑
      */
-    public void setCid(String cid){
-        Api.mineService().setCid(UserUtils.getUserID(this),cid)
+    public void setCid(){
+        Api.mineService().setCid(UserUtils.getUserID(this),"")
                 .compose(XApi.<BaseModel>getApiTransformer())
                 .compose(XApi.<BaseModel>getScheduler())
                 .subscribe(new ApiSubscriber<BaseModel>() {
@@ -404,7 +405,7 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
                     @Override
                     public void onNext(BaseModel txtResult) {
                         if(!txtResult.isError()){
-                            ToastUtil.showToast(txtResult.getErrorMsg());
+                            //ToastUtil.showToast(txtResult.getErrorMsg());
                         }else{
                             ToastUtil.showToast(txtResult.getErrorMsg());
                         }

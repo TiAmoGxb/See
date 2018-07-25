@@ -12,10 +12,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -23,6 +28,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.event.MsgEvent;
 import cn.see.fragment.FindFragment;
 import cn.see.fragment.HomeFragment;
 import cn.see.fragment.MineFragment;
@@ -68,7 +74,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     private String actId;
     private long exitTime = 0;
 
-
     @BindView(R.id.main_rela)
     RelativeLayout main_rela;
     @BindView(R.id.radioGroup1)
@@ -78,10 +83,11 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
 
     @OnClick(R.id.rb_release)
     void release(){
-
-        helper.showFromBottom(xRadioGroup);
-        blurringView.setBlurredView(main_rela);
-        blurringView.invalidate();
+        if(UserUtils.getLogin(this)){
+            helper.showFromBottom(xRadioGroup);
+            blurringView.setBlurredView(main_rela);
+            blurringView.invalidate();
+        }
     }
 
     @Override
@@ -102,6 +108,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         fragments.add(findFragment);
         fragments.add(newsFragment);
         fragments.add(mineFragment);
+
     }
 
     @Override
@@ -114,6 +121,8 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         fragmentTransaction.show(findFragment).hide(homeFragment).hide(newsFragment).hide(mineFragment);
         fragmentTransaction.commit();
         getTextAct();
+        //注册订阅者
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -337,5 +346,19 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             clearAct();
             onBack();
         }
+    }
+
+    //定义处理接收的方法
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void userEventBus(MsgEvent userEvent){
+       Log.i(TAG,"接收到了消息");
+        getMsgCont();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

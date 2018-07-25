@@ -298,12 +298,14 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.i(TAG,"执行回调："+requestCode);
-        if(requestCode == 1){
-            //登录成功返回
-            isRefresh  = true;
-            topSize = "0";
-            textSize = "0";
-            getP().getUserText(UserUtils.getUserID(getActivity()),topSize,textSize);
+        if(data!=null){
+            if(requestCode == 1){
+                //登录成功返回
+                isRefresh  = true;
+                topSize = "0";
+                textSize = "0";
+                getP().getUserText(UserUtils.getUserID(getActivity()),topSize,textSize);
+            }
         }
     }
 }

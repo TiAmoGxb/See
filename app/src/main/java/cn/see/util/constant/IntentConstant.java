@@ -51,6 +51,19 @@ public class IntentConstant {
     public  static String RELEASE_TYPE = "RELEASE_TYPE";
 
     /**
+     * 发布文字保存
+     */
+    public static String RELEASE_CONT = "RELEASE_CONT";
+
+
+    /**
+     * 发布的话题标题保存
+     */
+    public static String RELEASE_TITLE = "RELEASE_TITLE";
+
+
+
+    /**
      * 回传本地图片原始路径集合
      */
     public static String RELEASE_PATHS = "RELEASE_PATHS";
