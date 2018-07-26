@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300px"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        app:layout_auto_baseheight="width"
+        android:id="@+id/img"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/up_rela"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            app:layout_auto_baseheight="width"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/img_sc"
+            android:layout_width="45px"
+            android:src="@drawable/shangchuan"
+            android:layout_height="45px" />
+
+        <TextView
+            android:layout_marginTop="20px"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/img_sc"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/back_f"
+            android:text="从手机相册上传"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

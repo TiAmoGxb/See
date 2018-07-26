@@ -1,8 +1,13 @@
 package cn.see.fragment.fragmentview.newsview;
 
+import android.util.Log;
 import android.view.View;
 
+import java.util.List;
+
 import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.Conversation;
 import cn.see.R;
 import cn.see.base.BaseFragement;
 
@@ -21,7 +26,14 @@ public class PrivateLetterFragment extends BaseFragement {
 
     @Override
     public void initAfter() {
-
+        Conversation gxb = Conversation.createSingleConversation("gxb", null);
+        List<Conversation> conversationList = JMessageClient.getConversationList();
+        Log.i(TAG,"conversationList:"+conversationList);
+        if(conversationList!=null){
+            for (Conversation c:conversationList) {
+                Log.i(TAG,"c:"+c.toString());
+            }
+        }
     }
 
     @Override

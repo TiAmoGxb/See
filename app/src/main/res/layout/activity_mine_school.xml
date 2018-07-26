@@ -29,16 +29,15 @@
             android:textColor="@color/text_101010"
             android:textColorHint="@color/text_7d"
             android:textSize="@dimen/sp_28"
-            android:layout_weight="9"
-            android:layout_marginRight="20px"
+            android:layout_weight="8"
+            android:layout_marginRight="15px"
             android:background="@drawable/shap_but_seach_yes_bg"
             android:layout_height="70px" />
 
         <TextView
             android:id="@+id/canal"
             android:text="取消"
-            android:layout_marginRight="20px"
-            android:textSize="@dimen/sp_30"
+            android:textSize="@dimen/sp_28"
             android:gravity="center_vertical"
             android:layout_width="0px"
             android:layout_weight="1"

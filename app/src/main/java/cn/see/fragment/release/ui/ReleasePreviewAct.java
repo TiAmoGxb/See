@@ -433,7 +433,6 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         }).start();
     }
 
-
     /**
      * 发布成功之后清除临时文件
      * @param file
@@ -447,7 +446,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             }
             file.delete();
         } else if (file.exists()) {
-            file.delete();
+            boolean delete = file.delete();
+            Log.i(TAG,"delete："+delete);
         }
     }
 }

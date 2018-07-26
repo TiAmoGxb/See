@@ -5,6 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * @项目名: 	WinfoSeaMap
@@ -223,4 +231,87 @@ public class PreferenceUtils
 		editor.remove(key);
 		editor.commit();
 	}
+
+	/**
+	 * 用于保存集合
+	 *
+	 * @param key  key
+	 * @param list 集合数据
+	 * @return 保存结果
+	 */
+	public static <T> boolean putListData(Context context ,String key, List<T> list) {
+		boolean result;
+		SharedPreferences sp = getSp(context);
+		String type = list.get(0).getClass().getSimpleName();
+		SharedPreferences.Editor editor = sp.edit();
+		JsonArray array = new JsonArray();
+		try {
+			switch (type) {
+				case "Boolean":
+					for (int i = 0; i < list.size(); i++) {
+						array.add((Boolean) list.get(i));
+					}
+					break;
+				case "Long":
+					for (int i = 0; i < list.size(); i++) {
+						array.add((Long) list.get(i));
+					}
+					break;
+				case "Float":
+					for (int i = 0; i < list.size(); i++) {
+						array.add((Float) list.get(i));
+					}
+					break;
+				case "String":
+					for (int i = 0; i < list.size(); i++) {
+						array.add((String) list.get(i));
+					}
+					break;
+				case "Integer":
+					for (int i = 0; i < list.size(); i++) {
+						array.add((Integer) list.get(i));
+					}
+					break;
+				default:
+					Gson gson = new Gson();
+					for (int i = 0; i < list.size(); i++) {
+						JsonElement obj = gson.toJsonTree(list.get(i));
+						array.add(obj);
+					}
+					break;
+			}
+			editor.putString(key, array.toString());
+			result = true;
+		} catch (Exception e) {
+			result = false;
+			e.printStackTrace();
+		}
+		editor.apply();
+		return result;
+	}
+
+
+	/**
+	 * 获取保存的List
+	 *
+	 * @param key key
+	 * @return 对应的Lis集合
+	 */
+	public static <T> List<T> getListData(Context context,String key, Class<T> cls) {
+		List<T> list = new ArrayList<>();
+		SharedPreferences sp = getSp(context);
+		String json = sp.getString(key, "");
+		if (!json.equals("") && json.length() > 0) {
+			Gson gson = new Gson();
+			JsonArray array = new JsonParser().parse(json).getAsJsonArray();
+			for (JsonElement elem : array) {
+				list.add(gson.fromJson(elem, cls));
+			}
+		}
+		return list;
+	}
+
+
+
+
 }

@@ -13,6 +13,7 @@ import cn.droidlover.xdroidmvp.net.NetProvider;
 import cn.droidlover.xdroidmvp.net.RequestHandler;
 import cn.droidlover.xdroidmvp.net.XApi;
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.im.android.api.JMessageClient;
 import cn.see.util.constant.PreferenceConstant;
 import cn.see.util.version.PreferenceUtils;
 import okhttp3.CookieJar;
@@ -121,15 +122,19 @@ public class App extends Application {
     }
 
     private void init() {
+        //初始化屏幕適配
+        AutoLayoutConifg.getInstance().init(this);
         //初始化极光推送
         JPushInterface.setDebugMode(true);//设置调试模式，避免出现日志无打印情况
         JPushInterface.init(this);
-        String registrationId = JPushInterface.getRegistrationID(this);
-        Log.i("getRegistrationID","getRegistrationID:"+registrationId);
-        PreferenceUtils.setString(this, PreferenceConstant.REGISTRATION_ID,registrationId);
-//        UnCeHandler.getInstance().init(this);
-//        AutoLayoutConifg.getInstance().useDeviceSize();
-        AutoLayoutConifg.getInstance().init(this);
+        boolean state = JPushInterface.getConnectionState(this);
+        Log.i("getRegistrationID","state:"+state);
+        if(state){
+            //获取RegistrationID
+            String registrationId = JPushInterface.getRegistrationID(this);
+            Log.i("getRegistrationID","getRegistrationID:"+registrationId);
+            PreferenceUtils.setString(this, PreferenceConstant.REGISTRATION_ID,registrationId);
+        }
     }
 
     public static Context getContext() {

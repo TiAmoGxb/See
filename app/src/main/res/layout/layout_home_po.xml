@@ -32,6 +32,7 @@
             android:layout_height="70px">
 
             <ImageView
+                android:id="@+id/topic_img"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40px"
                 android:layout_height="30px"
@@ -66,6 +67,7 @@
             android:layout_height="70px">
 
             <ImageView
+                android:id="@+id/my_lin_img"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40px"
                 android:layout_height="30px"
@@ -100,6 +102,7 @@
             android:layout_height="70px">
 
             <ImageView
+                android:id="@+id/add_img"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40px"
                 android:layout_height="30px"
@@ -132,6 +135,7 @@
             android:layout_height="70px">
 
             <ImageView
+                android:id="@+id/sys_img"
                 android:layout_gravity="center_vertical"
                 android:layout_width="40px"
                 android:layout_height="30px"

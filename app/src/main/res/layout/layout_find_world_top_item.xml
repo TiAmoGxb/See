@@ -22,6 +22,7 @@
 
             <cn.see.util.widet.CircleImageView
                 android:layout_width="125px"
+                android:id="@+id/bac_img"
                 android:layout_centerInParent="true"
                 app:border_color="@color/text_3d"
                 android:src="@drawable/bac_image"
@@ -46,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="@dimen/sp_26"
             android:textColor="@color/text_c9"
-            android:text="用用健用健康康用健康用健康健康"
+            android:text=""
             android:maxEms="4"
             android:maxLines="1"
             android:ellipsize="end"

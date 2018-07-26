@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -84,6 +85,8 @@ public class NewsFragment extends BaseFragement {
         popView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_home_po, null);
         popView.findViewById(R.id.my_lin).setVisibility(View.VISIBLE);
         popView.findViewById(R.id.my_v).setVisibility(View.VISIBLE);
+        ImageView imageView =(ImageView) popView.findViewById(R.id.my_lin_img);
+        imageView.setImageResource(R.drawable.wodehaoyou);
         helper = new PopupWindowHelper(popView);
         fragmentList = new ArrayList<>();
         fragmentList.add(new MsgFragment());

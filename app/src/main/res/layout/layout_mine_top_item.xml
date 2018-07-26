@@ -18,14 +18,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <ImageView
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="80px"
             android:id="@+id/show_dilog"
-            android:layout_marginTop="40px"
-            android:layout_marginRight="40px"
+            android:layout_marginTop="20px"
             android:layout_alignParentRight="true"
-            android:layout_width="40px"
-            android:src="@drawable/mine_cha"
-            android:layout_height="40px" />
+            android:layout_marginRight="20px"
+            android:layout_height="80px">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="40px"
+                android:src="@drawable/mine_cha"
+                android:layout_height="40px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
 
     </com.zhy.autolayout.AutoRelativeLayout>
 

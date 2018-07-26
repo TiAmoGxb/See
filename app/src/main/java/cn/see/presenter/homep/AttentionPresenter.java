@@ -151,7 +151,7 @@ public class AttentionPresenter extends XPresent<AttentionFragment>{
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("选项");
+                        getV().set();
 
                     }
                 });

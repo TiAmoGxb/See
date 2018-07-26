@@ -118,7 +118,6 @@ public class BeautifulDetilsAct extends BaseActivity<BeautifulDetilsPresenter> {
      */
     @OnClick(R.id.change_img)
     void changeImg(){
-
         if(isChange){
             layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.height = ScreenUtils.getScreenHeight(this)/2;

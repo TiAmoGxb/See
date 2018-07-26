@@ -49,8 +49,8 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
 
 
     private String url = "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
-    private final String  MSG_LIKE_TYPE = "likes";
-    private final String  MSG_REVIEW_TYPE = "review";
+    public static final String  MSG_LIKE_TYPE = "likes";
+    public static final String  MSG_REVIEW_TYPE = "review";
     private String actId;
     private MsgContModel.ContResult result;
     @BindView(R.id.notice_view)
@@ -68,7 +68,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
     @OnClick(R.id.like_rela)
     void like(){
         if(UserUtils.getLogin(getActivity())){
-            getP().delMsgCont(MSG_LIKE_TYPE);
             openActivity(NewsLikeAct.class);
         }
 
@@ -78,7 +77,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
     @OnClick(R.id.review_rela)
     void review(){
         if(UserUtils.getLogin(getActivity())){
-            getP().delMsgCont(MSG_REVIEW_TYPE);
             openActivity(NewsReviewAct.class);
         }
 
@@ -192,7 +190,6 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
             num_review.setVisibility(View.GONE);
         }
     }
-
 
 
     //定义处理接收的方法

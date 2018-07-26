@@ -153,6 +153,25 @@ public class IntentConstant {
     public static String NOCTION_VALUES = "NOCTION_VALUES";
 
 
+    /**
+     * 用户头像
+     */
+    public static String USER_HEAD_URL = "USER_HEAD_URL";
 
+    /**
+     * 用户名
+     */
+    public static String USER_NAME_TEXT = "USER_NAME_TEXT";
+
+    /**
+     * 用户签名
+     */
+    public static String USER_SINE_TEXT = "USER_SINE_TEXT";
+
+
+    /**
+     * 搜索内容
+     */
+    public static String SEARCH_CONT = "SEARCH_CONT";
 
 }

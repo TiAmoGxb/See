@@ -97,9 +97,16 @@ public class NewsReviewAct extends BaseActivity<NewsLikeAndPresenter> implements
     public void hidProgress() {
         progress.dismiss();
     }
-
     @Override
     public void showProgerss() {
         progress = CustomProgress.show(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String userID = UserUtils.getUserID(this);
+        getP().delMsgCont(MsgFragment.MSG_REVIEW_TYPE,userID);
+        getP().delMsgCont("treview",userID);
     }
 }

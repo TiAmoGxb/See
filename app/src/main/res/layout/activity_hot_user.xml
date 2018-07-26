@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_f"
+    tools:context="cn.see.fragment.fragmentview.findview.HotUserAct">
+
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela"
+        android:layout_below="@+id/basetitle"
+        android:layout_marginTop="15px"
+        android:background="@drawable/shap_but_seach_yes_bg"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:text="搜索"
+            android:layout_marginLeft="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="15px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="40px"
+            android:src="@mipmap/seach_img"
+            android:layout_height="40px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <cn.see.util.widet.putorefresh.PullToRefreshGridView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/verygridview"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rela"
+        ptr:ptrAnimationStyle="flip"
+        android:gravity="center_horizontal"
+        android:numColumns="4"
+        ptr:ptrMode="both" />
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

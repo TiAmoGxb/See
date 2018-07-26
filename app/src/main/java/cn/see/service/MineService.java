@@ -1,7 +1,7 @@
 package cn.see.service;
 
 import cn.see.base.BaseModel;
-import cn.see.model.AllTopicModel;
+import cn.see.model.FindActModel;
 import cn.see.model.LoginModel;
 import cn.see.model.MineAttModel;
 import cn.see.model.MineSchoolModel;
@@ -416,6 +416,57 @@ public interface MineService {
     @POST("User/del_notice.html")
     Flowable<BaseModel> delCont(@Field("user_id") String user_id,@Field("type") String type);
 
+
+    /**
+     * 我的活动
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/activityLists.html")
+    Flowable<FindActModel> getMineAct(@Field("user_id") String user_id, @Field("pageSize") String pageSize, @Field("page") int page);
+
+
+    /**
+     * 删除文章
+     * @param user_id
+     * @param text_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Text/del.html")
+    Flowable<BaseModel> delText(@Field("user_id") String user_id, @Field("text_id") String text_id );
+
+
+    /**
+     * 删除话题
+     * @param user_id
+     * @param topic_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Topic/del.html")
+    Flowable<BaseModel> delTopic(@Field("user_id") String user_id, @Field("topic_id") String topic_id );
+
+
+    /**
+     * 搜索文章(通用)
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Index/searchText.html")
+    Flowable<MineTextModel> seText(@Field("user_id") String user_id, @Field("page") int page , @Field("pageSize") String pageSize, @Field("str") String str);
+
+
+    /**
+     * 搜索用户(通用)
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Index/searchUser.html")
+    Flowable<MineAttModel> seUser(@Field("user_id") String user_id, @Field("str") String str);
 
 }
 

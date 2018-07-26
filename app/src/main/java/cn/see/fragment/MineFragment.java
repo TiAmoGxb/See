@@ -24,21 +24,28 @@ import cn.see.adapter.CommonListViewAdapter;
 import cn.see.base.BaseFragement;
 import cn.see.fragment.fragmentview.homeview.AddFriendsAct;
 import cn.see.fragment.fragmentview.mineview.AttentionAct;
+import cn.see.fragment.fragmentview.mineview.ChangeBacAct;
 import cn.see.fragment.fragmentview.mineview.FansAct;
 import cn.see.fragment.fragmentview.mineview.LikeAct;
 import cn.see.fragment.fragmentview.mineview.LoginAct;
+import cn.see.fragment.fragmentview.mineview.MineAct;
 import cn.see.fragment.fragmentview.mineview.SetUserDataAct;
 import cn.see.fragment.fragmentview.mineview.SettIngAct;
 import cn.see.fragment.fragmentview.mineview.UserTopicAct;
+import cn.see.main.WebAct;
 import cn.see.model.MineTextModel;
 import cn.see.model.TxtModel;
 import cn.see.model.UserInfoModel;
 import cn.see.presenter.minep.MinePresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.permosson.CamerUtils;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.CircleImageView;
 import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
@@ -52,7 +59,7 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @说明： 我的Frg
  */
 
-public class MineFragment extends BaseFragement<MinePresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView> {
+public class MineFragment extends BaseFragement<MinePresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>,OnItemClickListener, OnDismissListener {
 
     private List<MineTextModel.MineTextResult.ResultList> resultsList = new ArrayList<>();
     private CommonListViewAdapter<MineTextModel.MineTextResult.ResultList> adapter;
@@ -74,9 +81,12 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
     private String textSize = "0";
     private boolean isRefresh = true;
     private UserInfoModel.UserInfoResult userResult;
-    private ImageView showDilog;
+    private RelativeLayout showDilog;
     private View popView;
     private PopupWindowHelper helper;
+    private String head_url;
+    private MineTextModel.MineTextResult.ResultList result;
+
 
     @BindView(R.id.no_login_rela)
     RelativeLayout noLoginRela;
@@ -128,6 +138,14 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
         popView.findViewById(R.id.my_v).setVisibility(View.VISIBLE);
         popView.findViewById(R.id.my_topic).setVisibility(View.VISIBLE);
         popView.findViewById(R.id.my_topic_v).setVisibility(View.VISIBLE);
+        ImageView topic_img =(ImageView) popView.findViewById(R.id.topic_img);
+        ImageView my_lin_img =(ImageView) popView.findViewById(R.id.my_lin_img);
+        ImageView jfImg =(ImageView) popView.findViewById(R.id.add_img);
+        ImageView sys_img =(ImageView) popView.findViewById(R.id.sys_img);
+        topic_img.setImageResource(R.drawable.topic_comm);
+        jfImg.setImageResource(R.drawable.jifen);
+        sys_img.setImageResource(R.drawable.shezhi);
+        my_lin_img.setImageResource(R.drawable.huodong);
         TextView twoText = popView.findViewById(R.id.two_text);
         TextView threeText = popView.findViewById(R.id.three_text);
         TextView fourText = popView.findViewById(R.id.four_text);
@@ -161,6 +179,7 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
         likeLin.setOnClickListener(this);
         singinView.setOnClickListener(this);
         showDilog.setOnClickListener(this);
+        bacImg.setOnClickListener(this);
         popView.findViewById(R.id.my_topic).setOnClickListener(this);
         popView.findViewById(R.id.my_lin).setOnClickListener(this);
         popView.findViewById(R.id.add_lin).setOnClickListener(this);
@@ -196,16 +215,28 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
                 helper.dismiss();
                 break;
             case R.id.my_lin:
-                ToastUtil.showToast("我的活动");
+                openActivity(MineAct.class);
                 helper.dismiss();
                 break;
             case R.id.add_lin:
-                ToastUtil.showToast("我的积分");
+                Router.newIntent(getActivity())
+                        .to(WebAct.class)
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.MINE_INTEGRA+"?uid="+UserUtils.getUserID(getActivity()))
+                        .launch();
                 helper.dismiss();
                 break;
             case R.id.sys_lin:
                 openActivity(SettIngAct.class);
                 helper.dismiss();
+                break;
+            case R.id.mine_bac:
+                Router.newIntent(getActivity())
+                        .to(ChangeBacAct.class)
+                        .putString(IntentConstant.USER_HEAD_URL,head_url)
+                        .putString(IntentConstant.USER_NAME_TEXT,userName.getText().toString())
+                        .putString(IntentConstant.USER_SINE_TEXT,userSin.getText().toString())
+                        .requestCode(2)
+                        .launch();
                 break;
         }
     }
@@ -245,6 +276,7 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
 
     public void userInfoResPonse(UserInfoModel.UserInfoResult result){
         userResult = result;
+        head_url = result.getHead_url();
         userName.setText(result.getNickname());
         attCont.setText(result.getAttention_count());
         fansCont.setText(result.getFans_count());
@@ -307,5 +339,35 @@ public class MineFragment extends BaseFragement<MinePresenter> implements  PullT
                 getP().getUserText(UserUtils.getUserID(getActivity()),topSize,textSize);
             }
         }
+    }
+
+    /**
+     * 选项
+     */
+    public void Option(MineTextModel.MineTextResult.ResultList result){
+        this.result = result;
+        Log.i(TAG,"result："+ this.result);
+        AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"删除"}, getActivity(), AlertView.Style.ActionSheet, this);
+        alertView.setCancelable(true);
+        alertView.show();
+    }
+    @Override
+    public void onDismiss(Object o) {
+    }
+
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            if(this.result.getLtype().equals("topic")){
+                getP().delTopic(UserUtils.getUserID(getActivity()),this.result.getId());
+            }else{
+                getP().delText(UserUtils.getUserID(getActivity()),this.result.getId());
+            }
+        }
+    }
+    public void delSu(){
+        ToastUtil.showToast("删除成功");
+        resultsList.remove(this.result);
+        adapter.notifyDataSetChanged();
     }
 }

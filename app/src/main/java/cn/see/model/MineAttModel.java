@@ -24,12 +24,29 @@ public class MineAttModel extends BaseModel{
     }
 
     public static class AttResult{
-
         private String head_url;
         private String nickname;
         private String signature;
         private String aStatus;//是否是相互关注 1：是 0：否
         private String uid;//对方ID
+        private String head_img_url;
+        private String user_id;
+
+        public String getHead_img_url() {
+            return head_img_url;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setHead_img_url(String head_img_url) {
+            this.head_img_url = head_img_url;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
 
         public String getUid() {
             return uid;

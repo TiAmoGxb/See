@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="match_parent"
+    tools:context="cn.see.fragment.fragmentview.mineview.ChangeBacAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/show_bac"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:background="@color/view_f4"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rela"
+            android:layout_width="match_parent"
+            android:layout_marginTop="120px"
+            android:background="@drawable/dialog_bg"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:layout_height="550px">
+
+            <ImageView
+                android:id="@+id/bac_img"
+                android:layout_width="match_parent"
+                android:layout_height="330px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bac_image"/>
+
+            <cn.see.util.widet.CircleImageView
+                android:id="@+id/user_img"
+                android:layout_width="150px"
+                android:layout_marginTop="250px"
+                app:border_width="10px"
+                android:layout_centerHorizontal="true"
+                app:border_color="@color/back_f"
+                android:layout_height="150px" />
+
+
+            <TextView
+                android:textSize="@dimen/sp_28"
+                android:textColor="@color/text_101010"
+                android:id="@+id/user_name"
+                android:layout_marginTop="15px"
+                android:layout_below="@+id/user_img"
+                android:layout_centerHorizontal="true"
+                android:text="用户"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="@dimen/sp_26"
+                android:textColor="@color/text_101010"
+                android:id="@+id/user_sin"
+                android:layout_marginTop="15px"
+                android:layout_below="@+id/user_name"
+                android:layout_centerHorizontal="true"
+                android:text="用户"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <TextView
+            android:id="@+id/com_up"
+            android:text="设为封面"
+            android:textColor="@color/text_3d"
+            android:textSize="@dimen/sp_28"
+            android:paddingLeft="30px"
+            android:paddingTop="5px"
+            android:paddingBottom="5px"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="30px"
+            android:background="@drawable/shap_but_bac_bg"
+            android:layout_below="@+id/rela"
+            android:layout_marginTop="80px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+      <com.zhy.autolayout.AutoRelativeLayout
+          android:id="@+id/close_rela"
+          android:layout_below="@+id/com_up"
+          android:layout_marginTop="60px"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <ImageView
+              android:layout_centerHorizontal="true"
+              android:layout_width="40px"
+              android:src="@drawable/close"
+              android:layout_height="40px" />
+
+      </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <GridView
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerView"
+        android:numColumns="2"
+        android:horizontalSpacing="15px"
+        android:verticalSpacing="15px"
+        android:layout_marginRight="15px"
+        android:layout_marginLeft="15px"
+        android:layout_height="wrap_content"></GridView>
+
+</com.zhy.autolayout.AutoRelativeLayout>

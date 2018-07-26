@@ -153,8 +153,6 @@ public class ReleasePreviewPresenter extends XPresent<ReleasePreviewAct> {
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
                 Log.i(TAG,"成功："+response.body().string());
                 getV().releaseResponse();
-//                ToastUtil.showToast("发布成功");
-//                progress.dismiss();
             }
         });
     }
