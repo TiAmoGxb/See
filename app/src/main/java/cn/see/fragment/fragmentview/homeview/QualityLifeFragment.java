@@ -169,7 +169,7 @@ public class QualityLifeFragment  extends BaseFragement<QulaityLifePresenter> im
     public void onItemClick(Object o, int position) {
         if(position == 0){
             ToastUtil.showToast("收藏成功");
-        }else{
+        }else if(position == -1){
             ToastUtil.showToast("举报成功");
         }
     }
