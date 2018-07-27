@@ -152,7 +152,6 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
         RecryCommonAdapter<TabModel.TabList> tabListRecryCommonAdapter = getP().initAdapterTopUpdate(tabLists);
         recyTable.setAdapter(tabListRecryCommonAdapter);
     }
-
     /**
      * 开始轮播Banner
      * @param bannerLists
