@@ -151,6 +151,7 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
         tabLists.add(new TabModel.TabList());
         RecryCommonAdapter<TabModel.TabList> tabListRecryCommonAdapter = getP().initAdapterTopUpdate(tabLists);
         recyTable.setAdapter(tabListRecryCommonAdapter);
+
     }
 
     /**
