@@ -12,6 +12,7 @@ import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.FriendsReconAdapter;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.SearchAct;
 import cn.see.model.TxtModel;
 import cn.see.presenter.homep.FriendRecoPresenter;
 import cn.see.util.ToastUtil;
@@ -52,8 +53,8 @@ public class NearByUserAct extends BaseActivity<FriendRecoPresenter> implements 
     @Override
     public void initView() {
         titles.setText("附近");
-        layout.setVisibility(View.VISIBLE);
-        imageView.setImageResource(R.drawable.r_add_fr);
+/*        layout.setVisibility(View.VISIBLE);
+        imageView.setImageResource(R.drawable.r_add_fr);*/
         topView = View.inflate(this,R.layout.layout_home_naer_top_view,null);
         numTv =(TextView) topView.findViewById(R.id.num_tv);
         listView.getRefreshableView().addHeaderView(topView);
@@ -133,4 +134,15 @@ public class NearByUserAct extends BaseActivity<FriendRecoPresenter> implements 
         initAfter();
     }
 
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.serch_rela:
+                if(UserUtils.getLogin(this)){
+                    openActivity(SearchAct.class);
+                }
+                break;
+        }
+    }
 }

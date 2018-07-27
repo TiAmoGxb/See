@@ -174,4 +174,32 @@ public class IntentConstant {
      */
     public static String SEARCH_CONT = "SEARCH_CONT";
 
+
+    /**
+     * 是否是活动页面
+     */
+    public static String WEB_ACTIVITY_TYPE = "WEB_ACTIVITY_TYPE";
+
+    /**
+     * 活动ID
+     */
+    public static String WEB_ACT_ID = "WEB_ACT_ID";
+
+    /**
+     * 活动封面
+     */
+    public static String WEB_ACT_IMG = "WEB_ACT_IMG";
+
+    /**
+     * 活动标题
+     *
+     */
+    public static String WEB_ACT_TITLE = "WEB_ACT_TITLE";
+
+    /**
+     * 活动内容
+     */
+    public static String WEB_ACT_OONT = "WEB_ACT_OONT";
+
+
 }

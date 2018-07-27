@@ -6,6 +6,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -135,6 +138,14 @@ public class App extends Application {
             Log.i("getRegistrationID","getRegistrationID:"+registrationId);
             PreferenceUtils.setString(this, PreferenceConstant.REGISTRATION_ID,registrationId);
         }
+
+
+        //分享登录初始化
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
+        //平台配置
+        PlatformConfig.setWeixin("wxc7b4805b625b5c3d","6cdab81c9f836a9cb39b9dfea84c0743");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad","http://sns.whalecloud.com");
     }
 
     public static Context getContext() {

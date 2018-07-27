@@ -201,13 +201,7 @@ public class MinePresenter extends XPresent<MineFragment>{
 
                     }
                 });
-                CommonViewHolder.get(item,R.id.share_img).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtil.showToast("分享");
 
-                    }
-                });
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

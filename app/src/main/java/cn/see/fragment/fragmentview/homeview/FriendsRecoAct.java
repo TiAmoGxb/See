@@ -19,6 +19,7 @@ import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.FriendsReconAdapter;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.SearchAct;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.model.TxtModel;
 import cn.see.presenter.homep.FriendRecoPresenter;
@@ -126,6 +127,7 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
 
     @Override
     public void setListener() {
+        serchReal.setOnClickListener(this);
         closeRela.setOnClickListener(this);
         fjRela.setOnClickListener(this);
         topLin.setOnClickListener(this);
@@ -224,10 +226,15 @@ public class FriendsRecoAct extends BaseActivity<FriendRecoPresenter>implements 
                 helper.dismiss();
                 break;
             case R.id.sys_lin:
-                if(UserUtils.userIsLogin(this)) {
+                if(UserUtils.getLogin(this)) {
                     CamerUtils.doOpenCamera(this, 1, "", IntentConstant.QRCODE_PHOTO_TYPE);
                 }
                 helper.dismiss();
+                break;
+            case R.id.serch_rela:
+                if(UserUtils.getLogin(this)){
+                    openActivity(SearchAct.class);
+                }
                 break;
         }
     }

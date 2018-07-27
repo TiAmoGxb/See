@@ -73,6 +73,9 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     private ImageView actImg;
     private String actId;
     private long exitTime = 0;
+    private String actUrl;
+    private String actCont;
+
 
     @BindView(R.id.main_rela)
     RelativeLayout main_rela;
@@ -80,6 +83,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     XRadioGroup xRadioGroup;
     @BindView(R.id.text_cont)
     TextView textCont;
+
 
     @OnClick(R.id.rb_release)
     void release(){
@@ -191,7 +195,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.blurring_view:
                 helper.dismiss();
                 break;
@@ -200,11 +204,11 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
                 break;
             case R.id.photo_rela:
                 helper.dismiss();
-                CamerUtils.doOpenCamera(this,RELAEASE_IMAGE,"",IntentConstant.RELEASE_PHOTO_TYPE);
+                CamerUtils.doOpenCamera(this, RELAEASE_IMAGE, "", IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.topic_rela:
                 helper.dismiss();
-                CamerUtils.doOpenCamera(this,RELAEASE_TOPIC,"",IntentConstant.RELEASE_PHOTO_TYPE);
+                CamerUtils.doOpenCamera(this, RELAEASE_TOPIC, "", IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.video_rela:
                 ToastUtil.showToast("程序员还在搬砖 敬请期待");
@@ -215,12 +219,16 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             case R.id.act_img:
                 Router.newIntent(this)
                         .to(WebAct.class)
-                        .putString(IntentConstant.WEB_LOAD_URL,HttpConstant.ACT_WEB_URL+actId)
+                        .putString(IntentConstant.WEB_ACTIVITY_TYPE, "act")
+                        .putString(IntentConstant.WEB_ACT_IMG,actUrl)
+                        .putString(IntentConstant.WEB_ACT_TITLE,actName.getText().toString())
+                        .putString(IntentConstant.WEB_ACT_OONT,actCont)
+                        .putString(IntentConstant.WEB_ACT_ID, actId)
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL + actId)
                         .launch();
                 break;
         }
     }
-
 
     /**
      * 获取活动列表
@@ -246,6 +254,8 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     }
     private void actResponse(FindActModel.ActResult actResult) {
         actId = actResult.getLists().get(0).getActivity_id();
+        actUrl = actResult.getLists().get(0).getUrl();
+        actCont = actResult.getLists().get(0).getBewrite();
         actName.setText(actResult.getLists().get(0).getName());
         GlideDownLoadImage.getInstance().loadCircleImageRoleFxy(actResult.getLists().get(0).getUrl(),actImg,4);
     }

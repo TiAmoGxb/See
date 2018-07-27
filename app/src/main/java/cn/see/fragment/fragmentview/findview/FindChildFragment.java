@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -14,6 +17,7 @@ import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.base.BaseFragement;
+import cn.see.event.MsgEvent;
 import cn.see.fragment.fragmentview.mineview.ArticleDetailsAct;
 import cn.see.model.FindTextcModel;
 import cn.see.model.TabBannerModel;
@@ -26,6 +30,9 @@ import cn.see.util.UserUtils;
 import cn.see.util.VpHolder;
 import cn.see.util.constant.BannerConstant;
 import cn.see.util.constant.IntentConstant;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
@@ -37,9 +44,10 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @说明： 发现frg
  */
 
-public class FindChildFragment extends BaseFragement<FindPresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>{
+public class FindChildFragment extends BaseFragement<FindPresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>,OnItemClickListener, OnDismissListener {
 
     private List<TxtModel.TxtResult.Result> resultsList = new ArrayList<>();
+    private List<TabModel.TabList> tabList = new ArrayList<>();
     private View topTableView;
     private RecyclerView recyTable;
     private RecyclerView htRecyView;
@@ -66,8 +74,10 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
             listView.setAdapter(adapter);
             listView.getRefreshableView().addHeaderView(topTableView);
             listView.getRefreshableView().setDividerHeight(0);
+            //注册订阅者
+            EventBus.getDefault().register(this);
             //获取标签
-            getP().getUserTab(UserUtils.getUserID(getActivity()));
+            getP().getUserTab(UserUtils.getUserID(getActivity()),0);
         }
     }
 
@@ -133,11 +143,14 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
     /**
      * 获得标签
      * @param tabLists
+     * @param type
      */
-    public void getUserTabResponse(List<TabModel.TabList> tabLists){
+    public void getUserTabResponse(List<TabModel.TabList> tabLists, int type){
+        Log.i(TAG,"执行："+type);
         //在最后添加一条数据
         tabLists.add(new TabModel.TabList());
-        recyTable.setAdapter(getP().initAdapterTopUpdate(tabLists));
+        RecryCommonAdapter<TabModel.TabList> tabListRecryCommonAdapter = getP().initAdapterTopUpdate(tabLists);
+        recyTable.setAdapter(tabListRecryCommonAdapter);
     }
 
     /**
@@ -156,7 +169,6 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
             vpHolder.setViewPager(bannerLists);
         }
     }
-
 
     /**
      * 获得话题
@@ -234,7 +246,41 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
         ToastUtil.showToast(msg);
         resultsList.get(position).setAttention_status("0");
         adapter.notifyDataSetChanged();
+    }
+
+    //定义处理接收的方法
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void userEventBus(MsgEvent userEvent){
+        Log.i(TAG,"接收到了消息");
+        //获取标签
+        getP().getUserTab(UserUtils.getUserID(getActivity()),1);
+        initAfter();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onDismiss(Object o) {
 
     }
 
+    public void set(){
+        AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"收藏","举报"},getActivity(), AlertView.Style.ActionSheet, this);
+        alertView.setCancelable(true);
+        alertView.show();
+    }
+
+
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            ToastUtil.showToast("收藏成功");
+        }else{
+            ToastUtil.showToast("举报成功");
+        }
+    }
 }

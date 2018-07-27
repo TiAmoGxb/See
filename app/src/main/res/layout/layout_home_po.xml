@@ -39,6 +39,7 @@
                 android:src="@drawable/r_add_fr"/>
 
             <TextView
+                android:id="@+id/text_topiuc"
                 android:layout_marginLeft="10px"
                 android:layout_gravity="center_vertical"
                 android:textSize="28px"

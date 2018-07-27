@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.SearchAct;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.model.AddFriendModel;
 import cn.see.presenter.homep.AddFriendsPresenter;
@@ -122,7 +123,7 @@ public class AddFriendsAct extends BaseActivity<AddFriendsPresenter> implements 
                 openActivity(LegalizeUserAct.class);
                 break;
             case R.id.ser_rela:
-                ToastUtil.showToast("搜索");
+                openActivity(SearchAct.class);
                 break;
         }
     }

@@ -37,6 +37,10 @@ public class HotUserAct extends BaseActivity<HotUserPresenter>  implements  Pull
     @BindView(R.id.title_tv_base)
     TextView title;
 
+    @OnClick(R.id.rela)
+    void search(){
+        openActivity(SearchAct.class);
+    }
 
     @OnClick(R.id.back_rela)
     void bacView(){

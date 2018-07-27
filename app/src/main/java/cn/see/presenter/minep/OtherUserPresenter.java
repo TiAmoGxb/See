@@ -222,17 +222,13 @@ public class OtherUserPresenter extends XPresent<OtherMainAct> {
 
                     }
                 });
-                CommonViewHolder.get(item,R.id.share_img).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtil.showToast("分享");
 
-                    }
-                });
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("选项");
+                        if(UserUtils.getLogin(getV())){
+                            getV().set();
+                        }
 
                     }
                 });

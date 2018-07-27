@@ -80,6 +80,11 @@ public class MineAct extends BaseActivity<MineActPresenter>implements  PullToRef
                 if(UserUtils.getLogin(MineAct.this)){
                     Router.newIntent(MineAct.this)
                             .to(WebAct.class)
+                            .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
+                            .putString(IntentConstant.WEB_ACT_IMG,lists.get(position-1).getUrl())
+                            .putString(IntentConstant.WEB_ACT_TITLE,lists.get(position-1).getName())
+                            .putString(IntentConstant.WEB_ACT_OONT,lists.get(position-1).getBewrite())
+                            .putString(IntentConstant.WEB_ACT_ID,lists.get(position-1).getActivity_id())
                             .putString(IntentConstant.WEB_LOAD_URL,url+lists.get(position-1).getActivity_id()+"&uid="+UserUtils.getUserID(MineAct.this))
                             .launch();
                 }

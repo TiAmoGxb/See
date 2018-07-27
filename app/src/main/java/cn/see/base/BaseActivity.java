@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+
+import com.umeng.socialize.UMShareAPI;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -279,4 +282,10 @@ public abstract class BaseActivity< M extends XPresent> extends XActivity<M> imp
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 }

@@ -50,4 +50,30 @@ public class HttpConstant {
      * 我的积分
      */
     public static String MINE_INTEGRA = "http://www.xintusee.com/IOS/Index/integral.html";
+
+    /**
+     * 系统通知
+     */
+    public static String SYSTEM_NOTICE = "http://www.xintusee.com/IOS/Search/msg.html?msg_id=";
+
+
+    /**
+     * 分享文章
+     */
+    public static String SHARE_TEXT = "http://www.xintusee.com/IOS/Text/share.html?text_id=";
+
+    /**
+     * 分享用户
+     */
+    public static String SHAR_USER = "http://www.xintusee.com/IOS/User/share.html?id=";
+
+    /**
+     * 分享活动
+     */
+    public static String SHAR_ACTIVITY = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
+
+    /**
+     * 分享话题
+     */
+    public static String SHAR_TOPIC = "http://www.xintusee.com/IOS/Topic/share.html?topic_id=";
 }

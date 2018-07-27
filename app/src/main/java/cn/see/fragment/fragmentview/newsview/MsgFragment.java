@@ -53,6 +53,8 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
     public static final String  MSG_REVIEW_TYPE = "review";
     private String actId;
     private MsgContModel.ContResult result;
+    private String actUrl;
+    private String actCont;
     @BindView(R.id.notice_view)
     RelativeLayout notice_view;
     @BindView(R.id.act_img)
@@ -93,7 +95,7 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
     @OnClick(R.id.notice_rela)
     void notice(){
         if(UserUtils.getLogin(getActivity())){
-            ToastUtil.showToast("通知");
+            openActivity(SystemNoticeAct.class);
         }
     }
 
@@ -103,6 +105,11 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
         if(UserUtils.getLogin(getActivity())){
             Router.newIntent(getActivity())
                     .to(WebAct.class)
+                    .putString(IntentConstant.WEB_ACT_ID,actId)
+                    .putString(IntentConstant.WEB_ACT_IMG,actUrl)
+                    .putString(IntentConstant.WEB_ACT_TITLE,actName.getText().toString())
+                    .putString(IntentConstant.WEB_ACT_OONT,actCont)
+                    .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
                     .putString(IntentConstant.WEB_LOAD_URL,url+actId)
                     .launch();
         }
@@ -165,6 +172,8 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
      * @param actResult
      */
     public void actResponse(FindActModel.ActResult actResult){
+        actUrl = actResult.getLists().get(0).getUrl();
+        actCont = actResult.getLists().get(0).getBewrite();
         actId = actResult.getLists().get(0).getActivity_id();
         actName.setText(actResult.getLists().get(0).getName());
         GlideDownLoadImage.getInstance().loadImage(actResult.getLists().get(0).getUrl(),actImg);

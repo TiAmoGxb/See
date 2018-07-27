@@ -14,6 +14,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.SearchAct;
 import cn.see.util.ToastUtil;
 
 //我的话题
@@ -59,6 +60,11 @@ public class UserTopicAct extends BaseActivity {
     @OnClick(R.id.back_rela)
     void bacAct(){
         onBack();
+    }
+
+    @OnClick(R.id.s_rela)
+    void search(){
+        openActivity(SearchAct.class);
     }
 
     @Override

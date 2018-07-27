@@ -179,17 +179,13 @@ public class FindPresenter extends XPresent<FindChildFragment> {
                         }
                     }
                 });
-                CommonViewHolder.get(item,R.id.share_img).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtil.showToast("分享");
 
-                    }
-                });
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("选项");
+                        if(UserUtils.getLogin(getV().getActivity())){
+                            getV().set();
+                        }
 
                     }
                 });
@@ -229,10 +225,12 @@ public class FindPresenter extends XPresent<FindChildFragment> {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 if(position == tableBeen.size()-1){
-                    Router.newIntent(getV().getActivity())
-                            .to(SelectMyTableAct.class)
-                            .requestCode(0)
-                            .launch();
+                    if(UserUtils.getLogin(getV().getActivity())){
+                        Router.newIntent(getV().getActivity())
+                                .to(SelectMyTableAct.class)
+                                .requestCode(0)
+                                .launch();
+                    }
                 }else{
                     currentCheckedItemPosition = position;
                     adapter.notifyDataSetChanged();
@@ -256,7 +254,7 @@ public class FindPresenter extends XPresent<FindChildFragment> {
      * 获取我的标签
      * @param user_id
      */
-    public void getUserTab(String user_id){
+    public void getUserTab(String user_id, final int type){
         Api.findService().getUserTable(user_id)
                 .compose(XApi.<TabModel>getApiTransformer())
                 .compose(XApi.<TabModel>getScheduler())
@@ -266,12 +264,10 @@ public class FindPresenter extends XPresent<FindChildFragment> {
                     protected void onFail(NetError error) {
                         progress.dismiss();
                     }
-
                     @Override
                     public void onNext(TabModel tabModel) {
                         if(!tabModel.isError()){
-                            Log.i("FindPresenter","getUserTab:"+progress);
-                            getV().getUserTabResponse(tabModel.getResult());
+                            getV().getUserTabResponse(tabModel.getResult(),type);
                         }else{
                             ToastUtil.showToast(tabModel.getErrorMsg());
                         }

@@ -15,6 +15,7 @@ import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseActivity;
 import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
 
 /**
  * 全部话题
@@ -39,6 +40,14 @@ public class AllTopicAct extends BaseActivity {
     View news_v;
     @BindView(R.id.title_tv_base)
     TextView titles;
+
+
+    @OnClick(R.id.s_rela)
+    void search(){
+        if(UserUtils.getLogin(this)){
+            openActivity(SearchAct.class);
+        }
+    }
 
 
     @OnClick(R.id.hot_tv)

@@ -17,7 +17,6 @@ import cn.see.presenter.homep.FriendRecoPresenter;
 
 public interface FriendsAndNearbyV extends IView<FriendRecoPresenter> {
 
-
     /**
      * 数据返回
      * @param result

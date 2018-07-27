@@ -1,5 +1,7 @@
 package cn.see.service;
 
+import cn.see.base.BaseModel;
+import cn.see.model.AllTabModel;
 import cn.see.model.AllTopicModel;
 import cn.see.model.FindActModel;
 import cn.see.model.FindTextcModel;
@@ -145,5 +147,26 @@ public interface FindService {
     @FormUrlEncoded
     @POST("Topic/newList.html")
     Flowable<AllTopicModel> getTopicNews(  @Field("pageSize") String pageSize , @Field("page") int page);
+
+
+    /**
+     * 获取全部标签
+     * @param user_id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Tab/tLists.html")
+    Flowable<AllTabModel> getAllTab(@Field("user_id") String user_id );
+
+
+    /**
+     * 保存标签
+     * @param user_id
+     * @param tab_id_arr
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("User/save_user_tab.html")
+    Flowable<BaseModel> saveTab(@Field("user_id") String user_id , @Field("tab_id_arr") String tab_id_arr);
 
 }
