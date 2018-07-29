@@ -1,5 +1,6 @@
 package cn.see.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -41,6 +42,8 @@ public class FindFragment extends BaseFragement {
     private int lastP = 1;
     private View popView;
     private PopupWindowHelper helper;
+    private CustPagerFragmentAdapter adapter;
+
 
     @BindView(R.id.find_vp)
     ViewPager findVp;
@@ -91,7 +94,8 @@ public class FindFragment extends BaseFragement {
         fragmentList.add(new FindWorldFragment());
         fragmentList.add(new FindActFragment());
         findVp.setOffscreenPageLimit(fragmentList.size());
-        findVp.setAdapter(new CustPagerFragmentAdapter(getChildFragmentManager(),fragmentList));
+        adapter = new CustPagerFragmentAdapter(getChildFragmentManager(), fragmentList);
+        findVp.setAdapter(adapter);
         findVp.setCurrentItem(1);
     }
 
@@ -142,5 +146,11 @@ public class FindFragment extends BaseFragement {
                 helper.dismiss();
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        adapter.getItem(0).onActivityResult(requestCode,resultCode,data);
     }
 }

@@ -24,8 +24,10 @@ import cn.see.fragment.fragmentview.findview.PhotoViewActivity;
 import cn.see.model.MineTextModel;
 import cn.see.model.TopiDesitalModel;
 import cn.see.presenter.minep.TopicPresenter;
+import cn.see.util.ShareUtils;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
@@ -74,6 +76,11 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
     @OnClick(R.id.back_rela)
     void bacAct(){
         onBack();
+    }
+
+    @OnClick(R.id.image_rela)
+    void share(){
+        ShareUtils.shareWeb(this, HttpConstant.SHAR_TOPIC+topic_id+"&uid="+UserUtils.getUserID(this),topicName.getText().toString(),topicCont.getText().toString(),urls.get(0));
     }
 
     @Override

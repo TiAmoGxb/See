@@ -12,10 +12,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -23,12 +28,14 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.event.MsgEvent;
 import cn.see.fragment.FindFragment;
 import cn.see.fragment.HomeFragment;
 import cn.see.fragment.MineFragment;
 import cn.see.fragment.NewsFragment;
 import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.model.FindActModel;
+import cn.see.model.MsgContModel;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
@@ -66,19 +73,25 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     private ImageView actImg;
     private String actId;
     private long exitTime = 0;
+    private String actUrl;
+    private String actCont;
 
 
     @BindView(R.id.main_rela)
     RelativeLayout main_rela;
     @BindView(R.id.radioGroup1)
     XRadioGroup xRadioGroup;
+    @BindView(R.id.text_cont)
+    TextView textCont;
+
 
     @OnClick(R.id.rb_release)
     void release(){
-
-        helper.showFromBottom(xRadioGroup);
-        blurringView.setBlurredView(main_rela);
-        blurringView.invalidate();
+        if(UserUtils.getLogin(this)){
+            helper.showFromBottom(xRadioGroup);
+            blurringView.setBlurredView(main_rela);
+            blurringView.invalidate();
+        }
     }
 
     @Override
@@ -99,6 +112,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         fragments.add(findFragment);
         fragments.add(newsFragment);
         fragments.add(mineFragment);
+
     }
 
     @Override
@@ -111,6 +125,8 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         fragmentTransaction.show(findFragment).hide(homeFragment).hide(newsFragment).hide(mineFragment);
         fragmentTransaction.commit();
         getTextAct();
+        //注册订阅者
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -179,7 +195,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.blurring_view:
                 helper.dismiss();
                 break;
@@ -188,11 +204,11 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
                 break;
             case R.id.photo_rela:
                 helper.dismiss();
-                CamerUtils.doOpenCamera(this,RELAEASE_IMAGE,"",IntentConstant.RELEASE_PHOTO_TYPE);
+                CamerUtils.doOpenCamera(this, RELAEASE_IMAGE, "", IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.topic_rela:
                 helper.dismiss();
-                CamerUtils.doOpenCamera(this,RELAEASE_TOPIC,"",IntentConstant.RELEASE_PHOTO_TYPE);
+                CamerUtils.doOpenCamera(this, RELAEASE_TOPIC, "", IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.video_rela:
                 ToastUtil.showToast("程序员还在搬砖 敬请期待");
@@ -203,12 +219,16 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             case R.id.act_img:
                 Router.newIntent(this)
                         .to(WebAct.class)
-                        .putString(IntentConstant.WEB_LOAD_URL,HttpConstant.ACT_WEB_URL+actId)
+                        .putString(IntentConstant.WEB_ACTIVITY_TYPE, "act")
+                        .putString(IntentConstant.WEB_ACT_IMG,actUrl)
+                        .putString(IntentConstant.WEB_ACT_TITLE,actName.getText().toString())
+                        .putString(IntentConstant.WEB_ACT_OONT,actCont)
+                        .putString(IntentConstant.WEB_ACT_ID, actId)
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL + actId)
                         .launch();
                 break;
         }
     }
-
 
     /**
      * 获取活动列表
@@ -234,6 +254,8 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     }
     private void actResponse(FindActModel.ActResult actResult) {
         actId = actResult.getLists().get(0).getActivity_id();
+        actUrl = actResult.getLists().get(0).getUrl();
+        actCont = actResult.getLists().get(0).getBewrite();
         actName.setText(actResult.getLists().get(0).getName());
         GlideDownLoadImage.getInstance().loadCircleImageRoleFxy(actResult.getLists().get(0).getUrl(),actImg,4);
     }
@@ -250,8 +272,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
         super.onActivityResult(requestCode, resultCode, data);
         Log.i(TAG,"requestCode:"+requestCode);
         if(data!=null){
-
-
         ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
         Router to = Router.newIntent(this)
                 .to(BeautifulPictureAct.class);
@@ -267,6 +287,50 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
          }
         }
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(UserUtils.userIsLogin(this)){
+            getMsgCont();
+        }else{
+            textCont.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 获取消息未读数量
+     */
+    public void getMsgCont(){
+        Api.mineService().msgCont(UserUtils.getUserID(this))
+                .compose(XApi.<MsgContModel>getApiTransformer())
+                .compose(XApi.<MsgContModel>getScheduler())
+                .subscribe(new ApiSubscriber<MsgContModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        Log.i(TAG,"onFail:"+error.toString());
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                    }
+                    @Override
+                    public void onNext(MsgContModel tabModel) {
+                        if(!tabModel.isError()){
+                            Log.i(TAG,"Total:"+tabModel.getResult().toString());
+                            if(! tabModel.getResult().getTotal_count().equals("0")){
+                                textCont.setText(tabModel.getResult().getTotal_count());
+                                textCont.setVisibility(View.VISIBLE);
+                            }else{
+                                textCont.setVisibility(View.GONE);
+                            }
+
+                        }else{
+                            ToastUtil.showToast(tabModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
+
 
     /**
      * 监听返回键 2秒之内连续点击两次 退出程序
@@ -292,5 +356,19 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
             clearAct();
             onBack();
         }
+    }
+
+    //定义处理接收的方法
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void userEventBus(MsgEvent userEvent){
+       Log.i(TAG,"接收到了消息");
+        getMsgCont();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

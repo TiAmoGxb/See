@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70px">
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/ones_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+            <TextView
+                android:layout_marginLeft="25px"
+                android:layout_centerVertical="true"
+                android:id="@+id/nick_name"
+                android:textSize="28px"
+                android:textColor="@color/text_101010"
+                android:text="看见品质生活"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/del_rela"
+            android:layout_width="80px"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerInParent="true"
+                android:src="@drawable/delete"
+                android:layout_width="30px"
+                android:layout_height="30px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+        <View
+            android:layout_marginLeft="25px"
+            android:id="@+id/botom_view"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/twos_view"
+            android:layout_alignParentBottom="true"
+            android:background="@color/text_c9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></View>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

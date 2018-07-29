@@ -201,18 +201,11 @@ public class MinePresenter extends XPresent<MineFragment>{
 
                     }
                 });
-                CommonViewHolder.get(item,R.id.share_img).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtil.showToast("分享");
 
-                    }
-                });
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("选项");
-
+                        getV().Option(stringList.get(position));
                     }
                 });
 
@@ -341,5 +334,58 @@ public class MinePresenter extends XPresent<MineFragment>{
                 });
     }
 
+    /**
+     * 删除文章
+     * @param uid
+     */
+    public void delText(String uid, String text_id){
+        progress = CustomProgress.show(getV().getActivity());
+        Api.mineService().delText(uid,text_id)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .compose(getV().<BaseModel>bindToLifecycle())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        progress.dismiss();
+                    }
 
+                    @Override
+                    public void onNext(BaseModel mineTextModel) {
+                        progress.dismiss();
+                        if(!mineTextModel.isError()){
+                            getV().delSu();
+                        }else{
+                            ToastUtil.showToast(mineTextModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
+    /**
+     * 删除话题
+     * @param uid
+     */
+    public void delTopic(String uid, String text_id){
+        progress = CustomProgress.show(getV().getActivity());
+        Api.mineService().delTopic(uid,text_id)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .compose(getV().<BaseModel>bindToLifecycle())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        progress.dismiss();
+                    }
+
+                    @Override
+                    public void onNext(BaseModel mineTextModel) {
+                        progress.dismiss();
+                        if(!mineTextModel.isError()){
+                            getV().delSu();
+                        }else{
+                            ToastUtil.showToast(mineTextModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
 }

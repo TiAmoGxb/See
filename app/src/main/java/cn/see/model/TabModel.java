@@ -24,14 +24,10 @@ public class TabModel extends BaseModel {
     }
 
     public static class TabList{
-
         private String tab_id;
         private String text;
         private String url;
         private boolean flag;//自定义参数 标记是否被选中
-
-
-
 
         public boolean isFlag() {
             return flag;

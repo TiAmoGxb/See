@@ -15,6 +15,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMWeb;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
@@ -33,13 +37,18 @@ import cn.see.model.TextReviewModel;
 import cn.see.model.TxtModel;
 import cn.see.presenter.findp.TextAriclePresenter;
 import cn.see.util.CustomLinearLayoutManager;
+import cn.see.util.ShareUtils;
 import cn.see.util.SpannableUtils;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.VpHolder;
 import cn.see.util.constant.BannerConstant;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
@@ -50,7 +59,7 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @邮箱： guoxinbo@banling.com
  * @说明： 文章详情
  */
-public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> implements PullToRefreshBase.OnRefreshListener2<ListView> {
+public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> implements PullToRefreshBase.OnRefreshListener2<ListView>,OnItemClickListener, OnDismissListener {
 
     private static final String TAG = "ArticleDetailsAct";
     private List<TextReviewModel.ReviewResult.ReviewList> reviewLists = new ArrayList<>();
@@ -81,6 +90,7 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
     private int screenHeight;
     private String from_id;
     private String isAtt;
+    private List<String> urls;
     private boolean isInputShow = false;
 
     @BindView(R.id.title_tv_base)
@@ -95,6 +105,11 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
     RelativeLayout yesCommRela;
     @BindView(R.id.et_comm)
     EditText etCom;
+
+    @OnClick(R.id.image_rela)
+    void share(){
+        ShareUtils.shareWeb(this, HttpConstant.SHARE_TEXT+text_id+"&uid="+UserUtils.getUserID(this),contentTv.getText().toString(),contentTv.getText().toString(),urls.get(0));
+    }
 
     @OnClick(R.id.send_tv)
     void sendMsg(){
@@ -176,6 +191,8 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         commRela.setOnClickListener(this);
         reviewNumTv.setOnClickListener(this);
         attTv.setOnClickListener(this);
+        topView.findViewById(R.id.share_img).setOnClickListener(this);
+        topView.findViewById(R.id.set).setOnClickListener(this);
     }
 
     /**
@@ -223,7 +240,7 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         timeTv.setText(txtResult.getCreate_time_info());
         areaTv.setText(txtResult.getArea());
         GlideDownLoadImage.getInstance().loadCircleImage(txtResult.getHead_img_url(),userImg);
-        List<String> urls = new ArrayList<>();
+        urls = new ArrayList<>();
         urls.clear();
         for (MineTextModel.MineTextResult.ResultList.ImageList url:txtResult.getImg_lists()){
             urls.add(url.getUrl());
@@ -328,6 +345,14 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
                     getP().setAttUser(UserUtils.getUserID(ArticleDetailsAct.this),from_id);
                 }
                 break;
+            case R.id.set:
+                AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"收藏","举报"},this, AlertView.Style.ActionSheet, this);
+                alertView.setCancelable(true);
+                alertView.show();
+                break;
+            case R.id.share_img:
+                ShareUtils.shareWeb(this, HttpConstant.SHARE_TEXT+text_id+"&uid="+UserUtils.getUserID(this),contentTv.getText().toString(),contentTv.getText().toString(),urls.get(0));
+                break;
         }
     }
 
@@ -347,7 +372,6 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         ToastUtil.showToast(msg);
         yesCommRela.setVisibility(View.GONE);
         etCom.setHint("");
-
         InputMethodManager im = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.hideSoftInputFromWindow(etCom.getWindowToken(), 0);
         getP().getTextReview(text_id, UserUtils.getUserID(this),false);
@@ -424,5 +448,19 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         super.onDestroy();
         //销毁轮播
         vpHolder.stopVp();
+    }
+
+    @Override
+    public void onDismiss(Object o) {
+
+    }
+
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            ToastUtil.showToast("收藏成功");
+        }else if(position == -1){
+            ToastUtil.showToast("举报成功");
+        }
     }
 }

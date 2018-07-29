@@ -71,6 +71,7 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     private String type;
     //选择的标签ID
     private String tabID ;
+    //等待框
     private CustomProgress progress;
 
     @BindView(R.id.title_tv_base)
@@ -117,6 +118,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         Router.newIntent(this)
                 .requestCode(ADD_TEXT_CODE)
                 .putString(IntentConstant.RELEASE_TYPE,type)
+                .putString(IntentConstant.RELEASE_CONT,msgTv.getText().toString())
+                .putString(IntentConstant.RELEASE_TITLE,topic_title.getText().toString())
                 .to(AddTextAct.class)
                 .launch();
     }
@@ -126,6 +129,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         Router.newIntent(this)
                 .requestCode(ADD_TEXT_CODE)
                 .putString(IntentConstant.RELEASE_TYPE,type)
+                .putString(IntentConstant.RELEASE_CONT,msgTv.getText().toString())
+                .putString(IntentConstant.RELEASE_TITLE,topic_title.getText().toString())
                 .to(AddTextAct.class)
                 .launch();
     }
@@ -428,7 +433,6 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         }).start();
     }
 
-
     /**
      * 发布成功之后清除临时文件
      * @param file
@@ -442,7 +446,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             }
             file.delete();
         } else if (file.exists()) {
-            file.delete();
+            boolean delete = file.delete();
+            Log.i(TAG,"delete："+delete);
         }
     }
 }

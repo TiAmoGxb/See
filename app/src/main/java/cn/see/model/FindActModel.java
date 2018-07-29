@@ -46,6 +46,16 @@ public class FindActModel extends BaseModel {
 
         public static class ActList{
 
+            private String bewrite;
+
+            public String getBewrite() {
+                return bewrite;
+            }
+
+            public void setBewrite(String bewrite) {
+                this.bewrite = bewrite;
+            }
+
             private String activity_id,start_time_info,end_time_info,url,user_count,start_status,name;
 
             public String getActivity_id() {

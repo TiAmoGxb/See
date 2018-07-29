@@ -10,6 +10,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.util.ShareUtils;
+import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 
 /**
@@ -27,6 +31,7 @@ import cn.see.util.constant.IntentConstant;
  */
 public class WebAct extends BaseActivity {
 
+    private String actID;
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -36,6 +41,19 @@ public class WebAct extends BaseActivity {
     ProgressBar progressBar;
     @BindView(R.id.back_rela)
     RelativeLayout bacRela;
+    @BindView(R.id.image_rela)
+    RelativeLayout layout;
+    @BindView(R.id.right_img_top)
+    ImageView imageView;
+    private String actUrl;
+    private String actName;
+    private String actCont;
+
+    @OnClick(R.id.image_rela)
+    void share(){
+        ShareUtils.shareWeb(this, HttpConstant.SHAR_ACTIVITY+actID+"&uid="+ UserUtils.getUserID(this),actName,actCont,actUrl);
+    }
+
     @OnClick(R.id.back_rela)
     void bacAct(){
         onBack();
@@ -49,6 +67,15 @@ public class WebAct extends BaseActivity {
     @Override
     public void initAfter() {
         String url = getIntent().getStringExtra(IntentConstant.WEB_LOAD_URL);
+        String stringExtra = getIntent().getStringExtra(IntentConstant.WEB_ACTIVITY_TYPE);
+        if(stringExtra!=null&&stringExtra.equals("act")){
+            layout.setVisibility(View.VISIBLE);
+            actID = getIntent().getStringExtra(IntentConstant.WEB_ACT_ID);
+            actUrl= getIntent().getStringExtra(IntentConstant.WEB_ACT_IMG);
+            actName= getIntent().getStringExtra(IntentConstant.WEB_ACT_TITLE);
+            actCont = getIntent().getStringExtra(IntentConstant.WEB_ACT_OONT);
+            imageView.setImageResource(R.drawable.top_share);
+        }
         webView.loadUrl(url);
     }
 

@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -35,17 +36,24 @@ import cn.see.adapter.CommonListViewAdapter;
 import cn.see.app.App;
 import cn.see.base.BaseActivity;
 import cn.see.fragment.fragmentview.findview.PhotoViewActivity;
+import cn.see.main.WebAct;
 import cn.see.model.MineTextModel;
 import cn.see.model.UserInfoModel;
 import cn.see.presenter.minep.OtherUserPresenter;
 import cn.see.util.FastBlurUtil;
 import cn.see.util.ListViewScroAplaUtil;
+import cn.see.util.ShareUtils;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.glide.GlideRoundTransform;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.CircleImageView;
+import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
@@ -56,12 +64,13 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @邮箱： guoxinbo@banling.com
  * @说明： 他人主页
  */
-public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements PullToRefreshBase.OnRefreshListener2<ListView>  {
+public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements PullToRefreshBase.OnRefreshListener2<ListView> ,OnItemClickListener, OnDismissListener {
     private static final String TAG = "OtherMainAct" ;
     private List<MineTextModel.MineTextResult.ResultList> resultsList = new ArrayList<>();
     private CommonListViewAdapter<MineTextModel.MineTextResult.ResultList> adapter;
     private View topView;
     private TextView userName;
+    private String head_url;
     private TextView userSin;
     private TextView attCont;
     private TextView fansCont;
@@ -78,6 +87,9 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
     private String topSize = "0";
     private String textSize = "0";
     private boolean isRefresh = true;
+    private View popView;
+    private PopupWindowHelper helper;
+    private RelativeLayout showDilog;
 
     @BindView(R.id.rela_title)
     RelativeLayout layout;
@@ -109,12 +121,36 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
         erCodeImg =(ImageView) topView.findViewById(R.id.set_user_data);
         senMsgTv =(TextView) topView.findViewById(R.id.tv_send_msg);
         tvAttTv =(TextView) topView.findViewById(R.id.tv_att);
+        showDilog =(RelativeLayout) findViewById(R.id.image_rela);
         RefreshShowTime.showTime(listView);
         listView.getRefreshableView().addHeaderView(topView);
         listView.setAdapter(getP().initAdapter(resultsList));
         fromID = getIntent().getStringExtra(IntentConstant.OTHER_USER_ID);
         urls = new ArrayList<>();
         Log.i(TAG,"fromID："+fromID);
+
+        popView = LayoutInflater.from(this).inflate(R.layout.layout_home_po, null);
+        popView.findViewById(R.id.my_lin).setVisibility(View.VISIBLE);
+        popView.findViewById(R.id.my_v).setVisibility(View.VISIBLE);
+        popView.findViewById(R.id.my_topic).setVisibility(View.VISIBLE);
+        popView.findViewById(R.id.my_topic_v).setVisibility(View.VISIBLE);
+        ImageView topic_img =(ImageView) popView.findViewById(R.id.topic_img);
+        ImageView my_lin_img =(ImageView) popView.findViewById(R.id.my_lin_img);
+        ImageView jfImg =(ImageView) popView.findViewById(R.id.add_img);
+        ImageView sys_img =(ImageView) popView.findViewById(R.id.sys_img);
+        topic_img.setImageResource(R.drawable.topic_comm);
+        jfImg.setImageResource(R.drawable.jifen);
+        sys_img.setImageResource(R.drawable.jubao);
+        my_lin_img.setImageResource(R.drawable.huodong);
+        TextView textView = popView.findViewById(R.id.text_topiuc);
+        TextView twoText = popView.findViewById(R.id.two_text);
+        TextView threeText = popView.findViewById(R.id.three_text);
+        TextView fourText = popView.findViewById(R.id.four_text);
+        textView.setText("分享给好友");
+        twoText.setText("不看TA推荐");
+        threeText.setText("加入黑名单");
+        fourText.setText("举报");
+        helper = new PopupWindowHelper(popView);
     }
 
     @Override
@@ -140,6 +176,11 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
         senMsgTv.setOnClickListener(this);
         tvAttTv.setOnClickListener(this);
         userImg.setOnClickListener(this);
+        showDilog.setOnClickListener(this);
+        popView.findViewById(R.id.my_topic).setOnClickListener(this);
+        popView.findViewById(R.id.my_lin).setOnClickListener(this);
+        popView.findViewById(R.id.add_lin).setOnClickListener(this);
+        popView.findViewById(R.id.sys_lin).setOnClickListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -194,6 +235,25 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
                     getP().setAttUser(UserUtils.getUserID(this),fromID);
                 }
                 break;
+            case R.id.image_rela:
+                helper.showAsDropDown(showDilog,0,0);
+                break;
+            case R.id.my_topic:
+                ShareUtils.shareWeb(this,HttpConstant.SHAR_USER+fromID+"&uid="+UserUtils.getUserID(this),userName.getText().toString(),userSin.getText().toString(),head_url);
+                helper.dismiss();
+                break;
+            case R.id.my_lin:
+                ToastUtil.showToast("操作成功");
+                helper.dismiss();
+                break;
+            case R.id.add_lin:
+                ToastUtil.showToast("操作成功");
+                helper.dismiss();
+                break;
+            case R.id.sys_lin:
+                ToastUtil.showToast("操作成功");
+                helper.dismiss();
+                break;
         }
     }
 
@@ -215,6 +275,7 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
     public void userInfoResPonse(final UserInfoModel.UserInfoResult result){
         urls.clear();
         urls.add(result.getHead_url());
+        head_url = result.getHead_url();
         GlideDownLoadImage.getInstance().loadImage(this,result.getBackground_url(),titleImg);
         attention_status = result.getAttention_status();
         if(attention_status.equals("1")||attention_status.equals("2")){
@@ -293,5 +354,26 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
         resultList.setLike_count((i+1)+"");
         resultList.setLike_status("1");
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDismiss(Object o) {
+
+    }
+
+    public void set(){
+        AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"收藏","举报"},this, AlertView.Style.ActionSheet, this);
+        alertView.setCancelable(true);
+        alertView.show();
+    }
+
+
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            ToastUtil.showToast("收藏成功");
+        }else if(position == -1){
+            ToastUtil.showToast("举报成功");
+        }
     }
 }

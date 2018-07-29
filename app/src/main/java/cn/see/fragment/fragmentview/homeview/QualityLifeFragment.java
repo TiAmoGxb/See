@@ -18,6 +18,9 @@ import cn.see.presenter.homep.QulaityLifePresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
@@ -29,7 +32,7 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @说明： 品质生活
  */
 
-public class QualityLifeFragment  extends BaseFragement<QulaityLifePresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>{
+public class QualityLifeFragment  extends BaseFragement<QulaityLifePresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>,OnItemClickListener, OnDismissListener {
 
     private CommonListViewAdapter<TxtModel.TxtResult.Result> adapter;
     private List<TxtModel.TxtResult.Result> resultsList = new ArrayList<>();
@@ -150,4 +153,24 @@ public class QualityLifeFragment  extends BaseFragement<QulaityLifePresenter> im
 
     }
 
+    @Override
+    public void onDismiss(Object o) {
+
+    }
+
+    public void set(){
+        AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"收藏","举报"},getActivity(), AlertView.Style.ActionSheet, this);
+        alertView.setCancelable(true);
+        alertView.show();
+    }
+
+
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            ToastUtil.showToast("收藏成功");
+        }else if(position == -1){
+            ToastUtil.showToast("举报成功");
+        }
+    }
 }

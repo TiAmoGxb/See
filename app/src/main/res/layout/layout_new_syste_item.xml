@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/back_f"
+    android:layout_height="100px">
+
+    <ImageView
+        android:layout_marginLeft="25px"
+        android:id="@+id/img"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_centerVertical="true"
+        android:src="@drawable/log1o"/>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20px"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:text="看见"
+                android:textColor="@color/text_101010"
+                android:textSize="@dimen/sp_26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="@color/text_7d"
+                android:layout_marginRight="20px"
+                android:layout_alignParentRight="true"
+                android:id="@+id/time"
+                android:text="时间"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <TextView
+            android:layout_marginTop="10px"
+            android:textColor="@color/text_7d"
+            android:layout_marginRight="20px"
+            android:layout_alignParentRight="true"
+            android:id="@+id/msg"
+            android:maxEms="20"
+            android:ellipsize="end"
+            android:text="时间"
+            android:textSize="@dimen/sp_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_marginLeft="20px"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/view_f1"></View>
+
+</com.zhy.autolayout.AutoRelativeLayout>

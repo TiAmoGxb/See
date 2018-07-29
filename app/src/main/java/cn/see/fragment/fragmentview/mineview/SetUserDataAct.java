@@ -219,6 +219,8 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
                 file = CamerUtils.doOpenCamera(this, PHOOT_IMG_CARMAR, "temp.jpg", IntentConstant.CARMER_PHOTO_TYPE);
                 Log.i(TAG,"file:"+file);
             }else{
+                //解绑用户cid
+                setCid();
                 UserUtils.removeUserLogin(this);
                 UserUtils.removeUserID(this);
                 UserUtils.removeUserPhone(this);
@@ -385,5 +387,31 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
             }
         });
     }
+
+    /**
+     * 解绑
+     */
+    public void setCid(){
+        Api.mineService().setCid(UserUtils.getUserID(this),"")
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                        Log.i("FindChildFragment","error:"+error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(BaseModel txtResult) {
+                        if(!txtResult.isError()){
+                            //ToastUtil.showToast(txtResult.getErrorMsg());
+                        }else{
+                            ToastUtil.showToast(txtResult.getErrorMsg());
+                        }
+                    }
+                });
+    }
+
 
 }

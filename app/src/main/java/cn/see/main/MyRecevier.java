@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.see.event.MsgEvent;
+import cn.see.fragment.fragmentview.newsview.NewsLikeAct;
+import cn.see.fragment.fragmentview.newsview.NewsReviewAct;
+import cn.see.model.MsgRecevierModel;
 
 /**
  * Created by sks on 2018/7/18.
@@ -20,11 +27,13 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MyRecevier extends BroadcastReceiver {
     private static final String TAG = "JIGUANG-Example";
-
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
             Bundle bundle = intent.getExtras();
+            //发送事件
+            EventBus.getDefault().post(new MsgEvent());
+
             Log.i(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
             if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
@@ -42,13 +51,16 @@ public class MyRecevier extends BroadcastReceiver {
 
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 Log.i(TAG, "[MyReceiver] 用户点击打开了通知");
-                //打开自定义的Activity
-                /*Intent i = new Intent(context, TestActivity.class);
-                i.putExtras(bundle);
-                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(i);
-*/
+                String bundleString = bundle.getString(JPushInterface.EXTRA_EXTRA);
+                Log.i(TAG,"bundleString:"+bundleString);
+                MsgRecevierModel msgRecevierModel = new Gson().fromJson(bundleString, MsgRecevierModel.class);
+                if(msgRecevierModel.getType().equals("review")){
+                    context.startActivity(new Intent(context,NewsReviewAct.class));
+                }else if(msgRecevierModel.getType().equals("likes")){
+                    context.startActivity(new Intent(context,NewsLikeAct.class));
+                }else if(msgRecevierModel.getType().equals("treview")){
+                    context.startActivity(new Intent(context,NewsReviewAct.class));
+                }
             } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
                 Log.i(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
                 //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..

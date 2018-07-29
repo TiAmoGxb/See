@@ -34,10 +34,10 @@ public class ImageAdapter extends PagerAdapter {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             if(flag.equals(BannerConstant.FIND_TAB_BANNER_TYPE)){
                 this.tabBannerList = list;
-                GlideDownLoadImage.getInstance().loadImage(tabBannerList.get(i).getUrl(), imageView);
+                GlideDownLoadImage.getInstance().loadCircleImageRole(tabBannerList.get(i).getUrl(), imageView,10);
             }else if(flag.equals(BannerConstant.TXT_ARTICL_BANNER_TYPE)){
                 this.urls = list;
-                GlideDownLoadImage.getInstance().loadImage(urls.get(i), imageView);
+                GlideDownLoadImage.getInstance().loadCircleImageRole(urls.get(i), imageView,10);
             }
             imgList.add(imageView);
         }
@@ -52,7 +52,6 @@ public class ImageAdapter extends PagerAdapter {
 
     //接口回调
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        Log.i(TAG,"赋值："+onItemClickListener);
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -68,7 +67,6 @@ public class ImageAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        //Warning：不要在这里调用removeView
     }
 
     @Override
@@ -85,7 +83,6 @@ public class ImageAdapter extends PagerAdapter {
         }
         container.addView(view);
         final int positionId = position;
-        Log.i(TAG,"onItemClickListener："+onItemClickListener);
         if (onItemClickListener != null) {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

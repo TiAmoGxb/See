@@ -19,6 +19,7 @@ import cn.see.model.FindWorldTextModel;
 import cn.see.model.TxtModel;
 import cn.see.presenter.findp.WorldPresenter;
 import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
 import cn.see.util.widet.CustomProgress;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
@@ -73,12 +74,19 @@ public class FindWorldFragment extends BaseFragement<WorldPresenter> implements 
 
     @Override
     public void setListener() {
+        topTableView.findViewById(R.id.sea_rela).setOnClickListener(this);
         listView.setOnRefreshListener(this);
     }
 
     @Override
     public void widgetClick(View v) {
-
+        switch (v.getId()){
+            case R.id.sea_rela:
+                if(UserUtils.getLogin(getActivity())){
+                    openActivity(SearchAct.class);
+                }
+                break;
+        }
     }
 
     @Override
@@ -108,6 +116,7 @@ public class FindWorldFragment extends BaseFragement<WorldPresenter> implements 
     }
 
     public void hotUserResponse(List<TxtModel.TxtResult.Result> results,int page){
+        results.add(new TxtModel.TxtResult.Result());
         recyclerView.setAdapter(getP().initTopAdapter(results));
     }
 }

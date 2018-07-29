@@ -51,6 +51,19 @@ public class IntentConstant {
     public  static String RELEASE_TYPE = "RELEASE_TYPE";
 
     /**
+     * 发布文字保存
+     */
+    public static String RELEASE_CONT = "RELEASE_CONT";
+
+
+    /**
+     * 发布的话题标题保存
+     */
+    public static String RELEASE_TITLE = "RELEASE_TITLE";
+
+
+
+    /**
      * 回传本地图片原始路径集合
      */
     public static String RELEASE_PATHS = "RELEASE_PATHS";
@@ -140,6 +153,53 @@ public class IntentConstant {
     public static String NOCTION_VALUES = "NOCTION_VALUES";
 
 
+    /**
+     * 用户头像
+     */
+    public static String USER_HEAD_URL = "USER_HEAD_URL";
+
+    /**
+     * 用户名
+     */
+    public static String USER_NAME_TEXT = "USER_NAME_TEXT";
+
+    /**
+     * 用户签名
+     */
+    public static String USER_SINE_TEXT = "USER_SINE_TEXT";
+
+
+    /**
+     * 搜索内容
+     */
+    public static String SEARCH_CONT = "SEARCH_CONT";
+
+
+    /**
+     * 是否是活动页面
+     */
+    public static String WEB_ACTIVITY_TYPE = "WEB_ACTIVITY_TYPE";
+
+    /**
+     * 活动ID
+     */
+    public static String WEB_ACT_ID = "WEB_ACT_ID";
+
+    /**
+     * 活动封面
+     */
+    public static String WEB_ACT_IMG = "WEB_ACT_IMG";
+
+    /**
+     * 活动标题
+     *
+     */
+    public static String WEB_ACT_TITLE = "WEB_ACT_TITLE";
+
+    /**
+     * 活动内容
+     */
+    public static String WEB_ACT_OONT = "WEB_ACT_OONT";
 
 
 }

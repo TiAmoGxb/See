@@ -15,6 +15,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- 获取设备唯一标识 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <!-- Required -->
     <permission
         android:name="cn.see.permission.JPUSH_MESSAGE"
@@ -42,6 +45,11 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- Required for jmrtc -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
         android:name=".app.App"
@@ -138,6 +146,12 @@
 
         <!-- Required SDK核心功能 -->
         <receiver
+            android:name="cn.jpush.im.android.helpers.IMReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Required SDK核心功能 -->
+        <receiver
             android:name="cn.jpush.android.service.AlarmReceiver"
             android:exported="false" />
 
@@ -216,7 +230,68 @@
         <activity android:name=".fragment.fragmentview.mineview.PrivateAct" />
         <activity android:name=".fragment.fragmentview.mineview.WithMineAct" />
         <activity android:name=".fragment.fragmentview.mineview.FeedbackAct" />
-        <activity android:name=".fragment.fragmentview.mineview.ChangeCoverAct"></activity>
+        <activity android:name=".fragment.fragmentview.mineview.ChangeCoverAct" />
+        <activity android:name=".fragment.fragmentview.mineview.ChangeBacAct" />
+        <activity android:name=".fragment.fragmentview.mineview.MineAct" />
+        <activity android:name=".fragment.fragmentview.findview.HotUserAct" />
+        <activity android:name=".fragment.fragmentview.findview.SearchAct" />
+        <activity android:name=".fragment.fragmentview.findview.SearchContAct" />
+        <activity android:name=".fragment.fragmentview.newsview.SystemNoticeAct" />
+
+        <!--分享-->
+        <!--新浪-->
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            >
+        </activity>
+        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            >
+
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!--微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--QQ-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <meta-data android:value="5b5ace02f43e481d66000108" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Channel HUAWEI" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>

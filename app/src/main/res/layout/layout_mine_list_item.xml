@@ -59,7 +59,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-
             </com.zhy.autolayout.AutoLinearLayout>
 
 
@@ -70,9 +69,13 @@
                 android:textSize="@dimen/sp_28"
                 android:textColor="@color/text_101010"
                 android:layout_centerVertical="true"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:paddingTop="7px"
+                android:paddingBottom="7px"
                 android:layout_alignParentRight="true"
-                android:layout_width="120px"
-                android:layout_height="45px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/mis_shap_but_att_bg"/>
 
         </com.zhy.autolayout.AutoRelativeLayout>

@@ -171,7 +171,7 @@ public class QulaityLifePresenter extends XPresent<QualityLifeFragment>{
                     @Override
                     public void onClick(View v) {
                         if(UserUtils.getLogin(getV().getActivity())){
-                            ToastUtil.showToast("分享");
+
                         }
                     }
                 });
@@ -179,7 +179,7 @@ public class QulaityLifePresenter extends XPresent<QualityLifeFragment>{
                     @Override
                     public void onClick(View v) {
                         if(UserUtils.getLogin(getV().getActivity())){
-                            ToastUtil.showToast("选项");
+                            getV().set();
                         }
                     }
                 });

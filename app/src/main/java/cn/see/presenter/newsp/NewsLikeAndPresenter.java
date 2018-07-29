@@ -6,8 +6,10 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.see.base.BaseModel;
 import cn.see.model.NewsLikeReviewModel;
 import cn.see.util.ToastUtil;
+import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.http.Api;
 import cn.see.views.LikeAndReviewV;
@@ -86,4 +88,26 @@ public class NewsLikeAndPresenter extends XPresent<LikeAndReviewV> {
                 });
     }
 
+
+    /**
+     * 清空消息
+     */
+    public void delMsgCont(String type,String userid){
+        Api.mineService().delCont(userid,type)
+                .compose(XApi.<BaseModel>getApiTransformer())
+                .compose(XApi.<BaseModel>getScheduler())
+                .subscribe(new ApiSubscriber<BaseModel>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(HttpConstant.NET_ERROR_MSG);
+                    }
+                    @Override
+                    public void onNext(BaseModel tabModel) {
+                        if(!tabModel.isError()){
+                        }else{
+                            ToastUtil.showToast(tabModel.getErrorMsg());
+                        }
+                    }
+                });
+    }
 }

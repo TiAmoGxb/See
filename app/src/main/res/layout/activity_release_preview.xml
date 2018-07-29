@@ -104,7 +104,7 @@
                 android:id="@+id/tv_topic"
                 android:text="选择话题或活动"
                 android:textSize="@dimen/sp_28"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <View
@@ -137,7 +137,7 @@
                 android:id="@+id/tv_tab"
                 android:text="添加标签"
                 android:textSize="@dimen/sp_28"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <View
@@ -170,7 +170,7 @@
                 android:id="@+id/tv_add"
                 android:text="添加位置"
                 android:textSize="@dimen/sp_28"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <View

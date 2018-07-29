@@ -417,6 +417,16 @@ public class GlideDownLoadImage {
                 .into(view);
     }
 
+    public void loadImageRotFile( File f, ImageView view,int dp) {
+        Glide.with(App.getContext())
+                .load(f)
+                .placeholder(R.drawable.bac_icon)
+                .error(R.drawable.bac_icon)
+                .bitmapTransform(new GlideRoundTransform(App.getContext(), dp))
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(view);
+    }
+
 
 
     /**
@@ -424,15 +434,15 @@ public class GlideDownLoadImage {
      * @auhtor fuduo
      * @Data 2017-9-5 11:18
      */
-    public void loadBitmapCircleImageRole(Context mContext, ImageView view, Bitmap bitmap) {
+    public void loadBitmapCircleImageRole( ImageView view, Bitmap bitmap,int dp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] bytes=baos.toByteArray();
-        Glide.with(mContext)
+        Glide.with(App.getContext())
                 .load(bytes)
                 .centerCrop()
                 .error(R.drawable.bac_icon)
-                .bitmapTransform(new GlideRoundTransform(mContext,90))
+                .bitmapTransform(new GlideRoundTransform(App.getContext(),dp))
                 .into(view);
     }
 
@@ -468,6 +478,8 @@ public class GlideDownLoadImage {
                 .error(R.drawable.bac_icon)
                 .into(view);
     }
+
+
 
 
     /**
@@ -522,6 +534,9 @@ public class GlideDownLoadImage {
         }
 
     }
+
+
+
 
     /**
      * 获取图片名称

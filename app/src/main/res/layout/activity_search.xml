@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/view_f4"
+    android:layout_height="match_parent"
+
+    tools:context="cn.see.fragment.fragmentview.findview.SearchAct">
+
+    <include layout="@layout/layout_base_title"
+        android:id="@+id/basetitle"></include>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela"
+        android:background="@color/back_f"
+        android:layout_below="@+id/basetitle"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+        <EditText
+            android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:imeOptions="actionSearch"
+            android:id="@+id/et_search"
+            android:layout_marginLeft="30px"
+            android:layout_width="match_parent"
+            android:hint="搜索"
+            android:paddingLeft="20px"
+            android:textColor="@color/text_101010"
+            android:textColorHint="@color/text_7d"
+            android:textSize="@dimen/sp_28"
+            android:layout_marginRight="30px"
+            android:background="@drawable/shap_but_seach_yes_bg"
+            android:layout_height="70px" />
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/rela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    
+    
+    <TextView
+        android:id="@+id/clear_tv"
+        android:layout_below="@+id/recyclerView"
+        android:gravity="center"
+        android:textColor="@color/text_3d"
+        android:textSize="@dimen/sp_22"
+        android:text="清除历史记录"
+        android:layout_width="match_parent"
+        android:layout_height="90px" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

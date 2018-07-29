@@ -114,4 +114,5 @@ public abstract class BaseFragement<M extends XPresent> extends XFragment<M> imp
         openActivity(targetActivityClass, null);
     }
 
+
 }

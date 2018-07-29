@@ -26,6 +26,7 @@ import cn.see.adapter.MultiItemTypeAdapter;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.adapter.ViewHolder;
 import cn.see.fragment.fragmentview.findview.FindWorldFragment;
+import cn.see.fragment.fragmentview.findview.HotUserAct;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.model.FindWorldTextModel;
 import cn.see.model.TxtModel;
@@ -36,6 +37,7 @@ import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.http.Api;
 import cn.see.util.http.OkHttpUtils;
+import cn.see.util.widet.CircleImageView;
 import cn.see.util.widet.CustomProgress;
 
 /**
@@ -145,20 +147,32 @@ public class WorldPresenter extends XPresent<FindWorldFragment> {
          RecryCommonAdapter<TxtModel.TxtResult.Result> adapter = new RecryCommonAdapter<TxtModel.TxtResult.Result>(getV().getActivity(), R.layout.layout_find_world_top_item,results) {
              @Override
              protected void convert(ViewHolder holder, TxtModel.TxtResult.Result result, int position) {
-                 holder.setText(R.id.user_hot_name,result.getNickname());
-                 ImageView userView = (ImageView) holder.getView(R.id.user_hot_img);
-                 GlideDownLoadImage.getInstance().loadCircleImageToCust(result.getHead_img_url(),userView);
+                 CircleImageView userView = (CircleImageView) holder.getView(R.id.user_hot_img);
+                 CircleImageView bac_image = (CircleImageView) holder.getView(R.id.bac_img);
+                 if(position == results.size()-1){
+                     userView.setImageResource(R.mipmap.options);
+                     bac_image.setBorderColor(R.color.black);
+                     bac_image.setBorderWidth(6);
+                 }else{
+                     holder.setText(R.id.user_hot_name,result.getNickname());
+                     GlideDownLoadImage.getInstance().loadCircleImageToCust(result.getHead_img_url(),userView);
+                 }
              }
          };
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 if(UserUtils.getLogin(getV().getActivity())){
-                    Log.i("WorldPresenter","id:"+results.get(position).getUser_id());
-                    Router.newIntent(getV().getActivity())
-                            .putString(IntentConstant.OTHER_USER_ID,results.get(position).getId())
-                            .to(OtherMainAct.class)
-                            .launch();
+                    if(position == results.size()-1){
+                        getV().openActivity(HotUserAct.class);
+                    }else{
+                        Log.i("WorldPresenter","id:"+results.get(position).getUser_id());
+                        Router.newIntent(getV().getActivity())
+                                .putString(IntentConstant.OTHER_USER_ID,results.get(position).getId())
+                                .to(OtherMainAct.class)
+                                .launch();
+                    }
+
                 }
             }
 

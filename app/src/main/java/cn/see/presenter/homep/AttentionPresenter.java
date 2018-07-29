@@ -141,17 +141,11 @@ public class AttentionPresenter extends XPresent<AttentionFragment>{
                                     .launch();
                     }
                 });
-                CommonViewHolder.get(item,R.id.share_img).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ToastUtil.showToast("分享");
 
-                    }
-                });
                 CommonViewHolder.get(item,R.id.set).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("选项");
+                        getV().set();
 
                     }
                 });

@@ -11,6 +11,7 @@ import cn.see.R;
 import cn.see.adapter.NesLikeReviewAdapter;
 import cn.see.base.BaseActivity;
 import cn.see.model.TxtModel;
+import cn.see.model.UserInfoModel;
 import cn.see.presenter.newsp.NewsLikeAndPresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
@@ -107,5 +108,13 @@ public class NewsLikeAct extends BaseActivity<NewsLikeAndPresenter> implements  
     @Override
     public void showProgerss() {
         progress = CustomProgress.show(this);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String userID = UserUtils.getUserID(this);
+        getP().delMsgCont(MsgFragment.MSG_LIKE_TYPE,userID);
     }
 }

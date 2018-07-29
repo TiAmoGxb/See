@@ -18,27 +18,6 @@ public class HttpConstant {
      * 请求成功
      * */
     public static int SUCCEED = 0;
-
-    /**
-     * 成功信息
-     */
-    public static String SUCCESS_MSG = "success";
-
-    /**
-     * 服务器错误
-     */
-    public static int SYSTEM_ERROR = 500;
-
-    /**
-     * 签名错误
-     */
-    public static int SIGN_ERROR = 10001;
-
-    /**
-     * token过期
-     */
-    public static int  TOKEN_ERROR = 10002;
-
     /**
      * 活动h5
      */
@@ -58,4 +37,43 @@ public class HttpConstant {
      * 修改头像
      */
     public static String UPDATE_IMG = "http://www.xintusee.com/IOS/User/uploadHeadImg.html";
+
+
+    /**
+     * 修改背景
+     *
+     */
+    public static String UPDATA_BAC_IMG = "http://www.xintusee.com/IOS/User/updateBackground.html";
+
+
+    /**
+     * 我的积分
+     */
+    public static String MINE_INTEGRA = "http://www.xintusee.com/IOS/Index/integral.html";
+
+    /**
+     * 系统通知
+     */
+    public static String SYSTEM_NOTICE = "http://www.xintusee.com/IOS/Search/msg.html?msg_id=";
+
+
+    /**
+     * 分享文章
+     */
+    public static String SHARE_TEXT = "http://www.xintusee.com/IOS/Text/share.html?text_id=";
+
+    /**
+     * 分享用户
+     */
+    public static String SHAR_USER = "http://www.xintusee.com/IOS/User/share.html?id=";
+
+    /**
+     * 分享活动
+     */
+    public static String SHAR_ACTIVITY = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
+
+    /**
+     * 分享话题
+     */
+    public static String SHAR_TOPIC = "http://www.xintusee.com/IOS/Topic/share.html?topic_id=";
 }

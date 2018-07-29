@@ -29,6 +29,9 @@ import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
+import cn.see.util.widet.AlertView.AlertView;
+import cn.see.util.widet.AlertView.OnDismissListener;
+import cn.see.util.widet.AlertView.OnItemClickListener;
 import cn.see.util.widet.CircleImageView;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
@@ -41,7 +44,7 @@ import cn.see.util.widet.putorefresh.RefreshShowTime;
  * @说明： 关注Frg
  */
 
-public class AttentionFragment extends BaseFragement<AttentionPresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>{
+public class AttentionFragment extends BaseFragement<AttentionPresenter> implements  PullToRefreshBase.OnRefreshListener2<ListView>,OnItemClickListener, OnDismissListener {
     private ListView topListView;
     private CommonListViewAdapter<TxtModel.TxtResult.Result> adapter;
     private CommonListViewAdapter<FriendsNewsModel.NewsResult.NewsList> adapterTop;
@@ -300,5 +303,24 @@ public class AttentionFragment extends BaseFragement<AttentionPresenter> impleme
         ToastUtil.showToast(msg);
         page = 1;
         getP().getAttTextList(UserUtils.getUserID(getActivity()),page);
+    }
+
+    public void set(){
+        AlertView alertView = new AlertView(null, null, "取消", null, new String[]{"收藏","举报"},getActivity(), AlertView.Style.ActionSheet, this);
+        alertView.setCancelable(true);
+        alertView.show();
+    }
+
+    @Override
+    public void onDismiss(Object o) {
+
+    }
+    @Override
+    public void onItemClick(Object o, int position) {
+        if(position == 0){
+            ToastUtil.showToast("收藏成功");
+        }else if(position == -1){
+            ToastUtil.showToast("举报成功");
+        }
     }
 }

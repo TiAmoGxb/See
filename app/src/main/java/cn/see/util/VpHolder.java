@@ -115,6 +115,7 @@ public class VpHolder {
 
         if(flag.equals(BannerConstant.FIND_TAB_BANNER_TYPE)){
             this.tabBannerList=list;
+            linearLayout.setVisibility(View.GONE);
         }else if(flag.equals(BannerConstant.TXT_ARTICL_BANNER_TYPE)){
             this.urls = list;
             pTv.setText("1/"+urls.size());
@@ -151,6 +152,11 @@ public class VpHolder {
                             if(tabBannerList.get(position).getType().equals("activity")){
                                 Router.newIntent((Activity) context)
                                         .to(WebAct.class)
+                                        .putString(IntentConstant.WEB_ACT_ID,tabBannerList.get(position).getType_id())
+                                        .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
+                                        .putString(IntentConstant.WEB_ACT_IMG,tabBannerList.get(position-1).getUrl())
+                                        .putString(IntentConstant.WEB_ACT_TITLE,"")
+                                        .putString(IntentConstant.WEB_ACT_OONT,"")
                                         .putString(IntentConstant.WEB_LOAD_URL,url+tabBannerList.get(position).getType_id()+"&uid="+UserUtils.getUserID(context))
                                         .launch();
                             }
