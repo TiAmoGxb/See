@@ -1,10 +1,12 @@
 package cn.see.main;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -16,21 +18,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.mineview.ArticleDetailsAct;
+import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.util.ShareUtils;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
+import cn.see.util.constant.PreferenceConstant;
+import cn.see.util.permosson.CamerUtils;
+import cn.see.util.version.PreferenceUtils;
+import cn.see.fragment.release.ui.MultiImageSelectorActivity;
 
 /**
  * 通用Web页面
  */
 public class WebAct extends BaseActivity {
 
+    private static final String TAG = "WebAct";
     private String actID;
 
     @BindView(R.id.title_tv_base)
@@ -76,6 +88,7 @@ public class WebAct extends BaseActivity {
             actCont = getIntent().getStringExtra(IntentConstant.WEB_ACT_OONT);
             imageView.setImageResource(R.drawable.top_share);
         }
+        Log.i(TAG,"URL:"+url);
         webView.loadUrl(url);
     }
 
@@ -152,7 +165,7 @@ public class WebAct extends BaseActivity {
 
 //        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-//        webView.addJavascriptInterface(new JsInterface(), ConstantsUtils.JS_TYPE_FLAG);
+        webView.addJavascriptInterface(new JsInterface(), HttpConstant.JS_TYPE_FLAG);
     }
 
     /**
@@ -176,5 +189,97 @@ public class WebAct extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * JS回调
+     * */
+    public class JsInterface {
+        /**
+         * 注册
+         * @param msg
+         */
+        @JavascriptInterface
+        public void regiSuccess(final String msg) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(msg.equals("success")){
+                        onBack();
+                    }
+                }
+            });
+        }
 
+        /**
+         * 找回密码
+         */
+        @JavascriptInterface
+        public void retrievePassword() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG,"执行找回密码成功");
+                   onBack();
+                }
+            });
+        }
+
+        /**
+         * 立即参与
+         */
+        @JavascriptInterface
+        public void nowParticipate () {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG,"执行立即参与");
+                    PreferenceUtils.setString(WebAct.this, PreferenceConstant.APPLY_ACT,actName+","+actID);
+                    CamerUtils.doOpenCamera(WebAct.this, 0, "", IntentConstant.RELEASE_PHOTO_TYPE);
+                }
+            });
+        }
+        /**
+         * 参与用户
+         */
+        @JavascriptInterface
+        public void particiPatingUser() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG,"执行参与用户");
+                }
+            });
+        }
+        /**
+         * 文章
+         */
+        @JavascriptInterface
+        public void applyArticle(final String text_id) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG,"执行文章："+text_id);
+                    Router.newIntent(WebAct.this)
+                            .putString(IntentConstant.ARTIC_TEXT_ID,text_id)
+                            .to(ArticleDetailsAct.class)
+                            .launch();
+                }
+            });
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null){
+            if(requestCode == 0){
+                ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                Router.newIntent(this)
+                        .to(BeautifulPictureAct.class)
+                        .putString(IntentConstant.RELEASE_TYPE,"text")
+                        .putSerializable(IntentConstant.RELEASE_PATHS,pathList)
+                        .launch();
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,15 +8,39 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:minHeight="?android:attr/actionBarSize"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        
 
 
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/back_rela"
+            android:layout_gravity="left"
+            android:layout_width="80px"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:background="@drawable/set_back_bac"
+                android:layout_width="35px"
+                android:layout_height="35px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:textSize="33px"
+            android:textColor="#101010"
+            android:text="选择图片"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <Button
             android:id="@+id/commit"
             android:layout_width="wrap_content"
@@ -36,7 +60,10 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <FrameLayout
+    <include layout="@layout/layout_base_title"></include>
+
+
+    <com.zhy.autolayout.AutoFrameLayout
         android:id="@+id/image_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -58,6 +85,6 @@
             android:paddingTop="5dp"
             android:textColor="@color/mis_default_text_color"
             android:textSize="14sp" />
-    </FrameLayout>
+    </com.zhy.autolayout.AutoFrameLayout>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

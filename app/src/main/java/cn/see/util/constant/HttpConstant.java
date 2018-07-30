@@ -21,7 +21,7 @@ public class HttpConstant {
     /**
      * 活动h5
      */
-    public static String ACT_WEB_URL=  "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
+    public static String ACT_WEB_URL=  "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
 
     /**
      * 发布话题
@@ -86,4 +86,9 @@ public class HttpConstant {
      * 忘记密码
      */
     public static String REG_RTP = "http://www.xintusee.com/IOS/User/rtp.html";
+
+    /**
+     * js交互标记
+     * */
+    public static String JS_TYPE_FLAG = "control";
 }

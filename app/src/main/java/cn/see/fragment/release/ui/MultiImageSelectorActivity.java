@@ -12,10 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import cn.see.R;
+import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
 import me.nereo.multi_image_selector.MultiImageSelectorFragment;
 import me.nereo.multi_image_selector.Number;
@@ -49,7 +52,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     private static final int DEFAULT_IMAGE_SIZE = 9;
 
     private ArrayList<String> resultList = new ArrayList<>();
-    private Button mSubmitButton;
+    private TextView mSubmitButton;
     private int mDefaultCount = DEFAULT_IMAGE_SIZE;
 
     String type ;
@@ -59,7 +62,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         type = getIntent().getStringExtra("type") ;
         setTheme(me.nereo.multi_image_selector.R.style.MIS_NO_ACTIONBAR);
-        setContentView(me.nereo.multi_image_selector.R.layout.mis_activity_default);
+        setContentView(R.layout.mis_activity_default);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.BLACK);
@@ -87,7 +90,16 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         if(mode == MODE_SINGLE && intent.hasExtra(EXTRA_DEFAULT_SELECTED_LIST)) {
             resultList = intent.getStringArrayListExtra(EXTRA_DEFAULT_SELECTED_LIST);
         }
-        mSubmitButton = (Button) findViewById(me.nereo.multi_image_selector.R.id.commit);
+        mSubmitButton = (TextView) findViewById(R.id.title_tv_op_bg);
+        TextView title = (TextView) findViewById(R.id.title_tv_base);
+        title.setText("选择照片");
+        findViewById(R.id.back_rela).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showToast("执行");
+                finish();
+            }
+        });
         if(mode == MODE_MULTI){
             updateDoneText(resultList);
             mSubmitButton.setVisibility(View.VISIBLE);

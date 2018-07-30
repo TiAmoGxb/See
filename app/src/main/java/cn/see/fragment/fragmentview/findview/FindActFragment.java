@@ -36,7 +36,7 @@ public class FindActFragment extends BaseFragement<ActPresenter> implements  Pul
     private List<FindActModel.ActResult.ActList> lists = new ArrayList<>();
     private int page = 1;
     private CommonListViewAdapter<FindActModel.ActResult.ActList> adapter;
-    private String url = "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
+    private String url = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
 
     @BindView(R.id.pull_act_list)
     PullToRefreshListView listView;
@@ -68,7 +68,7 @@ public class FindActFragment extends BaseFragement<ActPresenter> implements  Pul
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(UserUtils.userIsLogin(getActivity())){
+                if(UserUtils.getLogin(getActivity())){
                     Router.newIntent(getActivity())
                             .to(WebAct.class)
                             .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
@@ -76,7 +76,7 @@ public class FindActFragment extends BaseFragement<ActPresenter> implements  Pul
                             .putString(IntentConstant.WEB_ACT_TITLE,lists.get(position-1).getName())
                             .putString(IntentConstant.WEB_ACT_OONT,lists.get(position-1).getBewrite())
                             .putString(IntentConstant.WEB_ACT_ID,lists.get(position-1).getActivity_id())
-                            .putString(IntentConstant.WEB_LOAD_URL,url+lists.get(position-1).getActivity_id()+"&uid="+UserUtils.getUserID(getActivity()))
+                            .putString(IntentConstant.WEB_LOAD_URL,url+lists.get(position-1).getActivity_id()+"&source=an&uid="+UserUtils.getUserID(getActivity()))
                             .launch();
                 }
 

@@ -202,4 +202,10 @@ public class IntentConstant {
     public static String WEB_ACT_OONT = "WEB_ACT_OONT";
 
 
+    /**
+     * 发布位置字符串
+     */
+    public static String RELEASE_AREA_TEXT = "RELEASE_AREA_TEXT";
+
+
 }

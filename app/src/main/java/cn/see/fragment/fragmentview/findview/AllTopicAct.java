@@ -17,11 +17,10 @@ import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseActivity;
 import cn.see.fragment.release.ui.BeautifulPictureAct;
-import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.permosson.CamerUtils;
-import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import cn.see.fragment.release.ui.MultiImageSelectorActivity;
 
 /**
  * 全部话题

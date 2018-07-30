@@ -35,7 +35,7 @@ public class MineAct extends BaseActivity<MineActPresenter>implements  PullToRef
     private List<FindActModel.ActResult.ActList> lists = new ArrayList<>();
     private int page = 1;
     private CommonListViewAdapter<FindActModel.ActResult.ActList> adapter;
-    private String url = "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
+    private String url = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
 
 
     @BindView(R.id.pull_act_list)
@@ -85,7 +85,7 @@ public class MineAct extends BaseActivity<MineActPresenter>implements  PullToRef
                             .putString(IntentConstant.WEB_ACT_TITLE,lists.get(position-1).getName())
                             .putString(IntentConstant.WEB_ACT_OONT,lists.get(position-1).getBewrite())
                             .putString(IntentConstant.WEB_ACT_ID,lists.get(position-1).getActivity_id())
-                            .putString(IntentConstant.WEB_LOAD_URL,url+lists.get(position-1).getActivity_id()+"&uid="+UserUtils.getUserID(MineAct.this))
+                            .putString(IntentConstant.WEB_LOAD_URL,url+lists.get(position-1).getActivity_id()+"&source=an&uid="+UserUtils.getUserID(MineAct.this))
                             .launch();
                 }
 

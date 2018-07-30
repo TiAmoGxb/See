@@ -14,11 +14,11 @@ import android.util.Log;
 import java.io.File;
 
 import cn.droidlover.xdroidmvp.router.Router;
+import cn.see.fragment.release.ui.MultiImageSelectorActivity;
 import cn.see.main.MainParentAct;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.version.ApkUtils;
 import cn.see.util.zxing.app.CaptureActivity;
-import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 
 /**

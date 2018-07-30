@@ -48,7 +48,7 @@ import cn.see.util.widet.putorefresh.PullToRefreshListView;
 public class MsgFragment extends BaseFragement<MsgPresenter>{
 
 
-    private String url = "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
+    private String url = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
     public static final String  MSG_LIKE_TYPE = "likes";
     public static final String  MSG_REVIEW_TYPE = "review";
     private String actId;
@@ -110,7 +110,7 @@ public class MsgFragment extends BaseFragement<MsgPresenter>{
                     .putString(IntentConstant.WEB_ACT_TITLE,actName.getText().toString())
                     .putString(IntentConstant.WEB_ACT_OONT,actCont)
                     .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
-                    .putString(IntentConstant.WEB_LOAD_URL,url+actId)
+                    .putString(IntentConstant.WEB_LOAD_URL,url+actId+"&source=an&uid="+UserUtils.getUserID(getActivity()))
                     .launch();
         }
     }

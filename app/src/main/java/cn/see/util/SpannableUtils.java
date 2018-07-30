@@ -84,7 +84,7 @@ public class SpannableUtils {
                         .putString(IntentConstant.WEB_ACT_TITLE,name)
                         .putString(IntentConstant.WEB_ACT_OONT,"")
                         .putString(IntentConstant.WEB_ACT_ID,toid)
-                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL+toid+"&uid="+UserUtils.getUserID(activity))
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL+toid+"&source=an&uid="+UserUtils.getUserID(activity))
                         .launch();
 
             }
