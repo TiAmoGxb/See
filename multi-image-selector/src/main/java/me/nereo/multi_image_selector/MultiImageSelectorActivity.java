@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -84,6 +85,14 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         if(mode == MODE_SINGLE && intent.hasExtra(EXTRA_DEFAULT_SELECTED_LIST)) {
             resultList = intent.getStringArrayListExtra(EXTRA_DEFAULT_SELECTED_LIST);
         }
+       /* RelativeLayout layout = (RelativeLayout) findViewById(R.id.back_rela);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });*/
+
         mSubmitButton = (Button) findViewById(R.id.commit);
         if(mode == MODE_MULTI){
             updateDoneText(resultList);

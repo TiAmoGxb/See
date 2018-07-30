@@ -46,7 +46,7 @@ import cn.see.util.permosson.CamerUtils;
 import cn.see.util.widet.BlurringView;
 import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.XRadioGroup;
-import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import cn.see.fragment.release.ui.MultiImageSelectorActivity;
 
 /**
  * @日期：2018/6/4
@@ -223,7 +223,7 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
                         .putString(IntentConstant.WEB_ACT_TITLE,actName.getText().toString())
                         .putString(IntentConstant.WEB_ACT_OONT,actCont)
                         .putString(IntentConstant.WEB_ACT_ID, actId)
-                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL + actId)
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL + actId+"&source=an&uid="+UserUtils.getUserID(this))
                         .launch();
                 break;
         }

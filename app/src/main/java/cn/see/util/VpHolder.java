@@ -32,7 +32,7 @@ import cn.see.util.constant.IntentConstant;
  */
 
 public class VpHolder {
-    private String url = "http://www.xintusee.com/IOS/Activity/actshare/html?activity_id=";
+    private String url = "http://www.xintusee.com/IOS/Activity/actshare.html?activity_id=";
 
     //请求更新显示的View
     protected static final int MSG_UPDATE_IMAGE = 1;
@@ -157,7 +157,7 @@ public class VpHolder {
                                         .putString(IntentConstant.WEB_ACT_IMG,tabBannerList.get(position-1).getUrl())
                                         .putString(IntentConstant.WEB_ACT_TITLE,"")
                                         .putString(IntentConstant.WEB_ACT_OONT,"")
-                                        .putString(IntentConstant.WEB_LOAD_URL,url+tabBannerList.get(position).getType_id()+"&uid="+UserUtils.getUserID(context))
+                                        .putString(IntentConstant.WEB_LOAD_URL,url+tabBannerList.get(position).getType_id()+"&source=an&uid="+UserUtils.getUserID(context))
                                         .launch();
                             }
                         }

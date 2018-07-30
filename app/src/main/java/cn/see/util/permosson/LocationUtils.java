@@ -1,6 +1,7 @@
 package cn.see.util.permosson;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -15,6 +16,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.droidlover.xdroidmvp.router.Router;
+import cn.see.fragment.release.ui.ReleasePreviewAct;
+import cn.see.fragment.release.ui.SelectAreaAct;
+
 /**
  * 获取位置工具类
  *
@@ -25,19 +30,20 @@ import java.util.List;
 public class LocationUtils {
     private static final String TAG = "LocationUtil";
 
-    public static void requestLocation(final Context context) {
+    public static void requestLocation(final Activity context) {
         XPermissionUtils.requestPermissions(context, RequestCode.LOCATION, new String[] {
                 Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
         }, new XPermissionUtils.OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
-                //6.0以下这个无法明确判断是否获取位置权限
-                //startLocation(context);
+                Router.newIntent(context)
+                        .to(SelectAreaAct.class)
+                        .requestCode(ReleasePreviewAct.ADD_AREA_TEXT)
+                        .launch();
             }
-
             @Override
             public void onPermissionDenied(String[] deniedPermissions, boolean alwaysDenied) {
-                Toast.makeText(context, "位置权限获取失败", Toast.LENGTH_SHORT).show();
+                Log.i(TAG,"无权限");
                 if (alwaysDenied) {
                     DialogUtil.showPermissionManagerDialog(context, "位置");
                 }

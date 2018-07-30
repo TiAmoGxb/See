@@ -31,7 +31,7 @@ public class ReadUtils {
                         if (PermissionHelper.isCameraEnable()) {
                             checkVersion(activity);
                         }else{
-                            DialogUtil.showPermissionManagerDialog(activity, "读写");
+                            DialogUtil.showPermissionManagerDialog(activity, "存储");
                         }
                     }
                     @Override

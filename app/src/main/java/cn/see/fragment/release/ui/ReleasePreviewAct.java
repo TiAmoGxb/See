@@ -35,6 +35,9 @@ import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.constant.PreferenceConstant;
+import cn.see.util.permosson.DialogUtil;
+import cn.see.util.permosson.LocationUtils;
+import cn.see.util.permosson.PermissionHelper;
 import cn.see.util.version.PreferenceUtils;
 import cn.see.util.widet.CustomGridViewLayoutManager;
 import cn.see.util.widet.CustomProgress;
@@ -67,6 +70,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     public static final int ADD_TAB_CODE = 5;
     //发布隐私设置
     public static final int ADD_RELEASE_SET = 6;
+    //位置
+    public static final int ADD_AREA_TEXT = 7;
     //活动还是图片
     private String type;
     //选择的标签ID
@@ -98,6 +103,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     View topic_title_v;
     @BindView(R.id.clear_topic_tv)
     ImageView clearTopicImg;
+    @BindView(R.id.tv_add)
+    TextView tv_add;
 
     @OnClick(R.id.clear_topic_tv)
     void clearTopic(){
@@ -152,6 +159,12 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                 .launch();
     }
 
+    @OnClick(R.id.tv_add)
+    void addArea(){
+        doStartLocation();
+    }
+
+
     @OnClick(R.id.rel_tv)
     void release(){
         if(paths.size()==1&&paths.get(paths.size()-1).equals("")){
@@ -196,6 +209,18 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             typeText = "topic";
             topTv.setTextColor(getResources().getColor(R.color.text_101010));
         }
+
+        //获取参与活动数据
+        String s1 = PreferenceUtils.getString(this, PreferenceConstant.APPLY_ACT);
+        if(s1!=null&&!s1.equals("")){
+            String[] split = s1.split(",");
+            topTv.setText(split[0]);
+            topicID = split[1];
+            typeText = "activity";
+            topTv.setTextColor(getResources().getColor(R.color.text_101010));
+        }
+
+
         //根据TYPE更新UI
         getP().isTypeUi(type);
         //获取传值 图片路径
@@ -320,7 +345,7 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                     msgTv.setTextColor(getResources().getColor(R.color.text_101010));
                     msgTv.setText(extra);
                     break;
-                case ADD_TOPIC_CODE://话题
+                case ADD_TOPIC_CODE://话题||活动
                     extra = data.getStringExtra(IntentConstant.SEL_TOPIC_NAME);
                     topicID = data.getStringExtra(IntentConstant.SEL_TOPIC_ID);
                     typeText = data.getStringExtra("type");
@@ -351,6 +376,16 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                     showText = data.getStringExtra(IntentConstant.RELEASE_SET_TEXT);
                     Log.i(TAG,"showText："+showText);
                     break;
+                case ADD_AREA_TEXT:
+                    String area = data.getStringExtra(IntentConstant.RELEASE_AREA_TEXT);
+                    if(area.equals("")){
+                        tv_add.setText("添加位置");
+                        tv_add.setTextColor(getResources().getColor(R.color.text_c9));
+                    }else{
+                        tv_add.setText(area);
+                        tv_add.setTextColor(getResources().getColor(R.color.text_101010));
+                    }
+                    break;
 
             }
         }
@@ -365,6 +400,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         String msg = msgTv.getText().toString();
         String topicTitle = topic_title.getText().toString();
         String tab = tv_tab.getText().toString();
+        String area = tv_add.getText().toString();
+
         if(!topicTitle.equals("标题")){
             map.put("tname",topicTitle);
         }else{
@@ -380,6 +417,12 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         if(!tab.equals("添加标签")){
             map.put("tab",tabID);
         }
+        if(!area.equals("添加位置")){
+            map.put("tab_area",area);
+        }
+
+
+
         map.put("user_id", UserUtils.getUserID(this));
 
         for (String key:map.keySet()) {
@@ -397,6 +440,7 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         String msg = msgTv.getText().toString();
         String tab = tv_tab.getText().toString();
         String topic = topTv.getText().toString();
+        String area = tv_add.getText().toString();
 
         if(!msg.equals("说点什么...")){
             map.put("msg",msg);
@@ -413,6 +457,11 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                 map.put("type_id",topicID);
             }
         }
+
+        if(!area.equals("添加位置")){
+            map.put("tab_area",area);
+        }
+
 
         if(!tab.equals("添加标签")){
             map.put("tab",tabID);
@@ -473,5 +522,14 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     protected void onDestroy() {
         super.onDestroy();
         PreferenceUtils.remove(this,PreferenceConstant.APPLY_TOPIC);
+        PreferenceUtils.remove(this,PreferenceConstant.APPLY_ACT);
+    }
+
+    private void doStartLocation() {
+        if (!PermissionHelper.isLocServiceEnable(this)) {
+            DialogUtil.showLocServiceDialog(this);
+            return;
+        }
+        LocationUtils.requestLocation(this);
     }
 }

@@ -38,7 +38,7 @@ import cn.see.util.version.PreferenceUtils;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
-import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import cn.see.fragment.release.ui.MultiImageSelectorActivity;
 
 public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefreshBase.OnRefreshListener2<ListView> {
 

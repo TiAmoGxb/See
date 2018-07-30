@@ -48,4 +48,9 @@ public class PreferenceConstant {
      * 参与话题
      */
     public static String APPLY_TOPIC = "APPLY_TOPIC";
+
+    /**
+     * 参与活动
+     */
+    public static String  APPLY_ACT = "APPLY_ACT";
 }
