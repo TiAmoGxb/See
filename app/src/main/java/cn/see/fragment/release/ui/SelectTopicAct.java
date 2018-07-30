@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,6 +35,10 @@ import cn.see.util.http.Api;
  * 选择话题
  */
 public class SelectTopicAct extends BaseActivity {
+
+
+    private static final String TAG =  "SelectTopicAct";
+    private List<ReleaseTopicModel.TopicResult.TopicList> resultLists = new ArrayList<>();
 
     @BindView(R.id.title_tv_base)
     TextView title;
@@ -85,12 +90,22 @@ public class SelectTopicAct extends BaseActivity {
 
                     @Override
                     public void onNext(final ReleaseTopicModel txtResult) {
-                        final List<ReleaseTopicModel.TopicResult.TopicList> resultLists = txtResult.getResult().getTopic();
+                        resultLists.clear();
+                        if(txtResult.getResult().getActivity().size()>0){
+                            resultLists.addAll(txtResult.getResult().getActivity());
+                        }
+                        resultLists.addAll(txtResult.getResult().getTopic());
                         RecryCommonAdapter<ReleaseTopicModel.TopicResult.TopicList> adapter = new RecryCommonAdapter<ReleaseTopicModel.TopicResult.TopicList>(SelectTopicAct.this, R.layout.layout_release_sel_top_item,resultLists ) {
                             @Override
                             protected void convert(ViewHolder holder, ReleaseTopicModel.TopicResult.TopicList o, int position) {
-                                holder.setText(R.id.name, o.getTname());
-                                holder.setText(R.id.cont, "话题·"+o.getApply_count()+"参与");
+
+                                if(o.getActivity_id()!=null&&o.getName()!=null){
+                                    holder.setText(R.id.name, o.getName());
+                                    holder.setText(R.id.cont, "活动");
+                                }else{
+                                    holder.setText(R.id.name, o.getTname());
+                                    holder.setText(R.id.cont, "话题·"+o.getApply_count()+"参与");
+                                }
                             }
 
                         };
@@ -98,8 +113,15 @@ public class SelectTopicAct extends BaseActivity {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 Intent intent  = new Intent();
-                                intent.putExtra(IntentConstant.SEL_TOPIC_NAME,resultLists.get(position).getTname());
-                                intent.putExtra(IntentConstant.SEL_TOPIC_ID,resultLists.get(position).getTopic_id());
+                                if(resultLists.get(position).getActivity_id()!=null&&resultLists.get(position).getName()!=null){
+                                    intent.putExtra(IntentConstant.SEL_TOPIC_NAME,resultLists.get(position).getName());
+                                    intent.putExtra(IntentConstant.SEL_TOPIC_ID,resultLists.get(position).getActivity_id());
+                                    intent.putExtra("type","activity");
+                                }else{
+                                    intent.putExtra(IntentConstant.SEL_TOPIC_NAME,resultLists.get(position).getTname());
+                                    intent.putExtra(IntentConstant.SEL_TOPIC_ID,resultLists.get(position).getTopic_id());
+                                    intent.putExtra("type","topic");
+                                }
                                 setResult(ReleasePreviewAct.ADD_TOPIC_CODE,intent);
                                 onBack();
                             }

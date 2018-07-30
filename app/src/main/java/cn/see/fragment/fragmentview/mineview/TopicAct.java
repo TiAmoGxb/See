@@ -1,5 +1,6 @@
 package cn.see.fragment.fragmentview.mineview;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.base.BaseActivity;
 import cn.see.fragment.fragmentview.findview.PhotoViewActivity;
+import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.model.MineTextModel;
 import cn.see.model.TopiDesitalModel;
 import cn.see.presenter.minep.TopicPresenter;
@@ -29,10 +31,14 @@ import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
+import cn.see.util.constant.PreferenceConstant;
 import cn.see.util.glide.GlideDownLoadImage;
+import cn.see.util.permosson.CamerUtils;
+import cn.see.util.version.PreferenceUtils;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefreshBase.OnRefreshListener2<ListView> {
 
@@ -337,7 +343,8 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
         super.onClick(v);
         switch (v.getId()){
             case R.id.go_apply:
-                ToastUtil.showToast("参与话题");
+                PreferenceUtils.setString(this,PreferenceConstant.APPLY_TOPIC,topicName.getText().toString()+","+topic_id);
+                CamerUtils.doOpenCamera(this, 0, "", IntentConstant.RELEASE_PHOTO_TYPE);
                 break;
             case R.id.att_tv:
                 if(attFlag.equals("1")){
@@ -365,6 +372,21 @@ public class TopicAct extends BaseActivity<TopicPresenter>implements  PullToRefr
 //                        .to(TopicApplyAct.class)
 //                        .launch();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null){
+            if(requestCode == 0){
+                ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                Router.newIntent(this)
+                        .to(BeautifulPictureAct.class)
+                        .putString(IntentConstant.RELEASE_TYPE,"text")
+                        .putSerializable(IntentConstant.RELEASE_PATHS,pathList)
+                        .launch();
+            }
         }
     }
 }

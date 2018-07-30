@@ -76,4 +76,14 @@ public class HttpConstant {
      * 分享话题
      */
     public static String SHAR_TOPIC = "http://www.xintusee.com/IOS/Topic/share.html?topic_id=";
+
+    /**
+     * 注册
+     */
+    public static String REG_USER = "http://www.xintusee.com/IOS/User/reg.html";
+
+    /**
+     * 忘记密码
+     */
+    public static String REG_RTP = "http://www.xintusee.com/IOS/User/rtp.html";
 }

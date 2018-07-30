@@ -42,4 +42,10 @@ public class PreferenceConstant {
      * 搜索记录
      */
     public static String SERCH_RECORDING = "SERCH_RECORDING";
+
+
+    /**
+     * 参与话题
+     */
+    public static String APPLY_TOPIC = "APPLY_TOPIC";
 }

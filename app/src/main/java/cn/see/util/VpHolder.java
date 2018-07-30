@@ -148,7 +148,7 @@ public class VpHolder {
                 @Override
                 public void onItemClick(View view, int position) {
                     if(flag.equals(BannerConstant.FIND_TAB_BANNER_TYPE)){
-                        if(UserUtils.userIsLogin(context)){
+                        if(UserUtils.getLogin((Activity) context)){
                             if(tabBannerList.get(position).getType().equals("activity")){
                                 Router.newIntent((Activity) context)
                                         .to(WebAct.class)

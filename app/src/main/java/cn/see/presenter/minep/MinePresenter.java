@@ -126,9 +126,11 @@ public class MinePresenter extends XPresent<MineFragment>{
                     aply_cont.setVisibility(View.GONE);
                     likeCont.setText(s.getLike_count());
                     commCont.setText(s.getReview_count());
-                    //如果内容前面带话题
-                    if(s.getTopic_name()!=null&s.getTopic_id()!=null){
+
+                    if(s.getType().equals("topic")){
                         txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getTopic_name()+"#"+s.getMsg(),s.getTopic_id(),s.getTopic_name().length()));
+                    }else if(s.getType().equals("activity")){
+                        txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getActivity_name()+"#"+s.getMsg(),s.getActivity_id(),s.getActivity_name().length(),s.getActivity_name()));
                     }else{
                         txt.setText(s.getMsg());
                     }

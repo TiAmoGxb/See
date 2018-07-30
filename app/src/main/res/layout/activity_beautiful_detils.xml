@@ -213,6 +213,7 @@
             android:layout_height="match_parent" />
 
         <TextView
+            android:visibility="gone"
             android:gravity="center"
             android:text="标签"
             android:id="@+id/tab_tv"
@@ -224,6 +225,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/edit_tv"
             android:gravity="center"
             android:text="编辑"

@@ -34,6 +34,7 @@ import cn.see.adapter.RecryCommonAdapter;
 import cn.see.adapter.ViewHolder;
 import cn.see.base.BaseActivity;
 import cn.see.base.BaseModel;
+import cn.see.event.FindTabEvent;
 import cn.see.event.MsgEvent;
 import cn.see.model.AllTabModel;
 import cn.see.model.TabModel;
@@ -192,7 +193,7 @@ public class SelectMyTableAct extends BaseActivity {
                         progress.dismiss();
                         if(!findTextcModel.isError()){
                             //发送事件
-                            EventBus.getDefault().post(new MsgEvent());
+                            EventBus.getDefault().post(new FindTabEvent());
                             onBack();
                         }else{
                             ToastUtil.showToast(findTextcModel.getErrorMsg());

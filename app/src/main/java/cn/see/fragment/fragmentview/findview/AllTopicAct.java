@@ -1,5 +1,6 @@
 package cn.see.fragment.fragmentview.findview;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,11 +12,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.IntentConstant;
+import cn.see.util.permosson.CamerUtils;
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 /**
  * 全部话题
@@ -66,7 +72,8 @@ public class AllTopicAct extends BaseActivity {
     }
     @OnClick(R.id.rel_tv)
     void relTopic(){
-        ToastUtil.showToast("发布话题");
+        CamerUtils.doOpenCamera(this, 1, "", IntentConstant.RELEASE_PHOTO_TYPE);
+
     }
 
 
@@ -116,8 +123,22 @@ public class AllTopicAct extends BaseActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null){
+            if(requestCode == 1){
+                ArrayList<String> pathList = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                 Router.newIntent(this)
+                        .to(BeautifulPictureAct.class)
+                        .putString(IntentConstant.RELEASE_TYPE,"topic")
+                         .putSerializable(IntentConstant.RELEASE_PATHS,pathList)
+                         .launch();
+            }
+        }
     }
 }

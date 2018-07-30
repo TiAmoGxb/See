@@ -17,6 +17,7 @@ import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.base.BaseFragement;
+import cn.see.event.FindTabEvent;
 import cn.see.event.MsgEvent;
 import cn.see.fragment.fragmentview.mineview.ArticleDetailsAct;
 import cn.see.model.FindTextcModel;
@@ -246,10 +247,9 @@ public class FindChildFragment extends BaseFragement<FindPresenter> implements  
         resultsList.get(position).setAttention_status("0");
         adapter.notifyDataSetChanged();
     }
-
     //定义处理接收的方法
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void userEventBus(MsgEvent userEvent){
+    public void userEventBus(FindTabEvent findTabEvent){
         Log.i(TAG,"接收到了消息");
         //获取标签
         getP().getUserTab(UserUtils.getUserID(getActivity()),1);

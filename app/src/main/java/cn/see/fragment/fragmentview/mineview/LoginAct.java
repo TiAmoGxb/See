@@ -7,12 +7,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.main.WebAct;
 import cn.see.model.LoginModel;
 import cn.see.presenter.minep.LoginPresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
+import cn.see.util.constant.HttpConstant;
+import cn.see.util.constant.IntentConstant;
 import cn.see.util.constant.PreferenceConstant;
 import cn.see.util.version.ApkUtils;
 import cn.see.util.version.PreferenceUtils;
@@ -37,6 +41,21 @@ public class LoginAct extends BaseActivity<LoginPresenter> {
     EditText etPhone;
     @BindView(R.id.et_pwd)
     EditText etPwd;
+    @OnClick(R.id.reg_tv)
+    void reg(){
+        Router.newIntent(this)
+                .to(WebAct.class)
+                .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.REG_USER)
+                .launch();
+    }
+    @OnClick(R.id.rtp_tv)
+    void rtp(){
+        Router.newIntent(this)
+                .to(WebAct.class)
+                .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.REG_RTP)
+                .launch();
+    }
+
     @OnClick(R.id.back_rela)
     void bacAct(){
         onBack();

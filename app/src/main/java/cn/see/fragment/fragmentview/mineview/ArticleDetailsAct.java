@@ -226,12 +226,17 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         }
 
 
-        if(txtResult.getTopic_id()!=null&&txtResult.getTopic_name()!=null){
+
+        if(txtResult.getType().equals("topic")){
             contentTv.setMovementMethod(LinkMovementMethod.getInstance());
             contentTv.setText(SpannableUtils.getInstance().getClickableSpan(this,"#"+txtResult.getTopic_name()+"#"+txtResult.getMsg(),txtResult.getTopic_id(),txtResult.getTopic_name().length()));
+        }else if(txtResult.getType().equals("activity")){
+            contentTv.setMovementMethod(LinkMovementMethod.getInstance());
+            contentTv.setText(SpannableUtils.getInstance().getClickableSpan(this,"#"+txtResult.getActivity_name()+"#"+txtResult.getMsg(),txtResult.getActivity_id(),txtResult.getActivity_name().length(),txtResult.getActivity_name()));
         }else{
             contentTv.setText(txtResult.getMsg());
         }
+
         likeNumTv.setText(txtResult.getLike_count());
         commNumTv.setText(txtResult.getReview_count());
         reviewNumTv.setText("共"+txtResult.getReview_count()+"条评论");

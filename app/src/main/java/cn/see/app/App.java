@@ -139,6 +139,10 @@ public class App extends Application {
             PreferenceUtils.setString(this, PreferenceConstant.REGISTRATION_ID,registrationId);
         }
 
+        //初始化极光IM
+        JMessageClient.init(this);
+        JMessageClient.setDebugMode(true);
+
 
         //分享登录初始化
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");

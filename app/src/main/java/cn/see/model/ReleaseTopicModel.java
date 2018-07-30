@@ -25,18 +25,46 @@ public class ReleaseTopicModel extends BaseModel {
     public static class TopicResult{
 
         private List<TopicList> topic;
+        private List<TopicList> activity;
 
         public List<TopicList> getTopic() {
             return topic;
         }
 
+        public List<TopicList> getActivity() {
+            return activity;
+        }
+
         public void setTopic(List<TopicList> topic) {
             this.topic = topic;
         }
+
+        public void setActivity(List<TopicList> activity) {
+            this.activity = activity;
+        }
+
         public static class TopicList{
             private String apply_count;
             private String topic_id;
             private String tname;
+            private String name;
+            private String activity_id;
+
+            public String getName() {
+                return name;
+            }
+
+            public String getActivity_id() {
+                return activity_id;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public void setActivity_id(String activity_id) {
+                this.activity_id = activity_id;
+            }
 
             public String getApply_count() {
                 return apply_count;

@@ -130,20 +130,24 @@
 
         <TextView
             android:textSize="@dimen/sp_28"
+            android:id="@+id/reg_tv"
             android:textColor="@color/text_3"
             android:text="注册"
+            android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
         <TextView
+            android:id="@+id/rtp_tv"
             android:layout_alignParentRight="true"
             android:textSize="@dimen/sp_28"
+            android:gravity="center_vertical"
             android:textColor="@color/text_3"
             android:text="忘记密码？"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
 
     </com.zhy.autolayout.AutoRelativeLayout>

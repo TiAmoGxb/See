@@ -18,6 +18,7 @@ import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
+import cn.see.adapter.MultiItemTypeAdapter;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.adapter.ViewHolder;
 import cn.see.base.BaseActivity;
@@ -39,6 +40,7 @@ import cn.see.util.widet.AlertView.OnItemClickListener;
 public class SearchAct extends BaseActivity implements OnItemClickListener, OnDismissListener {
 
     RecryCommonAdapter<String> adapter;
+    private  List<String> listData;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -75,7 +77,7 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
     @Override
     protected void onStart() {
         super.onStart();
-        final List<String> listData = PreferenceUtils.getListData(this, PreferenceConstant.SERCH_RECORDING, String.class);
+        listData = PreferenceUtils.getListData(this, PreferenceConstant.SERCH_RECORDING, String.class);
         if(listData!=null){
             if(listData.size()==0){
                 clear_tv.setVisibility(View.GONE);
@@ -108,6 +110,20 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
                     });
                 }
             };
+            adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                    Router.newIntent(SearchAct.this)
+                            .putString(IntentConstant.SEARCH_CONT,listData.get(position))
+                            .to(SearchContAct.class)
+                            .launch();
+                }
+
+                @Override
+                public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                    return false;
+                }
+            });
             recyclerView.setAdapter(adapter);
         }else{
             if(listData.size()==0){
@@ -145,6 +161,7 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
                 return false;
             }
         });
+
     }
 
     @Override

@@ -73,6 +73,8 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     private String tabID ;
     //等待框
     private CustomProgress progress;
+    //参与类型
+    private String typeText ;
 
     @BindView(R.id.title_tv_base)
     TextView title;
@@ -184,6 +186,16 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
     @Override
     public void initAfter() {
         type = getIntent().getStringExtra(IntentConstant.RELEASE_TYPE);
+
+        //获取参与话题的数据
+        String s = PreferenceUtils.getString(this, PreferenceConstant.APPLY_TOPIC);
+        if(s!=null&&!s.equals("")){
+            String[] split = s.split(",");
+            topTv.setText(split[0]);
+            topicID = split[1];
+            typeText = "topic";
+            topTv.setTextColor(getResources().getColor(R.color.text_101010));
+        }
         //根据TYPE更新UI
         getP().isTypeUi(type);
         //获取传值 图片路径
@@ -221,7 +233,6 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
         msgTv.setText("内容");
         msgTv.setTextColor(getResources().getColor(R.color.text_101010));
     }
-
 
     /**
      * 如果是图片
@@ -312,6 +323,7 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
                 case ADD_TOPIC_CODE://话题
                     extra = data.getStringExtra(IntentConstant.SEL_TOPIC_NAME);
                     topicID = data.getStringExtra(IntentConstant.SEL_TOPIC_ID);
+                    typeText = data.getStringExtra("type");
                     Log.i(TAG,"topicID："+topicID);
                     topTv.setTextColor(getResources().getColor(R.color.text_101010));
                     topTv.setText(extra);
@@ -393,9 +405,15 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             return;
         }
         if(!topic.equals("选择话题或活动")){
-            map.put("type","topic");
-            map.put("type_id",topicID);
+            if(typeText.equals("topic")){
+                map.put("type","topic");
+                map.put("type_id",topicID);
+            }else{
+                map.put("type","activity");
+                map.put("type_id",topicID);
+            }
         }
+
         if(!tab.equals("添加标签")){
             map.put("tab",tabID);
         }
@@ -449,5 +467,11 @@ public class ReleasePreviewAct extends BaseActivity<ReleasePreviewPresenter> {
             boolean delete = file.delete();
             Log.i(TAG,"delete："+delete);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceUtils.remove(this,PreferenceConstant.APPLY_TOPIC);
     }
 }

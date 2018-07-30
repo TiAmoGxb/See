@@ -76,7 +76,6 @@ public class MainParentAct extends BaseActivity implements XRadioGroup.OnChecked
     private String actUrl;
     private String actCont;
 
-
     @BindView(R.id.main_rela)
     RelativeLayout main_rela;
     @BindView(R.id.radioGroup1)

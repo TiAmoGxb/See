@@ -232,9 +232,13 @@ public class FindPresenter extends XPresent<FindChildFragment> {
                                 .launch();
                     }
                 }else{
-                    currentCheckedItemPosition = position;
-                    adapter.notifyDataSetChanged();
-                    getV().tabChange(tableBeen.get(position).getTab_id());
+                    if(UserUtils.getLogin(getV().getActivity())){
+                        currentCheckedItemPosition = position;
+                        adapter.notifyDataSetChanged();
+                        getV().tabChange(tableBeen.get(position).getTab_id());
+
+                    }
+
                 }
             }
 

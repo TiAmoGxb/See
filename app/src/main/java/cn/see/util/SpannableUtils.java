@@ -12,6 +12,9 @@ import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.fragment.fragmentview.mineview.TopicAct;
+import cn.see.main.WebAct;
+import cn.see.model.FindActModel;
+import cn.see.util.constant.HttpConstant;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 
@@ -45,10 +48,10 @@ public class SpannableUtils {
         ClickableSpan span = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                Router.newIntent(activity)
-                        .putString(IntentConstant.ARTIC_TOPIC_ID,toid)
-                        .to(TopicAct.class)
-                        .launch();
+                    Router.newIntent(activity)
+                            .putString(IntentConstant.ARTIC_TOPIC_ID,toid)
+                            .to(TopicAct.class)
+                            .launch();
             }
             @Override
             public void updateDrawState(TextPaint ds) {
@@ -61,7 +64,40 @@ public class SpannableUtils {
         return string;
     }
 
+    /**
+     * 活动
+     * @param activity
+     * @param item
+     * @param toid
+     * @param length
+     * @return
+     */
+    public SpannableString getClickableSpan(final Activity activity, final String item, final String toid, int length, final String name) {
+        final SpannableString string = new SpannableString(item);
+        ClickableSpan span = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Router.newIntent(activity)
+                        .to(WebAct.class)
+                        .putString(IntentConstant.WEB_ACTIVITY_TYPE,"act")
+                        .putString(IntentConstant.WEB_ACT_IMG,"")
+                        .putString(IntentConstant.WEB_ACT_TITLE,name)
+                        .putString(IntentConstant.WEB_ACT_OONT,"")
+                        .putString(IntentConstant.WEB_ACT_ID,toid)
+                        .putString(IntentConstant.WEB_LOAD_URL, HttpConstant.ACT_WEB_URL+toid+"&uid="+UserUtils.getUserID(activity))
+                        .launch();
 
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(activity.getResources().getColor(R.color.text_3f));
+                ds.setUnderlineText(false);
+            }
+        };
+        string.setSpan(span, 0, (length+2), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        return string;
+    }
     /**
      * 主页
      * @param activity

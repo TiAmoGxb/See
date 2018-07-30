@@ -86,7 +86,7 @@ public class AllTopicFragment extends BaseFragement<AllTopicPresenter> implement
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(UserUtils.userIsLogin(getActivity())){
+                if(UserUtils.getLogin(getActivity())){
                     Router.newIntent(getActivity())
                             .to(TopicAct.class)
                             .putString(IntentConstant.ARTIC_TOPIC_ID,results.get(position-1).getId())

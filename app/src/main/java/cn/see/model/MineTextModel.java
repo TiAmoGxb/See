@@ -108,6 +108,33 @@ public class MineTextModel extends BaseModel {
             private String topic_id;
             private String user_id;
             private String apply;
+            private String type;
+            private String activity_id;
+            private String activity_name;
+
+            public String getActivity_id() {
+                return activity_id;
+            }
+
+            public String getActivity_name() {
+                return activity_name;
+            }
+
+            public void setActivity_id(String activity_id) {
+                this.activity_id = activity_id;
+            }
+
+            public void setActivity_name(String activity_name) {
+                this.activity_name = activity_name;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
 
             public String getApply() {
                 return apply;

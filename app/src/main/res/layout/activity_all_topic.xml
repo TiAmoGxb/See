@@ -110,6 +110,6 @@
         android:gravity="center"
         android:background="@color/back_f4f"
         android:layout_width="match_parent"
-        android:layout_height="90px" />
+        android:layout_height="85px" />
 
 </com.zhy.autolayout.AutoRelativeLayout>
