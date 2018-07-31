@@ -20,6 +20,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/img"
                 app:layout_auto_basewidth="height"
                 android:layout_marginLeft="30px"
                 android:layout_centerVertical="true"

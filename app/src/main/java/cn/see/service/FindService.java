@@ -169,4 +169,19 @@ public interface FindService {
     @POST("User/save_user_tab.html")
     Flowable<BaseModel> saveTab(@Field("user_id") String user_id , @Field("tab_id_arr") String tab_id_arr);
 
+    /**
+     * 活动参与人
+     * @param activity_id
+     * @param page
+     * @param pageSize
+     * @return
+     */
+
+    @FormUrlEncoded
+    @POST("Activity/apply_users.html")
+    Flowable<MineTextModel> actApply(@Field("activity_id") String activity_id , @Field("page") int page,@Field("pageSize") String pageSize );
+
+
+
+
 }

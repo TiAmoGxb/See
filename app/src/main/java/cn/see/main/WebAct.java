@@ -26,6 +26,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.ActApplyAct;
 import cn.see.fragment.fragmentview.mineview.ArticleDetailsAct;
 import cn.see.fragment.release.ui.BeautifulPictureAct;
 import cn.see.util.ShareUtils;
@@ -242,12 +243,10 @@ public class WebAct extends BaseActivity {
          */
         @JavascriptInterface
         public void particiPatingUser() {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.i(TAG,"执行参与用户");
-                }
-            });
+            Router.newIntent(WebAct.this)
+                    .to(ActApplyAct.class)
+                    .putString(IntentConstant.WEB_ACT_ID,actID)
+                    .launch();
         }
         /**
          * 文章

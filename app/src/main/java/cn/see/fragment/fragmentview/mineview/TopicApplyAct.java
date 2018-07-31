@@ -2,6 +2,8 @@ package cn.see.fragment.fragmentview.mineview;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,9 +14,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.base.BaseActivity;
+import cn.see.fragment.fragmentview.findview.HotUserAct;
 import cn.see.model.MineTextModel;
 import cn.see.presenter.minep.TopicApplyPresenter;
 import cn.see.util.ToastUtil;
@@ -31,7 +35,6 @@ public class TopicApplyAct extends BaseActivity<TopicApplyPresenter> implements 
     private CommonListViewAdapter<MineTextModel.MineTextResult.ResultList> adapter;
     private int page = 1;
     private String topic_id;
-
 
     @BindView(R.id.title_tv_base)
     TextView titles;
@@ -70,6 +73,15 @@ public class TopicApplyAct extends BaseActivity<TopicApplyPresenter> implements 
     @Override
     public void setListener() {
         gridView.setOnRefreshListener(this);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Router.newIntent(TopicApplyAct.this)
+                        .putString(IntentConstant.OTHER_USER_ID,results.get(position).getUser_id())
+                        .to(OtherMainAct.class)
+                        .launch();
+            }
+        });
     }
 
     /**

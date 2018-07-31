@@ -55,10 +55,6 @@ public class HotUserPresenter extends XPresent<HotUserAct> {
                     public void onNext(TxtModel txtModel) {
                         progress.dismiss();
                         if(!txtModel.isError()){
-                            if(page>txtModel.getResult().getTotalPage()){
-                                ToastUtil.showToast("暂无更多热门用户");
-                                return;
-                            }
                             getV().hotUserResponse(txtModel.getResult().getResult(),page);
                         }else{
                             ToastUtil.showToast(txtModel.getErrorMsg());
@@ -74,15 +70,14 @@ public class HotUserPresenter extends XPresent<HotUserAct> {
      * @return
      */
     public CommonListViewAdapter<TxtModel.TxtResult.Result> initAdapter(final List<TxtModel.TxtResult.Result> stringList){
-        CommonListViewAdapter<TxtModel.TxtResult.Result> adapter = new CommonListViewAdapter<TxtModel.TxtResult.Result>(getV(),stringList, R.layout.layout_find_world_top_item) {
+        CommonListViewAdapter<TxtModel.TxtResult.Result> adapter = new CommonListViewAdapter<TxtModel.TxtResult.Result>(getV(),stringList, R.layout.layout_user_item) {
             @Override
             protected void convertView(View item, final TxtModel.TxtResult.Result s, final int position) {
-                CommonViewHolder.get(item,R.id.l_v).setVisibility(View.GONE);
                 Log.i("TopicApplyAct","执行");
-                ImageView imageView = CommonViewHolder.get(item, R.id.user_hot_img);
+                ImageView imageView = CommonViewHolder.get(item, R.id.img);
                 TextView textView = CommonViewHolder.get(item, R.id.user_hot_name);
                 textView.setText(s.getNickname());
-                GlideDownLoadImage.getInstance().loadCircleImageToCust(s.getHead_img_url(),imageView);
+                GlideDownLoadImage.getInstance().loadCircleImage(s.getHead_img_url(),imageView);
             }
         };
         return adapter;

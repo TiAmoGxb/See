@@ -1,6 +1,5 @@
 package cn.see.fragment.fragmentview.findview;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +18,11 @@ import cn.droidlover.xdroidmvp.router.Router;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.base.BaseActivity;
-import cn.see.fragment.fragmentview.mineview.FansAct;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
-import cn.see.model.TxtModel;
-import cn.see.presenter.findp.HotUserPresenter;
+import cn.see.fragment.fragmentview.mineview.TopicApplyAct;
+import cn.see.model.MineTextModel;
+import cn.see.presenter.findp.ActApplyPresenter;
+import cn.see.presenter.minep.TopicApplyPresenter;
 import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
@@ -30,54 +30,50 @@ import cn.see.util.widet.putorefresh.PullToRefreshGridView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
 
 /**
- * 热门用户
+ * 活动参与人
  */
-public class HotUserAct extends BaseActivity<HotUserPresenter>  implements  PullToRefreshBase.OnRefreshListener2<GridView>{
+public class ActApplyAct extends BaseActivity<ActApplyPresenter>  implements  PullToRefreshBase.OnRefreshListener2<GridView> {
 
-    private static final String TAG = "HotUserAct" ;
-    private CommonListViewAdapter<TxtModel.TxtResult.Result> adapter;
-    private List<TxtModel.TxtResult.Result> resultLis = new ArrayList<>();
+
+    private static final String TAG = "TopicApplyAct" ;
+    private List<MineTextModel.MineTextResult.ResultList> results = new ArrayList<>();
+    private CommonListViewAdapter<MineTextModel.MineTextResult.ResultList> adapter;
     private int page = 1;
+    private String topic_id;
 
 
+    @BindView(R.id.title_tv_base)
+    TextView titles;
     @BindView(R.id.verygridview)
     PullToRefreshGridView gridView;
-    @BindView(R.id.title_tv_base)
-    TextView title;
 
-
-    @OnClick(R.id.rela)
-    void search(){
-        openActivity(SearchAct.class);
-    }
 
     @OnClick(R.id.back_rela)
-    void bacView(){
+    void bacAct(){
         onBack();
     }
 
     @Override
     public void initView() {
-        title.setText("热门用户");
+        titles.setText("活动参与人");
+        topic_id = getIntent().getStringExtra(IntentConstant.WEB_ACT_ID);
+        gridView.getRefreshableView().setVerticalScrollBarEnabled(false);
         RefreshShowTime.showTime(gridView);
-        adapter = getP().initAdapter(resultLis);
-        gridView.setVerticalScrollBarEnabled(false);
-        gridView.setAdapter(adapter);
     }
 
     @Override
     public void initAfter() {
-        getP().getUserHot(page,"28");
+        getP().getTopicUser(topic_id,page);
     }
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_hot_user;
+        return R.layout.activity_act_apply;
     }
 
     @Override
-    public HotUserPresenter bindPresent() {
-        return new HotUserPresenter();
+    public ActApplyPresenter bindPresent() {
+        return new ActApplyPresenter();
     }
 
     @Override
@@ -86,8 +82,8 @@ public class HotUserAct extends BaseActivity<HotUserPresenter>  implements  Pull
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Router.newIntent(HotUserAct.this)
-                        .putString(IntentConstant.OTHER_USER_ID,resultLis.get(position).getId())
+                Router.newIntent(ActApplyAct.this)
+                        .putString(IntentConstant.OTHER_USER_ID,results.get(position).getUser_id())
                         .to(OtherMainAct.class)
                         .launch();
             }
@@ -95,24 +91,22 @@ public class HotUserAct extends BaseActivity<HotUserPresenter>  implements  Pull
     }
 
     /**
-     * 获取热门用户
-     * @param result
-     * @param page
+     * 获取数据
+     * @param lists
      */
-    public void hotUserResponse(List<TxtModel.TxtResult.Result> result, int page){
-        Log.i(TAG,"PAGE:"+page);
-        Log.i(TAG,"size:"+result.size());
+    public void userResponse(List<MineTextModel.MineTextResult.ResultList> lists){
+        Log.i(TAG,"SIZE:"+lists.size());
         if(page>1){
-            if(resultLis.size()==0){
-                ToastUtil.showToast("没有更多热门用户");
+            if(lists.size()==0){
+                ToastUtil.showToast("没有更多参与用户");
             }else{
-                resultLis.addAll(result);
+                results.addAll(lists);
                 adapter.notifyDataSetChanged();
             }
         }else{
-            resultLis.clear();
-            resultLis.addAll(result);
-            adapter = getP().initAdapter(resultLis);
+            results.clear();
+            results.addAll(lists);
+            adapter = getP().initAdapter(results);
             gridView.setAdapter(adapter);
         }
         gridView.onRefreshComplete();
@@ -120,13 +114,14 @@ public class HotUserAct extends BaseActivity<HotUserPresenter>  implements  Pull
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
+
         page = 1;
-        getP().getUserHot(page,"28");
+        initAfter();
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
         page ++;
-        getP().getUserHot(page,"28");
+        initAfter();
     }
 }

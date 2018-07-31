@@ -8,9 +8,11 @@
     <View
         android:id="@+id/l_v"
         android:layout_width="18px"
+        android:layout_alignBottom="@+id/rela"
         android:layout_height="match_parent"></View>
 
     <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela"
         android:layout_toRightOf="@+id/l_v"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -37,6 +39,14 @@
                 app:border_width="6px"
                 android:src="@drawable/bac_image"
                 android:layout_height="115px" />
+            
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/op_img"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/options"
+                android:layout_width="40px"
+                android:layout_height="40px" />
 
         </com.zhy.autolayout.AutoRelativeLayout>
 

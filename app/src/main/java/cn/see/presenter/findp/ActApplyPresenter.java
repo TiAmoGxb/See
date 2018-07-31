@@ -1,6 +1,5 @@
-package cn.see.presenter.minep;
+package cn.see.presenter.findp;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,9 +13,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.CommonViewHolder;
-import cn.see.fragment.fragmentview.mineview.TopicApplyAct;
+import cn.see.fragment.fragmentview.findview.ActApplyAct;
 import cn.see.model.MineTextModel;
-import cn.see.model.TxtModel;
 import cn.see.util.ToastUtil;
 import cn.see.util.constant.HttpConstant;
 import cn.see.util.glide.GlideDownLoadImage;
@@ -24,18 +22,18 @@ import cn.see.util.http.Api;
 import cn.see.util.widet.CustomProgress;
 
 /**
- * @日期：2018/7/3
+ * @日期：2018/7/31
  * @作者： GuoXinBo
  * @邮箱： guoxinbo@banling.com
- * @说明：
+ * @说明： 活动参与人
  */
 
-public class TopicApplyPresenter extends XPresent<TopicApplyAct>{
+public class ActApplyPresenter  extends XPresent<ActApplyAct>{
     CustomProgress progress;
 
     public void getTopicUser(String topic_id,int page){
         progress = CustomProgress.show(getV());
-        Api.mineService().getTopicApplyUser(topic_id,page,"28")
+        Api.findService().actApply(topic_id,page,"28")
                 .compose(XApi.<MineTextModel>getApiTransformer())
                 .compose(XApi.<MineTextModel>getScheduler())
                 .compose(getV().<MineTextModel>bindToLifecycle())
@@ -70,7 +68,7 @@ public class TopicApplyPresenter extends XPresent<TopicApplyAct>{
                 ImageView imageView = CommonViewHolder.get(item, R.id.img);
                 TextView textView = CommonViewHolder.get(item, R.id.user_hot_name);
                 textView.setText(s.getNickname());
-                GlideDownLoadImage.getInstance().loadCircleImage(s.getUrl(),imageView);
+                GlideDownLoadImage.getInstance().loadCircleImage(s.getHead_img_url(),imageView);
             }
         };
         return adapter;

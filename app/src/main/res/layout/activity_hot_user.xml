@@ -43,6 +43,7 @@
     <cn.see.util.widet.putorefresh.PullToRefreshGridView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/verygridview"
+        android:layout_marginTop="15px"
         android:layout_marginLeft="25px"
         android:layout_marginRight="25px"
         android:layout_width="match_parent"

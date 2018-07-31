@@ -12,13 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import cn.see.R;
-import cn.see.util.ToastUtil;
 import cn.see.util.constant.IntentConstant;
 import me.nereo.multi_image_selector.MultiImageSelectorFragment;
 import me.nereo.multi_image_selector.Number;
@@ -92,11 +94,11 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         }
         mSubmitButton = (TextView) findViewById(R.id.title_tv_op_bg);
         TextView title = (TextView) findViewById(R.id.title_tv_base);
+        ImageView layout =(ImageView) findViewById(R.id.img);
         title.setText("选择照片");
-        findViewById(R.id.back_rela).setOnClickListener(new View.OnClickListener() {
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showToast("执行");
                 finish();
             }
         });

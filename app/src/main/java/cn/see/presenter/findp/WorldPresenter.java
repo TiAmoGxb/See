@@ -150,10 +150,14 @@ public class WorldPresenter extends XPresent<FindWorldFragment> {
                  CircleImageView userView = (CircleImageView) holder.getView(R.id.user_hot_img);
                  CircleImageView bac_image = (CircleImageView) holder.getView(R.id.bac_img);
                  if(position == results.size()-1){
-                     userView.setImageResource(R.mipmap.options);
+                     holder.setVisible(R.id.op_img,true);
+                     userView.setVisibility(View.GONE);
                      bac_image.setBorderColor(R.color.black);
-                     bac_image.setBorderWidth(6);
+                     bac_image.setBorderWidth(3);
+                     bac_image.setImageResource(R.drawable.timg);
                  }else{
+                     userView.setVisibility(View.VISIBLE);
+                     holder.setVisible(R.id.op_img,false);
                      holder.setText(R.id.user_hot_name,result.getNickname());
                      GlideDownLoadImage.getInstance().loadCircleImageToCust(result.getHead_img_url(),userView);
                  }
