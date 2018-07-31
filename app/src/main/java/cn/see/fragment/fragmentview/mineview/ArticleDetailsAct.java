@@ -243,6 +243,7 @@ public class ArticleDetailsAct extends BaseActivity<TextAriclePresenter> impleme
         }else{
             contentTv.setText(txtResult.getMsg());
         }
+
         likeNumTv.setText(txtResult.getLike_count());
         commNumTv.setText(txtResult.getReview_count());
         reviewNumTv.setText("共"+txtResult.getReview_count()+"条评论");
