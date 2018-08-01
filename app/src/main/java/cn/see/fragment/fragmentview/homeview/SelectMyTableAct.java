@@ -42,6 +42,7 @@ import cn.see.util.SpaceItemDecoration;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
 import cn.see.util.constant.HttpConstant;
+import cn.see.util.constant.IntentConstant;
 import cn.see.util.glide.GlideDownLoadImage;
 import cn.see.util.http.Api;
 import cn.see.util.widet.CustomProgress;
@@ -53,8 +54,9 @@ import cn.see.util.widet.CustomProgress;
  * @说明： 选择我的标签
  */
 public class SelectMyTableAct extends BaseActivity {
-
+    private int type;
     private List<String> tabs = new ArrayList<>();
+    private List<String> tabNames = new ArrayList<>();
     private static final String TAG =  "SelectMyTableAct";
     private int num;
 
@@ -95,6 +97,7 @@ public class SelectMyTableAct extends BaseActivity {
 
     @Override
     public void initAfter() {
+        type = getIntent().getIntExtra(IntentConstant.SEL_TAB_TEXT, -1);
         getTabText();
     }
 
@@ -154,6 +157,7 @@ public class SelectMyTableAct extends BaseActivity {
                                                     tableBean.setFlag(true);
                                                     num++;
                                                     tabs.add(tableBean.getTab_id());
+                                                    tabNames.add(tableBean.getText());
                                                 }else{
                                                     ToastUtil.showToast("最多只能选4个标签");
                                                 }
@@ -162,6 +166,7 @@ public class SelectMyTableAct extends BaseActivity {
                                                 tableBean.setFlag(false);
                                                 num--;
                                                 tabs.remove(tableBean.getTab_id());
+                                                tabNames.remove(tableBean.getText());
                                             }
                                         }
                                     });
@@ -192,9 +197,21 @@ public class SelectMyTableAct extends BaseActivity {
                     public void onNext(final BaseModel findTextcModel) {
                         progress.dismiss();
                         if(!findTextcModel.isError()){
-                            //发送事件
-                            EventBus.getDefault().post(new FindTabEvent());
-                            onBack();
+                            if(type!=-1&&type==0){
+                                StringBuffer buffer = new StringBuffer();
+                                for (String name:tabNames) {
+                                    buffer.append(name+",");
+                                }
+                                String tabid = buffer.toString().substring(0, buffer.length() - 1);
+                                Intent intent = new Intent();
+                                intent.putExtra("tab",tabid);
+                                setResult(0,intent);
+                                onBack();
+                            }else{
+                                //发送事件
+                                EventBus.getDefault().post(new FindTabEvent());
+                                onBack();
+                            }
                         }else{
                             ToastUtil.showToast(findTextcModel.getErrorMsg());
                         }

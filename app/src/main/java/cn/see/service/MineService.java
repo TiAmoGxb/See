@@ -458,10 +458,8 @@ public interface MineService {
     @POST("Index/searchText.html")
     Flowable<MineTextModel> seText(@Field("user_id") String user_id, @Field("page") int page , @Field("pageSize") String pageSize, @Field("str") String str);
 
-
     /**
      * 搜索用户(通用)
-     * @param user_id
      * @return
      */
     @FormUrlEncoded

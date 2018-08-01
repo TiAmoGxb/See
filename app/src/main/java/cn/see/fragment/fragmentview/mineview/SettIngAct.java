@@ -12,6 +12,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.jpush.im.android.api.JMessageClient;
 import cn.see.R;
 import cn.see.base.BaseActivity;
 import cn.see.base.BaseModel;
@@ -98,6 +99,8 @@ public class SettIngAct extends BaseActivity implements OnItemClickListener, OnD
 
     @Override
     public void onItemClick(Object o, int position) {
+        //退出IM
+        JMessageClient.logout();
         //解绑用户CID
         setCid();
         UserUtils.removeUserLogin(this);

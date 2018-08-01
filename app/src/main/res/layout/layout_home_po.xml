@@ -140,7 +140,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="40px"
                 android:layout_height="30px"
-                android:src="@drawable/sys"/>
+                android:src="@drawable/sys_op"/>
 
             <TextView
                 android:id="@+id/four_text"

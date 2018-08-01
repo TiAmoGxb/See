@@ -60,7 +60,7 @@ public class MineSchoolPresenter extends XPresent<MineSchoolAct> {
      * 修改学校
      * @param id
      */
-    public void setSchool(String id){
+    public void setSchool(String id, final String name){
         Api.mineService().setSchool(UserUtils.getUserID(getV()),id)
                 .compose(XApi.<BaseModel>getApiTransformer())
                 .compose(XApi.<BaseModel>getScheduler())
@@ -75,7 +75,7 @@ public class MineSchoolPresenter extends XPresent<MineSchoolAct> {
                     @Override
                     public void onNext(BaseModel txtResult) {
                         if(!txtResult.isError()){
-                            getV().setSusess();
+                            getV().setSusess(name);
                         }else{
                             ToastUtil.showToast(txtResult.getErrorMsg());
                         }
@@ -107,7 +107,7 @@ public class MineSchoolPresenter extends XPresent<MineSchoolAct> {
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                 setSchool(schoolLists.get(position).getSchool_id());
+                 setSchool(schoolLists.get(position).getSchool_id(),schoolLists.get(position).getSchool_name());
             }
 
             @Override

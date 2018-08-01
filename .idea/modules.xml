@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/See.iml" filepath="$PROJECT_DIR$/See.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reclib-qq/reclib-qq.iml" filepath="$PROJECT_DIR$/reclib-qq/reclib-qq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reclib-testemoticons/reclib-testemoticons.iml" filepath="$PROJECT_DIR$/reclib-testemoticons/reclib-testemoticons.iml" />
     </modules>
   </component>
 </project>

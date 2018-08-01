@@ -128,9 +128,17 @@ public class MinePresenter extends XPresent<MineFragment>{
                     commCont.setText(s.getReview_count());
 
                     if(s.getType().equals("topic")){
-                        txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getTopic_name()+"#"+s.getMsg(),s.getTopic_id(),s.getTopic_name().length()));
+                        if(!s.getTopic_id().equals("0")&&s.getTopic_name()!=null){
+                            txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getTopic_name()+"#"+s.getMsg(),s.getTopic_id(),s.getTopic_name().length()));
+                        }else{
+                            txt.setText(s.getMsg());
+                        }
                     }else if(s.getType().equals("activity")){
-                        txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getActivity_name()+"#"+s.getMsg(),s.getActivity_id(),s.getActivity_name().length(),s.getActivity_name()));
+                        if(!s.getActivity_id().equals("0")&&s.getActivity_name()!=null){
+                            txt.setText(SpannableUtils.getInstance().getClickableSpan(getV().getActivity(),"#"+s.getActivity_name()+"#"+s.getMsg(),s.getActivity_id(),s.getActivity_name().length(),s.getActivity_name()));
+                        }else{
+                            txt.setText(s.getMsg());
+                        }
                     }else{
                         txt.setText(s.getMsg());
                     }

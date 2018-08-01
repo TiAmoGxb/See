@@ -1,5 +1,8 @@
 package cn.see.presenter.minep;
 
+import android.content.Intent;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,9 +13,14 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.adapter.CommonViewHolder;
+import cn.see.app.App;
+import cn.see.chat.activity.ChatActivity;
 import cn.see.fragment.fragmentview.mineview.AttentionAct;
 import cn.see.model.MineAttModel;
 import cn.see.model.UserInfoModel;
@@ -40,7 +48,7 @@ public class AttentionPresenter extends XPresent<AttentionAct> {
     public CommonListViewAdapter<MineAttModel.AttResult> initAdapter(final List<MineAttModel.AttResult> stringList){
         CommonListViewAdapter<MineAttModel.AttResult> adapter = new CommonListViewAdapter<MineAttModel.AttResult>(getV(),stringList, R.layout.layout_mine_att_item) {
             @Override
-            protected void convertView(View item, MineAttModel.AttResult s, int position) {
+            protected void convertView(View item, MineAttModel.AttResult s, final int position) {
                 TextView nickName = CommonViewHolder.get(item, R.id.nick_name);
                 TextView signinTxt = CommonViewHolder.get(item, R.id.signin_txt);
                 View viewOne = CommonViewHolder.get(item, R.id.ones_view);
@@ -65,7 +73,25 @@ public class AttentionPresenter extends XPresent<AttentionAct> {
                 CommonViewHolder.get(item,R.id.send_tv).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("私信");
+                        JMessageClient.getUserInfo("kanjian" + stringList.get(position).getUid(),new GetUserInfoCallback() {
+                            @Override
+                            public void gotResult(int i, String s, UserInfo userInfo) {
+                                //已有用户
+                                if(s.equals("Success")&&userInfo!=null){
+                                    String title = userInfo.getNickname();
+                                    if(TextUtils.isEmpty(title)){
+                                        title = userInfo.getUserName();
+                                    }
+                                    Intent intent1 = new Intent(getV(), ChatActivity.class);
+                                    intent1.putExtra(App.CONV_TITLE, title);
+                                    intent1.putExtra(App.TARGET_ID, userInfo.getUserName());
+                                    intent1.putExtra(App.TARGET_APP_KEY, userInfo.getAppKey());
+                                    getV().startActivity(intent1);
+                                }else{
+                                    ToastUtil.showToast("该用户暂时没有开通私信服务");
+                                }
+                            }
+                        });
                     }
                 });
             }

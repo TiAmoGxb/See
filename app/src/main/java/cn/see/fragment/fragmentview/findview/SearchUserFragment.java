@@ -1,8 +1,10 @@
 package cn.see.fragment.fragmentview.findview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,10 +17,15 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
 import cn.see.R;
 import cn.see.adapter.RecryCommonAdapter;
 import cn.see.adapter.ViewHolder;
+import cn.see.app.App;
 import cn.see.base.BaseFragement;
+import cn.see.chat.activity.ChatActivity;
 import cn.see.fragment.fragmentview.mineview.AttentionAct;
 import cn.see.fragment.fragmentview.mineview.OtherMainAct;
 import cn.see.model.MineAttModel;
@@ -116,7 +123,7 @@ public class SearchUserFragment extends BaseFragement {
         }
         recyclerView.setAdapter(new RecryCommonAdapter<MineAttModel.AttResult>(getActivity(), R.layout.layout_mine_att_item,result) {
             @Override
-            protected void convert(ViewHolder holder, MineAttModel.AttResult o, int position) {
+            protected void convert(ViewHolder holder, MineAttModel.AttResult o, final int position) {
                 holder.setText(R.id.nick_name,o.getNickname());
                 holder.setText(R.id.signin_txt,o.getSignature());
                 ImageView imageView = holder.getView(R.id.img_icon);
@@ -124,7 +131,27 @@ public class SearchUserFragment extends BaseFragement {
                 holder.setOnClickListener(R.id.send_tv, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtil.showToast("私信");
+                        JMessageClient.getUserInfo("kanjian" + result.get(position).getUser_id(),new GetUserInfoCallback() {
+                            @Override
+                            public void gotResult(int i, String s, UserInfo userInfo) {
+                                Log.i(TAG,"S:"+s);
+                                Log.i(TAG,"userInfo:"+userInfo);
+                                //已有用户
+                                if(s.equals("Success")&&userInfo!=null){
+                                    String title = userInfo.getNickname();
+                                    if(TextUtils.isEmpty(title)){
+                                        title = userInfo.getUserName();
+                                    }
+                                    Intent intent1 = new Intent(getActivity(), ChatActivity.class);
+                                    intent1.putExtra(App.CONV_TITLE, title);
+                                    intent1.putExtra(App.TARGET_ID, userInfo.getUserName());
+                                    intent1.putExtra(App.TARGET_APP_KEY, userInfo.getAppKey());
+                                    startActivity(intent1);
+                                }else{
+                                    ToastUtil.showToast("该用户暂时没有开通私信服务");
+                                }
+                            }
+                        });
                     }
                 });
                 setOnItemClickListener(new OnItemClickListener() {
