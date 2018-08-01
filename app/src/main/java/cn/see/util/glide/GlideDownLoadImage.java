@@ -451,15 +451,15 @@ public class GlideDownLoadImage {
      * @auhtor fuduo
      * @Data 2017-9-5 11:18
      */
-    public void loadBitmapCircleImage(Context mContext, ImageView view, Bitmap bitmap,int size) {
+    public void loadBitmapCircleImage( ImageView view, Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] bytes=baos.toByteArray();
-        Glide.with(mContext)
+        Glide.with(App.getContext())
                 .load(bytes)
                 .centerCrop()
                 .error(R.drawable.bac_icon)
-                .bitmapTransform(new GlideRoundTransform(mContext,size))
+                .bitmapTransform(new GlideCircleTransform(App.getContext()))
                 .into(view);
     }
 

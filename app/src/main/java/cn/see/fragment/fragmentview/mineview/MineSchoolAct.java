@@ -1,6 +1,7 @@
 package cn.see.fragment.fragmentview.mineview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -22,6 +23,7 @@ import cn.see.base.BaseActivity;
 import cn.see.model.MineSchoolModel;
 import cn.see.presenter.minep.MineSchoolPresenter;
 import cn.see.util.ToastUtil;
+import cn.see.util.constant.IntentConstant;
 
 /**
  * 我的大学
@@ -31,6 +33,7 @@ public class MineSchoolAct extends BaseActivity<MineSchoolPresenter> {
     private RecryCommonAdapter<MineSchoolModel.SchoolResult.SchoolList> adapter;
     private boolean isFrist = true;
     private List<MineSchoolModel.SchoolResult.SchoolList> lists = new ArrayList<>();
+    private int type;
 
     @BindView(R.id.title_tv_base)
     TextView title;
@@ -57,6 +60,7 @@ public class MineSchoolAct extends BaseActivity<MineSchoolPresenter> {
 
     @Override
     public void initAfter() {
+        type = getIntent().getIntExtra(IntentConstant.SCHOOL_TYPE, -1);
     }
 
     @Override
@@ -122,8 +126,12 @@ public class MineSchoolAct extends BaseActivity<MineSchoolPresenter> {
         }
     }
 
-
-    public void setSusess(){
+    public void setSusess(String name){
+        if(type!=-1&&type==0){
+            Intent intent = new Intent();
+            intent.putExtra("school",name);
+            setResult(1,intent);
+        }
         onBack();
     }
 }

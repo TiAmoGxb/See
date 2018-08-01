@@ -18,6 +18,7 @@ import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.see.R;
 import cn.see.adapter.CustPagerFragmentAdapter;
 import cn.see.base.BaseFragement;
+import cn.see.chat.activity.fragment.ConversationListFragment;
 import cn.see.fragment.fragmentview.homeview.AddFriendsAct;
 import cn.see.fragment.fragmentview.homeview.AttentionFragment;
 import cn.see.fragment.fragmentview.homeview.QualityLifeFragment;
@@ -90,7 +91,7 @@ public class NewsFragment extends BaseFragement {
         helper = new PopupWindowHelper(popView);
         fragmentList = new ArrayList<>();
         fragmentList.add(new MsgFragment());
-        fragmentList.add(new PrivateLetterFragment());
+        fragmentList.add(new ConversationListFragment());
         pager.setOffscreenPageLimit(fragmentList.size());
         pager.setAdapter(new CustPagerFragmentAdapter(getChildFragmentManager(),fragmentList));
         pager.setCurrentItem(lastP);

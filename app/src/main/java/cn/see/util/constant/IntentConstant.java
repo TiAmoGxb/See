@@ -208,4 +208,15 @@ public class IntentConstant {
     public static String RELEASE_AREA_TEXT = "RELEASE_AREA_TEXT";
 
 
+    /**
+     * 学校
+     */
+    public static String SCHOOL_TYPE = "SCHOOL_TYPE";
+
+    /**
+     * 标签
+     */
+    public static String SEL_TAB_TYPE = "SEL_TAB_TYPE";
+
+
 }

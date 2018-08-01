@@ -4,13 +4,11 @@
     android:background="@color/view_f4"
     android:layout_height="match_parent">
 
-    <cn.see.util.widet.putorefresh.PullToRefreshListView
-    xmlns:ptr="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/pull_msg_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    ptr:ptrAnimationStyle="flip"
-    android:gravity="center_horizontal"
-    ptr:ptrMode="both" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 </com.zhy.autolayout.AutoRelativeLayout>

@@ -1,16 +1,26 @@
 package cn.see.fragment.fragmentview.mineview;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.router.Router;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 import cn.see.R;
 import cn.see.base.BaseActivity;
+import cn.see.chat.database.UserEntry;
+import cn.see.chat.utils.SharePreferenceManager;
 import cn.see.main.WebAct;
+import cn.see.main.WelcomeAct;
 import cn.see.model.LoginModel;
 import cn.see.presenter.minep.LoginPresenter;
 import cn.see.util.ToastUtil;
@@ -98,7 +108,11 @@ public class LoginAct extends BaseActivity<LoginPresenter> {
         getP().progress.dismiss();
         //存入已登录标记
         UserUtils.setLoginFlag(this);
+        //存入用户ID
         UserUtils.setUserID(this,model.getResult().getUid());
+        //登录IM
+        loginIm();
+        //取出设备唯一标识
         String string = PreferenceUtils.getString(this, PreferenceConstant.REGISTRATION_ID);
         //绑定设备唯一标识
         getP().setCid(string);
@@ -112,4 +126,34 @@ public class LoginAct extends BaseActivity<LoginPresenter> {
     public void showInputError(String error){
         ToastUtil.showToast(error);
     }
+
+    //登录IM
+    private void loginIm(){
+        JMessageClient.login("kanjian"+UserUtils.getUserID(this), "123456", new BasicCallback() {
+            @Override
+            public void gotResult(int i, String s) {
+                if (i == 0) {
+                    SharePreferenceManager.setCachedPsw("123456");
+                    UserInfo myInfo = JMessageClient.getMyInfo();
+                    File avatarFile = myInfo.getAvatarFile();
+                    Log.i(TAG,"avatarFile:"+avatarFile);
+                    //登陆成功,如果用户有头像就把头像存起来,没有就设置null
+                    if (avatarFile != null) {
+                        SharePreferenceManager.setCachedAvatarPath(avatarFile.getAbsolutePath());
+                    } else {
+                        SharePreferenceManager.setCachedAvatarPath(null);
+                    }
+                    String username = myInfo.getUserName();
+                    String appKey = myInfo.getAppKey();
+                    UserEntry user = UserEntry.getUser(username, appKey);
+                    if (null == user) {
+                        user = new UserEntry(username, appKey);
+                        user.save();
+                    }
+                }
+            }
+        });
+    }
+
+
 }

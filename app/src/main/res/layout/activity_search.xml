@@ -50,6 +50,7 @@
     
     
     <TextView
+        android:visibility="gone"
         android:id="@+id/clear_tv"
         android:layout_below="@+id/recyclerView"
         android:gravity="center"

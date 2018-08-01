@@ -20,9 +20,14 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 import cn.see.R;
 import cn.see.base.BaseActivity;
 import cn.see.base.BaseModel;
+import cn.see.chat.utils.SharePreferenceManager;
+import cn.see.chat.utils.ThreadUtil;
 import cn.see.model.UserInfoModel;
 import cn.see.util.ToastUtil;
 import cn.see.util.UserUtils;
@@ -219,6 +224,8 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
                 file = CamerUtils.doOpenCamera(this, PHOOT_IMG_CARMAR, "temp.jpg", IntentConstant.CARMER_PHOTO_TYPE);
                 Log.i(TAG,"file:"+file);
             }else{
+                //退出IM
+                JMessageClient.logout();
                 //解绑用户cid
                 setCid();
                 UserUtils.removeUserLogin(this);
@@ -274,6 +281,20 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
         }else{
             sex_tv.setText("女");
         }
+
+        //更新昵称
+        String nickName = nick_name_tv.getText().toString();
+        UserInfo myUserInfo = JMessageClient.getMyInfo();
+        if (myUserInfo != null) {
+            myUserInfo.setNickname(nickName);
+        }
+        JMessageClient.updateMyInfo(UserInfo.Field.nickname, myUserInfo, new BasicCallback() {
+            @Override
+            public void gotResult(final int status, String desc) {
+                SharePreferenceManager.setCachedFixProfileFlag(false);
+            }
+        });
+
         GlideDownLoadImage.getInstance().loadCircleImageToCust( userResult.getUserUrl(),userImg);
     }
 
@@ -357,7 +378,7 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
     }
 
 
-    public void release( String path) {
+    public void release(final String path) {
         final CustomProgress progress = CustomProgress.show(this);
         OkHttpClient client = new OkHttpClient();
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -369,16 +390,32 @@ public class SetUserDataAct extends BaseActivity implements OnItemClickListener,
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.i(TAG,"失败："+e.toString());
                 progress.dismiss();
             }
             @Override
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
-                Log.i(TAG,"成功："+response.body().string());
+                SharePreferenceManager.setRegisterAvatarPath(path);
+                //更新头像
+                final String avatarPath = SharePreferenceManager.getRegisterAvatarPath();
+                if (avatarPath != null) {
+                    ThreadUtil.runInThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            JMessageClient.updateUserAvatar(new File(avatarPath), new BasicCallback() {
+                                @Override
+                                public void gotResult(int responseCode, String responseMessage) {
+                                    if (responseCode == 0) {
+                                        SharePreferenceManager.setCachedAvatarPath(avatarPath);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    SharePreferenceManager.setCachedAvatarPath(null);
+                }
                 progress.dismiss();
                 getUserInfo();
-//                ToastUtil.showToast("发布成功");
-//                progress.dismiss();
                 try {
                     file.delete();
                 } catch (Exception e) {

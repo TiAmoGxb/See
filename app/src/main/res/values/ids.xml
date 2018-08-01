@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <!-- QR_Code -->
     <item name="auto_focus" type="id"/>
     <item name="decode" type="id"/>
@@ -18,5 +19,12 @@
     <item name="webview" type="id"/>
     <item name="about_version_code" type="id">false</item>
     <item name="split" type="id">false</item>
+    <item name="decode_error" type="id"/>
 
+
+    <!--聊天-->
+    <item type="id" name="id_autolayout" />
+    <item type="id" name="id_tag_pageset" />
+    <item type="id" name="id_toolbar_left" />
+    <item type="id" name="id_toolbar_right" />
 </resources>

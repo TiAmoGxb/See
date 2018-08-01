@@ -4,7 +4,11 @@
     android:background="@color/back_f"
     android:layout_height="wrap_content">
 
+
+
+
     <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela"
         android:layout_width="match_parent"
         android:layout_height="70px">
 
@@ -60,7 +64,16 @@
     </com.zhy.autolayout.AutoRelativeLayout>
 
 
-
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/clear_tv"
+        android:layout_below="@+id/rela"
+        android:gravity="center"
+        android:textColor="@color/text_3d"
+        android:textSize="@dimen/sp_22"
+        android:text="清除历史记录"
+        android:layout_width="match_parent"
+        android:layout_height="90px" />
 
 
 </com.zhy.autolayout.AutoRelativeLayout>

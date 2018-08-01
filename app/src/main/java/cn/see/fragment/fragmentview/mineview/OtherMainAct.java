@@ -2,9 +2,11 @@ package cn.see.fragment.fragmentview.mineview;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +33,17 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.router.Router;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.android.eventbus.EventBus;
 import cn.see.R;
 import cn.see.adapter.CommonListViewAdapter;
 import cn.see.app.App;
 import cn.see.base.BaseActivity;
+import cn.see.chat.activity.ChatActivity;
+import cn.see.chat.entity.EventType;
 import cn.see.fragment.fragmentview.findview.PhotoViewActivity;
 import cn.see.main.WebAct;
 import cn.see.model.MineTextModel;
@@ -57,6 +66,8 @@ import cn.see.util.widet.PopupWindowHelper;
 import cn.see.util.widet.putorefresh.PullToRefreshBase;
 import cn.see.util.widet.putorefresh.PullToRefreshListView;
 import cn.see.util.widet.putorefresh.RefreshShowTime;
+
+import static cn.see.R.id.jiguang;
 
 /**
  * @日期：2018/6/12
@@ -90,6 +101,8 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
     private View popView;
     private PopupWindowHelper helper;
     private RelativeLayout showDilog;
+    private Conversation conv;
+    private UserInfo mUserInfo;
 
     @BindView(R.id.rela_title)
     RelativeLayout layout;
@@ -226,7 +239,27 @@ public class OtherMainAct extends BaseActivity<OtherUserPresenter> implements Pu
                         .launch();
                 break;
             case R.id.tv_send_msg:
-                ToastUtil.showToast("私信");
+                JMessageClient.getUserInfo("kanjian" + fromID, new GetUserInfoCallback() {
+                    @Override
+                    public void gotResult(int i, String s, UserInfo userInfo) {
+                        Log.i(TAG,"S:"+s);
+                        Log.i(TAG,"userInfo:"+userInfo);
+                        //已有用户
+                        if(s.equals("Success")&&userInfo!=null){
+                            String title = userInfo.getNickname();
+                            if(TextUtils.isEmpty(title)){
+                                title = userInfo.getUserName();
+                            }
+                            Intent intent1 = new Intent(OtherMainAct.this, ChatActivity.class);
+                            intent1.putExtra(App.CONV_TITLE, title);
+                            intent1.putExtra(App.TARGET_ID, userInfo.getUserName());
+                            intent1.putExtra(App.TARGET_APP_KEY, userInfo.getAppKey());
+                            startActivity(intent1);
+                        }else{
+                            ToastUtil.showToast("该用户暂时没有开通私信服务");
+                        }
+                    }
+                });
                 break;
             case R.id.tv_att:
                 if(attention_status.equals("1")||attention_status.equals("2")){

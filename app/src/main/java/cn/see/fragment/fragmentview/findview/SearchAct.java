@@ -55,7 +55,6 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
     void clear(){
         AlertView exitAlView = new AlertView("", "是否清除历史记录", "否", new String[]{"是"}, null, this, AlertView.Style.Alert, this);
         exitAlView.show();
-
     }
 
     @OnClick(R.id.back_rela)
@@ -79,11 +78,7 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
         super.onStart();
         listData = PreferenceUtils.getListData(this, PreferenceConstant.SERCH_RECORDING, String.class);
         if(listData!=null){
-            if(listData.size()==0){
-                clear_tv.setVisibility(View.GONE);
-            }else{
-                clear_tv.setVisibility(View.VISIBLE);
-            }
+
             adapter = new RecryCommonAdapter<String>(this, R.layout.layout_search_one_item, listData) {
                 @Override
                 protected void convert(ViewHolder holder, String o, final int position) {
@@ -93,8 +88,10 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
                         holder.setVisible(R.id.ones_view, false);
                     }
                     if (position == listData.size() - 1) {
+                        holder.setVisible(R.id.clear_tv,true);
                         holder.setVisible(R.id.twos_view, true);
                     } else {
+                        holder.setVisible(R.id.clear_tv,false);
                         holder.setVisible(R.id.twos_view, false);
                     }
                     holder.setText(R.id.nick_name, o);
@@ -108,17 +105,23 @@ public class SearchAct extends BaseActivity implements OnItemClickListener, OnDi
                             adapter.notifyDataSetChanged();
                         }
                     });
+                    holder.setOnClickListener(R.id.clear_tv, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertView exitAlView = new AlertView("", "是否清除历史记录", "否", new String[]{"是"}, null, SearchAct.this, AlertView.Style.Alert, SearchAct.this);
+                            exitAlView.show();
+                        }
+                    });
                 }
             };
             adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                    Router.newIntent(SearchAct.this)
-                            .putString(IntentConstant.SEARCH_CONT,listData.get(position))
-                            .to(SearchContAct.class)
-                            .launch();
+                        Router.newIntent(SearchAct.this)
+                                .putString(IntentConstant.SEARCH_CONT,listData.get(position))
+                                .to(SearchContAct.class)
+                                .launch();
                 }
-
                 @Override
                 public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
                     return false;
